@@ -65,6 +65,176 @@
     "decline": "Refuser",
     "learnMore": "En savoir plus"
   },
+  "experience": {
+    "metadata": {
+      "title": "Une soirée — Detox"
+    },
+    "header": {
+      "label": "Expérience"
+    },
+    "nav": {
+      "skip": "Passer",
+      "keyboardHint": "Astuce clavier : 1 ou 2 pour choisir."
+    },
+    "a11y": {
+      "progressLabel": "Progression de l'expérience"
+    },
+    "scenes": {
+      "evening_room": {
+        "lines": {
+          "1": "Tu rentres de l'école.",
+          "2": "Demain, contrôle de math.",
+          "3": "Le téléphone vibre une fois, puis encore.",
+          "4": "Trois nouveaux messages. Une notification Insta. Un live TikTok."
+        }
+      },
+      "choice_1": {
+        "prompt": "Tu fais quoi ?",
+        "options": {
+          "A": "Je regarde — juste 5 minutes.",
+          "B": "Je le retourne et je commence à réviser."
+        }
+      },
+      "rabbit_hole": {
+        "lines": {
+          "1": "20 h 47. Tu déverrouilles.",
+          "2": "Vidéo, vidéo, vidéo. Une amie en story.",
+          "3": "Tu réponds vite. Tu scrolles encore.",
+          "4": "22 h 13. Tu poses le téléphone. Le contrôle de math est dans onze heures."
+        }
+      },
+      "silence": {
+        "lines": {
+          "1": "20 h 47. Le téléphone est posé, écran contre la table.",
+          "2": "Tu lis. Un calcul. Un autre.",
+          "3": "Une notification clignote. Tu hésites une seconde.",
+          "4": "21 h 35. Tu fermes le livre. Tu te sens un peu fatigué·e — mais préparé·e."
+        }
+      },
+      "choice_2": {
+        "prompt": "Le matin, à l'arrêt de bus. Tes amis te montrent un mème. Le téléphone vibre. Comment tu veux passer les vingt prochaines minutes ?",
+        "options": {
+          "A": "Je sors le téléphone aussi — c'est plus simple.",
+          "B": "Je le laisse dans ma poche et j'écoute."
+        }
+      },
+      "shared_screen": {
+        "lines": {
+          "1": "Tu sors le téléphone.",
+          "2": "Vous riez à trois sur la même vidéo.",
+          "3": "Personne ne se regarde vraiment.",
+          "4": "Le bus arrive. Tu n'as pas entendu ce que disait Léa."
+        }
+      },
+      "listening": {
+        "lines": {
+          "1": "Le téléphone vibre. Tu le sens.",
+          "2": "Léa te raconte sa dispute avec sa sœur.",
+          "3": "Tu poses une question. Elle répond longuement.",
+          "4": "Le bus arrive. Tu sais des choses sur sa vie que tu ne savais pas hier."
+        }
+      },
+      "closing": {
+        "lines": {
+          "1": "Aucune de ces histoires n'est « la bonne ».",
+          "2": "Mais chaque petit choix construit ton rapport au téléphone.",
+          "3": "On va te poser dix questions pour mieux comprendre le tien."
+        }
+      }
+    },
+    "closing": {
+      "title": "Et toi ?",
+      "body": "Aucune de ces histoires n'est « la bonne ». Chaque petit choix construit ton rapport au téléphone. On va te poser dix questions pour mieux comprendre le tien.",
+      "cta": "Commencer le questionnaire"
+    }
+  },
+  "survey": {
+    "title": "Questionnaire SAS-SV",
+    "subtitle": "10 affirmations sur ton usage du smartphone. Choisis le chiffre qui te correspond le mieux. Aucune bonne ou mauvaise réponse — sois honnête avec toi-même.",
+    "intro": "Pour chaque affirmation : 1 = pas du tout d'accord, 6 = tout à fait d'accord. Tes réponses sont anonymes et enregistrées au fur et à mesure — tu peux fermer la page et reprendre plus tard.",
+    "questionLabel": "Question {n} / 10",
+    "progress": {
+      "label": "{current} sur {total} répondues",
+      "percent": "{pct} %"
+    },
+    "nav": {
+      "prev": "Précédente",
+      "next": "Suivante",
+      "seeResults": "Voir mes résultats",
+      "keyboardHint": "Astuce clavier : 1–6 pour répondre, ← → pour naviguer."
+    },
+    "status": {
+      "saving": "Enregistrement…",
+      "saveFailed": "Échec — réessaie."
+    },
+    "a11y": {
+      "progressRegion": "Progression du questionnaire"
+    }
+  },
+  "results": {
+    "title": "Tes résultats",
+    "instrumentNote": "Adaptation française pré-validée du SAS-SV (Kwon et al., 2013). Validation indépendante en cours — voir notre méthodologie.",
+    "score": {
+      "label": "Score total",
+      "range": "Échelle de {min} à {max}"
+    },
+    "bands": {
+      "low": {
+        "heading": "Usage modéré",
+        "body": "Ton score suggère que ton smartphone occupe une place mesurée dans ta journée. Continue à observer comment tu te sens quand tu le poses.",
+        "reflect": "Question pour toi : qu'est-ce qui te plaît le plus dans les moments sans smartphone ?"
+      },
+      "moderate": {
+        "heading": "Usage à surveiller",
+        "body": "Ton score est dans une zone intermédiaire. Plusieurs habitudes méritent que tu y prêtes attention — sans alarme, mais en restant attentif·ve.",
+        "reflect": "Question pour toi : si tu devais réduire ton temps d'écran d'une heure par jour, par quoi commencerais-tu ?"
+      },
+      "high": {
+        "heading": "Usage intensif",
+        "body": "Ton score indique un usage intensif du smartphone, avec des effets possibles sur ta concentration, ton sommeil ou tes relations. Cela ne définit pas qui tu es — c'est un signal pour ouvrir la conversation.",
+        "reflect": "Question pour toi : à qui de confiance pourrais-tu parler de ta relation au smartphone cette semaine ?"
+      }
+    },
+    "symptoms": {
+      "title": "Détail par dimension",
+      "subtitle": "Chaque barre correspond à un aspect différent du rapport au smartphone.",
+      "items": {
+        "loss_of_control": "Perte de contrôle",
+        "disruption": "Interférence avec les activités",
+        "preoccupation": "Préoccupation mentale",
+        "withdrawal": "Manque / impatience",
+        "tolerance": "Tolérance (durée d'usage)",
+        "disregard": "Conséquences ignorées"
+      }
+    },
+    "resources": {
+      "title": "Ressources de soutien",
+      "subtitle": "Si tu veux en parler, ces structures suisses sont gratuites et confidentielles.",
+      "items": {
+        "proJuventute": {
+          "name": "Pro Juventute · 147",
+          "description": "Conseil 24h/24 par téléphone, chat ou SMS, gratuit et anonyme."
+        },
+        "promotionSante": {
+          "name": "Promotion Santé Suisse",
+          "description": "Fondation publique pour la prévention et la santé mentale."
+        },
+        "stopAddiction": {
+          "name": "Addiction Suisse",
+          "description": "Information et soutien autour des addictions, y compris numériques."
+        },
+        "ciaoCh": {
+          "name": "ciao.ch",
+          "description": "Plateforme genevoise de conseil pour les 11–20 ans."
+        }
+      }
+    },
+    "actions": {
+      "retake": "Refaire le test",
+      "home": "Retour à l'accueil"
+    },
+    "disclaimer": "Ce questionnaire est un outil de réflexion personnelle, pas un diagnostic médical. En cas d'inquiétude, consulte un·e professionnel·le de santé."
+  },
   "errors": {
     "generic": "Une erreur s'est produite. Merci de réessayer.",
     "network": "Problème de connexion. Vérifiez votre réseau."

@@ -9,7 +9,7 @@ export default function GlobalNotFound() {
           <h1 style={{ fontSize: "2rem", fontWeight: 700 }}>404</h1>
           <p>Page introuvable / Page not found.</p>
           <p>
-            <Link href="/">Retour à l'accueil / Back home</Link>
+            <Link href="/">Retour à l&apos;accueil / Back home</Link>
           </p>
         </div>
       </body>

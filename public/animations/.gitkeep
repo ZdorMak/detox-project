@@ -1,0 +1,17 @@
+# Lottie animation files for the interactive experience.
+#
+# Filenames referenced in src/lib/experience/scenes.ts:
+#   - evening_room.lottie
+#   - rabbit_hole.lottie
+#   - silence.lottie
+#   - shared_screen.lottie
+#   - listening.lottie
+#
+# Until these are sourced from LottieFiles, SceneVisual.tsx falls back to a
+# hashed-color gradient — the experience still works end-to-end.
+#
+# To swap in real animations:
+#   1. Pick a free .lottie or .json from https://lottiefiles.com (filter:
+#      "free for commercial use" — most cinematic illustrations qualify).
+#   2. Save as the exact filename above (.lottie format preferred for size).
+#   3. Commit + push — Vercel will serve from /animations/<file> via CDN.

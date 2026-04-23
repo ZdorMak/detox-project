@@ -4,11 +4,11 @@ import { sha256Hex } from "@/lib/utils";
 
 /**
  * Cookie name carrying the opaque anonymous_id. httpOnly so client JS can't tamper.
+ * The cookie itself is minted in `src/middleware.ts` at the edge — Server
+ * Components cannot modify cookies during streaming render, so middleware is
+ * the only safe write path for the cookie itself. This module only reads it.
  */
 export const ANON_COOKIE = "detox_anon_id";
-
-/** 1 year in seconds — anon session is long-lived. */
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
 export type SessionRow = {
   id: string;
@@ -17,47 +17,41 @@ export type SessionRow = {
 
 /**
  * Read or create the anonymous session for the current request.
- * - If the cookie is present and a row exists, return it.
- * - Otherwise insert a fresh row and set the cookie.
+ * - Cookie is assumed to be already set by middleware.
+ * - If a row exists for that anon id, return it.
+ * - Otherwise insert a fresh row keyed to the cookie value.
  *
  * Server-side only; uses the service-role client.
  */
 export async function getOrCreateSession(): Promise<SessionRow> {
   const cookieStore = await cookies();
   const headerStore = await headers();
-  const existingId = cookieStore.get(ANON_COOKIE)?.value;
-  const supabase = createAdminClient();
-
-  if (existingId) {
-    const { data: existing } = await supabase
-      .from("sessions")
-      .select("id, anonymous_id")
-      .eq("anonymous_id", existingId)
-      .maybeSingle();
-    if (existing) return existing;
+  const anonId = cookieStore.get(ANON_COOKIE)?.value;
+  if (!anonId) {
+    // Should not happen — middleware mints the cookie. If it does, fail loudly
+    // so we notice in error_log rather than silently creating duplicate rows.
+    throw new Error("anon_cookie_missing — middleware did not run");
   }
 
-  // Either no cookie or row was deleted — mint a new one.
-  const newAnon = crypto.randomUUID();
+  const supabase = createAdminClient();
+
+  const { data: existing } = await supabase
+    .from("sessions")
+    .select("id, anonymous_id")
+    .eq("anonymous_id", anonId)
+    .maybeSingle();
+  if (existing) return existing;
+
   const ua = headerStore.get("user-agent") ?? "";
   const uaHash = ua ? await sha256Hex(ua) : null;
 
   const { data, error } = await supabase
     .from("sessions")
-    .insert({ anonymous_id: newAnon, user_agent_hash: uaHash })
+    .insert({ anonymous_id: anonId, user_agent_hash: uaHash })
     .select("id, anonymous_id")
     .single();
   if (error || !data) {
     throw new Error(`Failed to create session: ${error?.message ?? "unknown"}`);
   }
-
-  cookieStore.set(ANON_COOKIE, newAnon, {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    maxAge: COOKIE_MAX_AGE,
-    path: "/",
-  });
-
   return data;
 }

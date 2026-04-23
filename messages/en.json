@@ -65,6 +65,176 @@
     "decline": "Decline",
     "learnMore": "Learn more"
   },
+  "experience": {
+    "metadata": {
+      "title": "One evening — Detox"
+    },
+    "header": {
+      "label": "Experience"
+    },
+    "nav": {
+      "skip": "Skip",
+      "keyboardHint": "Keyboard: 1 or 2 to choose."
+    },
+    "a11y": {
+      "progressLabel": "Experience progress"
+    },
+    "scenes": {
+      "evening_room": {
+        "lines": {
+          "1": "You get home from school.",
+          "2": "Math test tomorrow.",
+          "3": "The phone buzzes once, then again.",
+          "4": "Three new messages. An Insta notification. A live on TikTok."
+        }
+      },
+      "choice_1": {
+        "prompt": "What do you do?",
+        "options": {
+          "A": "I look — just 5 minutes.",
+          "B": "I flip it face-down and start studying."
+        }
+      },
+      "rabbit_hole": {
+        "lines": {
+          "1": "8:47 PM. You unlock it.",
+          "2": "Video, video, video. A friend in a story.",
+          "3": "You reply quickly. You scroll some more.",
+          "4": "10:13 PM. You put the phone down. The math test is in eleven hours."
+        }
+      },
+      "silence": {
+        "lines": {
+          "1": "8:47 PM. The phone is face-down on the desk.",
+          "2": "You read. One problem. Another.",
+          "3": "A notification flashes. You hesitate for a second.",
+          "4": "9:35 PM. You close the book. You feel a little tired — but ready."
+        }
+      },
+      "choice_2": {
+        "prompt": "Morning, at the bus stop. Your friends show you a meme. The phone buzzes. How do you want to spend the next twenty minutes?",
+        "options": {
+          "A": "I pull out my phone too — it's easier.",
+          "B": "I leave it in my pocket and listen."
+        }
+      },
+      "shared_screen": {
+        "lines": {
+          "1": "You pull out the phone.",
+          "2": "The three of you laugh at the same video.",
+          "3": "No-one is really looking at each other.",
+          "4": "The bus arrives. You didn't hear what Léa was saying."
+        }
+      },
+      "listening": {
+        "lines": {
+          "1": "The phone buzzes. You feel it.",
+          "2": "Léa tells you about an argument with her sister.",
+          "3": "You ask a question. She answers at length.",
+          "4": "The bus arrives. You know things about her life you didn't know yesterday."
+        }
+      },
+      "closing": {
+        "lines": {
+          "1": "None of these stories is \"the right one\".",
+          "2": "But each small choice shapes your relationship with the phone.",
+          "3": "We'll ask you ten questions to better understand yours."
+        }
+      }
+    },
+    "closing": {
+      "title": "And you?",
+      "body": "None of these stories is \"the right one\". Each small choice shapes your relationship with the phone. We'll ask you ten questions to better understand yours.",
+      "cta": "Start the questionnaire"
+    }
+  },
+  "survey": {
+    "title": "SAS-SV questionnaire",
+    "subtitle": "10 statements about your smartphone use. Pick the number that fits you best. There are no right or wrong answers — be honest with yourself.",
+    "intro": "For each statement: 1 = strongly disagree, 6 = strongly agree. Your answers are anonymous and saved as you go — you can close the page and resume later.",
+    "questionLabel": "Question {n} of 10",
+    "progress": {
+      "label": "{current} of {total} answered",
+      "percent": "{pct}%"
+    },
+    "nav": {
+      "prev": "Previous",
+      "next": "Next",
+      "seeResults": "See my results",
+      "keyboardHint": "Keyboard: 1–6 to answer, ← → to navigate."
+    },
+    "status": {
+      "saving": "Saving…",
+      "saveFailed": "Save failed — try again."
+    },
+    "a11y": {
+      "progressRegion": "Survey progress"
+    }
+  },
+  "results": {
+    "title": "Your results",
+    "instrumentNote": "Pre-validated French adaptation of the SAS-SV (Kwon et al., 2013). Independent validation in progress — see methodology.",
+    "score": {
+      "label": "Total score",
+      "range": "Scale from {min} to {max}"
+    },
+    "bands": {
+      "low": {
+        "heading": "Moderate use",
+        "body": "Your score suggests your smartphone has a measured place in your day. Keep noticing how you feel when you put it down.",
+        "reflect": "A question for you: what do you enjoy most about moments without a smartphone?"
+      },
+      "moderate": {
+        "heading": "Use to watch",
+        "body": "Your score is in an intermediate zone. Several habits deserve attention — no alarm, but stay mindful.",
+        "reflect": "A question for you: if you had to cut your screen time by one hour a day, what would you start with?"
+      },
+      "high": {
+        "heading": "Heavy use",
+        "body": "Your score indicates heavy smartphone use, with possible effects on focus, sleep or relationships. This doesn't define who you are — it's a signal to open a conversation.",
+        "reflect": "A question for you: who that you trust could you talk to this week about your smartphone use?"
+      }
+    },
+    "symptoms": {
+      "title": "Breakdown by dimension",
+      "subtitle": "Each bar reflects a different aspect of your smartphone relationship.",
+      "items": {
+        "loss_of_control": "Loss of control",
+        "disruption": "Interference with activities",
+        "preoccupation": "Mental preoccupation",
+        "withdrawal": "Withdrawal / impatience",
+        "tolerance": "Tolerance (usage duration)",
+        "disregard": "Disregard for consequences"
+      }
+    },
+    "resources": {
+      "title": "Support resources",
+      "subtitle": "If you want to talk, these Swiss services are free and confidential.",
+      "items": {
+        "proJuventute": {
+          "name": "Pro Juventute · 147",
+          "description": "24/7 advice by phone, chat or SMS, free and anonymous."
+        },
+        "promotionSante": {
+          "name": "Promotion Santé Suisse",
+          "description": "Public foundation for prevention and mental health."
+        },
+        "stopAddiction": {
+          "name": "Addiction Suisse",
+          "description": "Information and support around addictions, including digital ones."
+        },
+        "ciaoCh": {
+          "name": "ciao.ch",
+          "description": "Geneva-based counselling platform for ages 11–20."
+        }
+      }
+    },
+    "actions": {
+      "retake": "Retake the test",
+      "home": "Back home"
+    },
+    "disclaimer": "This questionnaire is a personal reflection tool, not a medical diagnosis. If you are concerned, consult a healthcare professional."
+  },
   "errors": {
     "generic": "Something went wrong. Please try again.",
     "network": "Network problem. Check your connection."

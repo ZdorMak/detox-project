@@ -21,9 +21,7 @@ export function Hero() {
         </p>
         <div className="mt-10 flex flex-col items-center gap-3">
           <Button asChild size="lg" className="w-full sm:w-auto">
-            {/* /survey route is added in Week 2; for now CTA points at #pillars
-                so click is never a dead end. */}
-            <Link href="#pillars">{t("cta")}</Link>
+            <Link href="/experience">{t("cta")}</Link>
           </Button>
           <p className="text-xs text-muted-foreground">{t("ctaSubtitle")}</p>
         </div>
