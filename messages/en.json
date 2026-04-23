@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "title": "Detox — Understand smartphone addiction",
+    "description": "An interactive video experience and a scientifically validated questionnaire to help you understand your relationship with your smartphone."
+  },
+  "nav": {
+    "skipToContent": "Skip to main content",
+    "language": "Language"
+  },
+  "landing": {
+    "hero": {
+      "eyebrow": "HEFP project — SOUK 2026",
+      "title": "Understand your relationship with your smartphone",
+      "subtitle": "An interactive video experience and a scientifically validated questionnaire, designed with and for Swiss schools.",
+      "cta": "Start the test",
+      "ctaSubtitle": "5–8 minutes · Anonymous · No sign-up"
+    },
+    "pillars": {
+      "title": "Seven pillars, one coherent approach",
+      "subtitle": "Every project decision ties back to at least one of these axes.",
+      "items": {
+        "durable": {
+          "title": "Durable",
+          "description": "GDPR compliance, maintainable code, open-source questionnaire."
+        },
+        "addiction": {
+          "title": "Addiction",
+          "description": "Solid scientific grounding (SAS-SV scale), responsible narrative."
+        },
+        "collaboration": {
+          "title": "Collaboration",
+          "description": "Dashboard for teachers, class-level aggregated data."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Interactive branching video, real-time statistics."
+        },
+        "smartphone": {
+          "title": "Smartphone",
+          "description": "Mobile-first experience, PWA-ready."
+        },
+        "interdisciplinaire": {
+          "title": "Interdisciplinary",
+          "description": "Psychology, UX, public health and data science combined."
+        },
+        "accessible": {
+          "title": "Accessible",
+          "description": "WCAG 2.1 AA, keyboard navigation, screen readers."
+        }
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Detox — an HEFP project for youth digital health.",
+    "gdpr": "Your answers are anonymous. See our {policy}.",
+    "policyLink": "privacy policy",
+    "contact": "Contact",
+    "github": "Source code",
+    "rights": "© 2026 Detox project. Open-source parts under MIT licence."
+  },
+  "consent": {
+    "title": "Before you start",
+    "body": "To improve the experience, we record 100% anonymous data (answers, video interactions). No personal information is collected. Your data is never sold.",
+    "accept": "I accept",
+    "decline": "Decline",
+    "learnMore": "Learn more"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network problem. Check your connection."
+  }
+}
