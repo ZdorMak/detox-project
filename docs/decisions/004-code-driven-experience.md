@@ -53,9 +53,37 @@ Path **(2)** — code-driven scene.
 
 ## Storage
 
-`public/animations/*.lottie` and `public/audio/*.mp3` (if we add VO).
-Vercel auto-CDNs the `public/` folder. **No object storage needed.** The
-Vercel Storage MCP scoped issue (no team) becomes moot.
+**None needed.** The follow-up decision (see "Visual asset addendum"
+below) chose inline SVG over Lottie file assets, so the experience ships
+entirely in the JS bundle. The Vercel Storage MCP scoped issue (no team)
+becomes moot.
+
+Audio (optional VO) would still go to `public/audio/*.mp3` and ride
+Vercel's static CDN if we add it.
+
+## Visual asset addendum (decided same day, 2026-04-23)
+
+After scaffolding `SceneVisual.tsx` with `@lottiefiles/dotlottie-react`,
+we discovered LottieFiles is on the agent's network blocklist *and* the
+in-place agent cannot upload binary assets to the repo's `public/`
+folder. Two viable resolutions:
+
+- (a) Maksym manually downloads 5 `.lottie` files from LottieFiles into
+  `public/animations/`. Adds 1-2 days of asset curation.
+- (b) Hand-author 5 SVG compositions inline in `SceneVisual.tsx`,
+  driven by Framer Motion that's already in the bundle.
+
+We chose **(b)**. Trade-off:
+
+- ✅ Removes a runtime dependency (`@lottiefiles/dotlottie-react` ~80 KB
+  gzip) from the bundle.
+- ✅ Visual style stays cohesive across all five scenes — same vector
+  language, same palette logic, same motion grammar.
+- ✅ Zero extra Maksym-time required to ship.
+- ⚠️ Less photoreal than a hand-illustrated Lottie. We compensate with
+  strong palettes and motion that *suggests* without literally depicting.
+- 🚪 Door open: if a graphic designer joins the project later, swap in
+  Lottie at the SceneVisual layer. The scene id contract is unchanged.
 
 ## What we keep open for later
 
@@ -68,8 +96,10 @@ Vercel Storage MCP scoped issue (no team) becomes moot.
 ## Files this decision creates / changes
 
 - New: `src/lib/experience/scenes.ts` (typed scene config + branching map)
+- New: `src/lib/experience/telemetry.ts` (buffered video event client)
 - New: `src/components/experience/Experience.tsx` (the engine)
+- New: `src/components/experience/TypedLines.tsx` (narration reveal)
+- New: `src/components/experience/SceneVisual.tsx` (5 hand-authored SVG scenes)
 - New: `src/app/[locale]/experience/page.tsx` (route)
-- New: `public/animations/*.lottie` (deferred to TODO — placeholders for now)
 - Updated: `src/components/landing/hero.tsx` CTA → `/experience` (then `/survey`)
-- New deps: `framer-motion`, `@lottiefiles/dotlottie-react`
+- New dep: `framer-motion` (only)

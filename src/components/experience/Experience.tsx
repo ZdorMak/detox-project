@@ -211,11 +211,7 @@ function NarrationView({
   );
   return (
     <div className="space-y-6">
-      <SceneVisual
-        lottieFile={scene.lottie}
-        sceneId={scene.id}
-        reduceMotion={reduceMotion}
-      />
+      <SceneVisual sceneId={scene.id} />
       <TypedLines
         lines={lines}
         msPerLine={scene.msPerLine ?? 3500}
@@ -236,11 +232,7 @@ interface ChoiceViewProps {
 function ChoiceView({ scene, t, reduceMotion, onChoose }: ChoiceViewProps) {
   return (
     <div className="space-y-6">
-      <SceneVisual
-        lottieFile={scene.lottie}
-        sceneId={scene.id}
-        reduceMotion={reduceMotion}
-      />
+      <SceneVisual sceneId={scene.id} />
       <h2 className="text-balance text-center text-2xl font-semibold leading-tight sm:text-3xl">
         {t(`scenes.${scene.id}.prompt` as const)}
       </h2>
@@ -276,7 +268,7 @@ interface ClosingCardProps {
 function ClosingCard({ title, body, cta, onCta }: ClosingCardProps) {
   return (
     <div className="space-y-6 text-center">
-      <SceneVisual sceneId="closing" reduceMotion={false} />
+      <SceneVisual sceneId="closing" />
       <h2 className="text-balance text-3xl font-bold leading-tight sm:text-4xl">
         {title}
       </h2>

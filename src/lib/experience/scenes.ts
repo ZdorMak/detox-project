@@ -26,8 +26,6 @@ export interface NarrationScene {
   type: "narration";
   /** i18n key under `experience.scenes.<id>.lines.<n>`. Number of lines = items.length. */
   lines: number;
-  /** Lottie animation file under public/animations/<file>. Optional. */
-  lottie?: string;
   /** Approximate duration per line, ms. Tuned for ~3 words/second in FR. */
   msPerLine?: number;
   /** What happens after the last line auto-completes. */
@@ -43,8 +41,6 @@ export interface ChoiceOption {
 export interface ChoiceScene {
   id: string;
   type: "choice";
-  /** Optional decorative Lottie. */
-  lottie?: string;
   /** Telemetry tag for the branch_choice event. */
   branchPoint: 1 | 2;
   options: [ChoiceOption, ChoiceOption];
@@ -59,7 +55,6 @@ export const SCENES: Readonly<Record<string, Scene>> = {
     id: "evening_room",
     type: "narration",
     lines: 4,
-    lottie: "evening_room.lottie",
     msPerLine: 3200,
     next: { kind: "next", sceneId: "choice_1" },
   },
@@ -76,7 +71,6 @@ export const SCENES: Readonly<Record<string, Scene>> = {
     id: "rabbit_hole",
     type: "narration",
     lines: 4,
-    lottie: "rabbit_hole.lottie",
     msPerLine: 3500,
     next: { kind: "next", sceneId: "choice_2" },
   },
@@ -84,7 +78,6 @@ export const SCENES: Readonly<Record<string, Scene>> = {
     id: "silence",
     type: "narration",
     lines: 4,
-    lottie: "silence.lottie",
     msPerLine: 3500,
     next: { kind: "next", sceneId: "choice_2" },
   },
@@ -101,7 +94,6 @@ export const SCENES: Readonly<Record<string, Scene>> = {
     id: "shared_screen",
     type: "narration",
     lines: 4,
-    lottie: "shared_screen.lottie",
     msPerLine: 3500,
     next: { kind: "next", sceneId: "closing" },
   },
@@ -109,7 +101,6 @@ export const SCENES: Readonly<Record<string, Scene>> = {
     id: "listening",
     type: "narration",
     lines: 4,
-    lottie: "listening.lottie",
     msPerLine: 3500,
     next: { kind: "next", sceneId: "closing" },
   },

@@ -1,6 +1,6 @@
 # Interactive experience storyboard — "Une soirée"
 
-**Format:** code-driven scene (Lottie + Framer Motion + typed text), not a video file. See ADR-004.
+**Format:** code-driven scene (inline SVG + Framer Motion + typed text), not a video file. See ADR-004 (and the addendum on switching from Lottie to inline SVG).
 
 **Total runtime:** 2.5 – 3.5 min depending on choices made.
 
@@ -146,6 +146,7 @@
 
 ## TODO before SOUK
 
-- [ ] Replace the placeholder Lottie URLs in `experienceConfig.ts` with curated assets from LottieFiles (or hand-drawn — see assets pipeline).
-- [ ] FR voiceover: pilot Web Speech API quality on iOS Safari (worst case) — if too robotic, fall back to ElevenLabs FR Bella (~$5/month, 30k chars).
+- [ ] Pilot the inline SVG scenes on iOS Safari and Android Chrome — confirm Framer Motion runs smoothly at 60 fps on a mid-range smartphone.
+- [ ] (Optional) FR voiceover: pilot Web Speech API quality on iOS Safari (worst case) — if too robotic, fall back to ElevenLabs FR Bella (~$5/month, 30k chars).
 - [ ] Have one HEFP classmate read all FR narration aloud — flag awkward phrasing.
+- [ ] Demo dry-run: record a full pass through both branches and verify pillar coverage holds.
