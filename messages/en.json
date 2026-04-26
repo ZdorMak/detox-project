@@ -573,6 +573,27 @@
     "title": "SAS-SV questionnaire",
     "subtitle": "10 statements about your smartphone use. Pick the number that fits you best. There are no right or wrong answers — be honest with yourself.",
     "intro": "For each statement: 1 = strongly disagree, 6 = strongly agree. Your answers are anonymous and saved as you go — you can close the page and resume later.",
+    "introScreen": {
+      "eyebrow": "Before you start",
+      "title": "Discover your digital profile",
+      "subtitle": "10 questions, 5 minutes. You'll get a personalised profile and tailored advice.",
+      "bullets": {
+        "0": "Answer honestly — your responses are anonymous, no one sees them.",
+        "1": "No right or wrong answers. Drag the slider to the position that fits.",
+        "2": "At the end: your profile, a score, and resources to go further."
+      },
+      "start": "Start the test",
+      "time": "About 5 minutes"
+    },
+    "loading": {
+      "stages": {
+        "0": "Analysing your answers…",
+        "1": "Calculating your SAS-SV score…",
+        "2": "Identifying your profile…",
+        "3": "Preparing your recommendations…"
+      },
+      "almost": "A few more seconds"
+    },
     "questionLabel": "Question {n} of 10",
     "progress": {
       "label": "{current} of {total} answered",
@@ -595,6 +616,55 @@
   "results": {
     "title": "Your results",
     "instrumentNote": "Pre-validated French adaptation of the SAS-SV (Kwon et al., 2013). Independent validation in progress — see methodology.",
+    "personaPreface": "Your profile",
+    "personaAboutHeading": "Who are you, digitally?",
+    "personas": {
+      "le_serene": {
+        "title": "The Serene",
+        "tagline": "Calm, present, the phone in its right place.",
+        "description": "You have a peaceful relationship with your phone. It's part of your life without dominating it. Keep noticing how you feel during screen-free moments — that presence keeps you balanced."
+      },
+      "le_curieux": {
+        "title": "The Curious",
+        "tagline": "You use your phone, but you watch the world too.",
+        "description": "You know when to put the phone down to really see what's happening. Your curiosity protects you — it pulls you off the screen regularly. Hold on to that attention to small details."
+      },
+      "le_connecteur_calme": {
+        "title": "The Calm Connector",
+        "tagline": "The phone helps you stay close, without pulling you from the present.",
+        "description": "You use the phone to nurture your connections, but you also know how to be fully with the people in front of you. That balance is rare — protect it."
+      },
+      "le_chercheur": {
+        "title": "The Seeker",
+        "tagline": "Something pulls you to the phone — you're starting to notice.",
+        "description": "You ask yourself questions about your use, and that's a big step already. Some habits deserve attention. No emergency, but moments to observe: when you reach for the phone with no clear reason, what are you really looking for?"
+      },
+      "le_jongleur": {
+        "title": "The Juggler",
+        "tagline": "You do a lot, sometimes too much, and the phone is everywhere.",
+        "description": "The phone often interrupts what you're doing — studies, conversations, meals. Not bad in itself, but it costs attention. Try this week: a full meal with no phone at the table."
+      },
+      "le_curieux_actif": {
+        "title": "The Active Curious",
+        "tagline": "Highly connected, but also highly present.",
+        "description": "Your use is intense, but it often serves to observe, create, understand. Watch that it doesn't cut you off from the physical world — the most beautiful things show up without a screen."
+      },
+      "le_capte": {
+        "title": "The Captured",
+        "tagline": "The phone takes a big place — sometimes more than you'd want.",
+        "description": "Your score indicates heavy use. This isn't a label: it's a signal. When you put the phone down, what do you really miss? And what comes back? The resources below can help."
+      },
+      "le_disperse": {
+        "title": "The Scattered",
+        "tagline": "Attention goes in all directions — it's tiring.",
+        "description": "The phone fragments your days: interruptions, notifications, quick scrolls. You may feel tiredness with no clear cause. Try one day in 'do not disturb' during studies — see the difference."
+      },
+      "lhyperconnecte": {
+        "title": "The Hyperconnected",
+        "tagline": "Always on, always alert. The body struggles to keep up.",
+        "description": "You're with your phone almost constantly, and it occupies your mind a lot when you're not. It's not a fault — it's a signal that a pause would be valuable. Talk to someone you trust, or check the resources below."
+      }
+    },
     "score": {
       "label": "Total score",
       "range": "Scale from {min} to {max}"

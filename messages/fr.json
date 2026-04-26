@@ -609,6 +609,27 @@
     "title": "Questionnaire SAS-SV",
     "subtitle": "10 affirmations sur ton usage du smartphone. Choisis le chiffre qui te correspond le mieux. Aucune bonne ou mauvaise réponse — sois honnête avec toi-même.",
     "intro": "Pour chaque affirmation : 1 = pas du tout d'accord, 6 = tout à fait d'accord. Tes réponses sont anonymes et enregistrées au fur et à mesure — tu peux fermer la page et reprendre plus tard.",
+    "introScreen": {
+      "eyebrow": "Avant de commencer",
+      "title": "Découvre ton profil numérique",
+      "subtitle": "10 questions, 5 minutes. Tu obtiendras un profil personnalisé et des conseils adaptés.",
+      "bullets": {
+        "0": "Réponds honnêtement — tes réponses sont anonymes, personne ne les voit.",
+        "1": "Pas de bonne ou mauvaise réponse. Glisse le curseur sur la position qui te correspond.",
+        "2": "À la fin : ton profil, un score, et des ressources pour aller plus loin."
+      },
+      "start": "Commencer le test",
+      "time": "Environ 5 minutes"
+    },
+    "loading": {
+      "stages": {
+        "0": "Analyse de tes réponses…",
+        "1": "Calcul de ton score SAS-SV…",
+        "2": "Identification de ton profil…",
+        "3": "Préparation de tes recommandations…"
+      },
+      "almost": "Encore quelques secondes"
+    },
     "questionLabel": "Question {n} / 10",
     "progress": {
       "label": "{current} sur {total} répondues",
@@ -631,6 +652,55 @@
   "results": {
     "title": "Tes résultats",
     "instrumentNote": "Adaptation française pré-validée du SAS-SV (Kwon et al., 2013). Validation indépendante en cours — voir notre méthodologie.",
+    "personaPreface": "Ton profil",
+    "personaAboutHeading": "Qui es-tu, en numérique ?",
+    "personas": {
+      "le_serene": {
+        "title": "Le Serein",
+        "tagline": "Calme, présent, le téléphone à sa juste place.",
+        "description": "Tu as une relation apaisée avec ton smartphone. Il fait partie de ta vie sans la dominer. Continue à observer comment tu te sens dans les moments sans écran — c'est cette présence qui te garde équilibré·e."
+      },
+      "le_curieux": {
+        "title": "Le Curieux",
+        "tagline": "Tu utilises ton téléphone, mais tu observes le monde autour.",
+        "description": "Tu sais quand poser le téléphone pour vraiment voir ce qui se passe. Ta curiosité te protège — elle t'invite régulièrement hors de l'écran. Garde cette attention pour les détails du quotidien."
+      },
+      "le_connecteur_calme": {
+        "title": "Le Connecteur Calme",
+        "tagline": "Le téléphone t'aide à rester proche, sans t'éloigner du présent.",
+        "description": "Tu utilises ton smartphone pour entretenir tes liens, mais tu sais aussi être pleinement avec ceux qui sont devant toi. C'est un équilibre que beaucoup cherchent — préserve-le."
+      },
+      "le_chercheur": {
+        "title": "Le Chercheur",
+        "tagline": "Quelque chose te tire vers le téléphone — tu commences à le remarquer.",
+        "description": "Tu te poses des questions sur ton usage, et c'est déjà un grand pas. Certaines habitudes méritent que tu y prêtes attention. Pas d'urgence, mais des moments à observer : quand tu prends le téléphone sans raison claire, qu'est-ce que tu cherches vraiment ?"
+      },
+      "le_jongleur": {
+        "title": "Le Jongleur",
+        "tagline": "Tu fais beaucoup, parfois trop, et le téléphone est partout.",
+        "description": "Le téléphone interrompt souvent ce que tu fais — études, conversations, repas. Ce n'est pas grave en soi, mais cela coûte de l'attention. Une expérience à essayer cette semaine : un repas entier sans téléphone à table."
+      },
+      "le_curieux_actif": {
+        "title": "Le Curieux Actif",
+        "tagline": "Tu es très connecté·e, mais aussi très présent·e.",
+        "description": "Ton usage est intense, mais il sert souvent à observer, créer, comprendre. Veille à ce qu'il ne te coupe pas du monde physique — les choses les plus belles se voient sans écran."
+      },
+      "le_capte": {
+        "title": "Le Capté",
+        "tagline": "Le téléphone prend une grande place — parfois plus que tu ne voudrais.",
+        "description": "Ton score indique un usage intensif. Ce n'est pas une étiquette : c'est un signal. Quand tu poses le téléphone, qu'est-ce qui te manque vraiment ? Et qu'est-ce qui te revient ? Les ressources en bas de page peuvent t'accompagner."
+      },
+      "le_disperse": {
+        "title": "Le Dispersé",
+        "tagline": "L'attention va dans toutes les directions — c'est fatigant.",
+        "description": "Le téléphone fragmente tes journées : interruptions, notifications, scrolls rapides. Tu peux ressentir une fatigue sans cause claire. Essaie une journée en mode \"ne pas déranger\" pendant les devoirs — vois la différence."
+      },
+      "lhyperconnecte": {
+        "title": "L'Hyperconnecté",
+        "tagline": "Toujours en ligne, toujours en alerte. Le corps suit difficilement.",
+        "description": "Tu es presque tout le temps avec ton téléphone, et il occupe aussi beaucoup ta tête quand tu ne l'as pas. Ce n'est pas un défaut — c'est un signal qu'une pause serait précieuse. Parle à quelqu'un de confiance, ou consulte les ressources en bas."
+      }
+    },
     "score": {
       "label": "Score total",
       "range": "Échelle de {min} à {max}"

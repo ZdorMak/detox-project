@@ -8,6 +8,7 @@ import {
   SAS_SV_MIN_SCORE,
   type SasSymptom,
 } from "@/lib/survey/sas-sv";
+import { pickPersona } from "@/lib/survey/personas";
 import { ResourcesBlock } from "@/components/results/ResourcesBlock";
 import { ScoreGauge } from "@/components/results/ScoreGauge";
 import { SymptomRadar } from "@/components/results/SymptomRadar";
@@ -67,30 +68,44 @@ export default async function ResultsPage({
       radarData.length,
   );
 
-  const bandHero: Record<typeof result.band, string> = {
-    low: "from-emerald-50 via-background to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30",
-    moderate: "from-amber-50 via-background to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30",
-    high: "from-rose-50 via-background to-orange-50 dark:from-rose-950/30 dark:to-orange-950/30",
-  };
+  const persona = pickPersona(result.band, result.bySymptom);
 
   return (
     <main id="main" className="min-h-screen bg-background">
-      {/* HERO with gauge */}
+      {/* HERO — persona banner with gradient and gauge */}
       <section
-        className={`relative isolate overflow-hidden border-b border-border bg-gradient-to-br ${bandHero[result.band]}`}
+        className="relative isolate overflow-hidden border-b border-border text-white"
+        style={{
+          background: `linear-gradient(135deg, ${persona.fromColor} 0%, ${persona.toColor} 100%)`,
+        }}
       >
-        <div className="container mx-auto max-w-4xl px-4 py-12 text-center sm:py-20">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-            SAS-SV
+        {/* Decorative blobs */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-20 top-0 h-72 w-72 rounded-full bg-white/10 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-white/10 blur-3xl"
+        />
+
+        <div className="container relative mx-auto max-w-4xl px-4 py-12 text-center sm:py-20">
+          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/70">
+            {t("personaPreface")}
           </p>
-          <h1 className="font-display mt-3 text-balance text-3xl font-bold leading-tight sm:text-5xl">
-            {t("title")}
-          </h1>
-          <p className="mx-auto mt-3 max-w-xl text-balance text-sm text-muted-foreground sm:text-base">
-            {t("instrumentNote")}
+          <div className="mt-4 flex items-center justify-center gap-3">
+            <span className="text-5xl drop-shadow-lg" aria-hidden="true">
+              {persona.emoji}
+            </span>
+            <h1 className="font-display text-balance text-4xl font-bold leading-tight drop-shadow-lg sm:text-6xl">
+              {t(`personas.${persona.id}.title` as const)}
+            </h1>
+          </div>
+          <p className="mx-auto mt-3 max-w-xl text-balance text-base text-white/85 sm:text-lg">
+            {t(`personas.${persona.id}.tagline` as const)}
           </p>
 
-          <div className="mt-10">
+          <div className="mt-10 inline-block rounded-3xl bg-white/95 p-6 text-foreground shadow-2xl dark:bg-slate-900/95">
             <ScoreGauge
               score={result.totalScore}
               min={SAS_SV_MIN_SCORE}
@@ -101,6 +116,18 @@ export default async function ResultsPage({
               rangeLabel={t("score.range", { min: SAS_SV_MIN_SCORE, max: SAS_SV_MAX_SCORE })}
             />
           </div>
+        </div>
+      </section>
+
+      {/* Persona description */}
+      <section className="container mx-auto max-w-3xl px-4 pt-12">
+        <div className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+            {t("personaAboutHeading")}
+          </p>
+          <p className="mt-3 text-base leading-relaxed sm:text-lg">
+            {t(`personas.${persona.id}.description` as const)}
+          </p>
         </div>
       </section>
 

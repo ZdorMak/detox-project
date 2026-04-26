@@ -30,6 +30,8 @@ const LAST_ITEM = SAS_SV_ITEMS[SAS_SV_ITEMS.length - 1]!;
  * - Manual "Suivant" button + keyboard 1..6 / arrows still work as
  *   alternatives.
  */
+type Phase = "intro" | "questions" | "loading";
+
 export function SurveyClient({
   initialAnswers,
   initialNextItemId,
@@ -43,6 +45,10 @@ export function SurveyClient({
   const [errorItemId, setErrorItemId] = useState<number | null>(null);
   const [cursor, setCursor] = useState<number>(
     initialNextItemId ?? LAST_ITEM.id,
+  );
+  // Show intro only on a totally fresh start (no answers yet).
+  const [phase, setPhase] = useState<Phase>(
+    Object.keys(initialAnswers).length === 0 ? "intro" : "questions",
   );
 
   const currentItem = SAS_SV_ITEMS.find((it) => it.id === cursor) ?? FIRST_ITEM;
@@ -85,7 +91,9 @@ export function SurveyClient({
         };
         if (autoAdvance) {
           if (data.isComplete) {
-            setTimeout(() => router.push(resultsHref), 500);
+            // Cinematic loading screen, then navigate to results.
+            setPhase("loading");
+            setTimeout(() => router.push(resultsHref), 2800);
           } else if (data.nextItemId) {
             setTimeout(() => setCursor(data.nextItemId!), 450);
           }
@@ -129,6 +137,44 @@ export function SurveyClient({
     () => Math.round((answeredCount / total) * 100),
     [answeredCount, total],
   );
+
+  // Intro splash screen — shown before the first question on a fresh start.
+  if (phase === "intro") {
+    return (
+      <IntroSplash
+        labels={{
+          eyebrow: t("introScreen.eyebrow"),
+          title: t("introScreen.title"),
+          subtitle: t("introScreen.subtitle"),
+          bullets: [
+            t("introScreen.bullets.0"),
+            t("introScreen.bullets.1"),
+            t("introScreen.bullets.2"),
+          ],
+          start: t("introScreen.start"),
+          time: t("introScreen.time"),
+        }}
+        onStart={() => setPhase("questions")}
+      />
+    );
+  }
+
+  // Loading splash — shown after the final answer, just before /results.
+  if (phase === "loading") {
+    return (
+      <LoadingSplash
+        labels={{
+          stages: [
+            t("loading.stages.0"),
+            t("loading.stages.1"),
+            t("loading.stages.2"),
+            t("loading.stages.3"),
+          ],
+          almost: t("loading.almost"),
+        }}
+      />
+    );
+  }
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
@@ -474,5 +520,153 @@ function QuestionCard({
         }}
       />
     </article>
+  );
+}
+
+/* ---------- Intro splash ---------- */
+
+interface IntroSplashProps {
+  labels: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    bullets: readonly string[];
+    start: string;
+    time: string;
+  };
+  onStart: () => void;
+}
+
+function IntroSplash({ labels, onStart }: IntroSplashProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="mx-auto max-w-2xl px-4 py-16 text-center"
+    >
+      {/* Big animated emoji */}
+      <motion.div
+        initial={{ scale: 0.6, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.1, type: "spring" }}
+        className="mx-auto flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-rose-100 to-amber-100 text-6xl shadow-xl dark:from-rose-950/40 dark:to-amber-950/40"
+        aria-hidden="true"
+      >
+        🧠
+      </motion.div>
+
+      <p className="mt-8 text-xs font-semibold uppercase tracking-[0.35em] text-rose-700 dark:text-rose-300">
+        {labels.eyebrow}
+      </p>
+      <h2 className="font-display mt-4 text-balance text-4xl font-bold leading-tight sm:text-5xl">
+        {labels.title}
+      </h2>
+      <p className="mx-auto mt-4 max-w-xl text-balance text-base text-muted-foreground sm:text-lg">
+        {labels.subtitle}
+      </p>
+
+      <ul className="mx-auto mt-10 max-w-md space-y-3 text-left">
+        {labels.bullets.map((b, i) => (
+          <motion.li
+            key={i}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+            className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 shadow-sm"
+          >
+            <span
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-amber-500 text-xs font-bold text-white"
+              aria-hidden="true"
+            >
+              {i + 1}
+            </span>
+            <span className="text-sm leading-relaxed">{b}</span>
+          </motion.li>
+        ))}
+      </ul>
+
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.7 }}
+        className="mt-10 flex flex-col items-center gap-3"
+      >
+        <Button
+          size="lg"
+          onClick={onStart}
+          className="bg-gradient-to-r from-rose-500 to-amber-500 px-10 py-6 text-base font-semibold shadow-xl shadow-rose-500/30 hover:from-rose-600 hover:to-amber-600 hover:shadow-2xl"
+        >
+          {labels.start} →
+        </Button>
+        <p className="text-xs text-muted-foreground">⏱ {labels.time}</p>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ---------- Loading splash ---------- */
+
+interface LoadingSplashProps {
+  labels: {
+    stages: readonly string[];
+    almost: string;
+  };
+}
+
+function LoadingSplash({ labels }: LoadingSplashProps) {
+  const [stage, setStage] = useState(0);
+  useEffect(() => {
+    if (stage >= labels.stages.length - 1) return;
+    const t = setTimeout(() => setStage((s) => s + 1), 700);
+    return () => clearTimeout(t);
+  }, [stage, labels.stages.length]);
+
+  return (
+    <div className="mx-auto flex max-w-md flex-col items-center px-4 py-24 text-center">
+      {/* Pulsing brain icon with rings */}
+      <div className="relative h-32 w-32" aria-hidden="true">
+        <motion.div
+          className="absolute inset-0 rounded-full bg-rose-300"
+          animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+        />
+        <motion.div
+          className="absolute inset-0 rounded-full bg-amber-300"
+          animate={{ scale: [1, 1.8, 1], opacity: [0.4, 0, 0.4] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
+        />
+        <div className="absolute inset-4 flex items-center justify-center rounded-full bg-gradient-to-br from-rose-100 to-amber-100 text-5xl shadow-2xl dark:from-rose-950/40 dark:to-amber-950/40">
+          🧠
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.p
+          key={stage}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.3 }}
+          className="font-display mt-8 text-xl font-semibold sm:text-2xl"
+          aria-live="polite"
+        >
+          {labels.stages[stage] ?? labels.stages[labels.stages.length - 1]}
+        </motion.p>
+      </AnimatePresence>
+
+      <div className="mt-6 h-1 w-48 overflow-hidden rounded-full bg-rose-100 dark:bg-rose-950/40">
+        <motion.div
+          className="h-full bg-gradient-to-r from-rose-500 to-amber-500"
+          initial={{ width: "0%" }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 2.6, ease: "easeInOut" }}
+        />
+      </div>
+
+      <p className="mt-4 text-xs uppercase tracking-wider text-muted-foreground">
+        {labels.almost}
+      </p>
+    </div>
   );
 }
