@@ -9,11 +9,16 @@ const ANON_COOKIE = "detox_anon_id";
 const ANON_COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 year
 
 export async function middleware(request: NextRequest) {
-  const isApi = request.nextUrl.pathname.startsWith("/api/");
+  const pathname = request.nextUrl.pathname;
+  const isApi = pathname.startsWith("/api/");
+  // /auth/* is locale-agnostic (OAuth callback, signout). Skip intl so the
+  // route handlers under app/auth/ resolve directly without a locale prefix
+  // being injected by next-intl.
+  const isAuth = pathname.startsWith("/auth/");
 
   let response: NextResponse;
-  if (isApi) {
-    // /api/* skips intl + Supabase auth refresh — those are page-only concerns.
+  if (isApi || isAuth) {
+    // Skip intl + Supabase auth refresh — those are page-only concerns.
     response = NextResponse.next();
   } else {
     // 1) Let next-intl resolve locale + redirect/rewrite.
@@ -37,7 +42,7 @@ export async function middleware(request: NextRequest) {
     });
   }
 
-  if (isApi) {
+  if (isApi || isAuth) {
     return response;
   }
 
