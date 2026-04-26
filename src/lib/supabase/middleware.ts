@@ -1,6 +1,8 @@
-import { createServerClient } from "@supabase/ssr";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import type { NextRequest, NextResponse } from "next/server";
 import type { Database } from "@/types/supabase";
+
+type CookieTuple = { name: string; value: string; options: CookieOptions };
 
 /**
  * Refresh Supabase auth session on every request that hits the middleware.
@@ -24,7 +26,7 @@ export async function updateSession(
       getAll() {
         return request.cookies.getAll();
       },
-      setAll(cookiesToSet) {
+      setAll(cookiesToSet: CookieTuple[]) {
         cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
         cookiesToSet.forEach(({ name, value, options }) =>
           downstream.cookies.set(name, value, options),
