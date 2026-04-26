@@ -16,6 +16,39 @@
       "ctaSubtitle": "5–8 minutes · Anonymous · No sign-up",
       "ctaSecondary": "Or draw a 'Put down the phone' card →"
     },
+    "how": {
+      "eyebrow": "How it works",
+      "title": "Three entry points. One goal: understand yourself better.",
+      "items": {
+        "experience": {
+          "title": "Live the story",
+          "description": "A 3-minute interactive mini-experience — you make choices, you see the consequences."
+        },
+        "survey": {
+          "title": "Find your profile",
+          "description": "Ten questions from the scientifically validated SAS-SV. Score, categories, support resources."
+        },
+        "challenge": {
+          "title": "Play in real life",
+          "description": "50 cards to draw to put the phone down and do something concrete. Levels, achievements, certificate."
+        }
+      }
+    },
+    "stats": {
+      "title": "Community statistics",
+      "items": {
+        "sessions": "sessions opened",
+        "challenges": "challenges completed",
+        "surveys": "surveys finished"
+      }
+    },
+    "ctaBanner": {
+      "eyebrow": "Ready?",
+      "title": "Put the phone down. Start.",
+      "subtitle": "Five minutes to understand your relationship with your smartphone. Anonymous, no sign-up, free.",
+      "primary": "Start now",
+      "secondary": "Draw a card"
+    },
     "pillars": {
       "title": "Seven pillars, one coherent approach",
       "subtitle": "Every project decision ties back to at least one of these axes.",

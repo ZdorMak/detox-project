@@ -16,6 +16,39 @@
       "ctaSubtitle": "5–8 minutes · Anonyme · Sans inscription",
       "ctaSecondary": "Ou tire une carte « Pose le téléphone » →"
     },
+    "how": {
+      "eyebrow": "Comment ça marche",
+      "title": "Trois portes d'entrée. Un seul but : mieux te connaître.",
+      "items": {
+        "experience": {
+          "title": "Vis l'histoire",
+          "description": "Une mini-expérience interactive de 3 minutes — tu fais des choix, tu vois les conséquences."
+        },
+        "survey": {
+          "title": "Découvre ton profil",
+          "description": "Dix questions du SAS-SV, validé scientifiquement. Score, catégories, ressources de soutien."
+        },
+        "challenge": {
+          "title": "Joue dans la vraie vie",
+          "description": "50 cartes à tirer pour reposer le téléphone et faire quelque chose de concret. Niveaux, succès, certificat."
+        }
+      }
+    },
+    "stats": {
+      "title": "Statistiques de la communauté",
+      "items": {
+        "sessions": "sessions ouvertes",
+        "challenges": "défis terminés",
+        "surveys": "questionnaires complétés"
+      }
+    },
+    "ctaBanner": {
+      "eyebrow": "Prêt·e ?",
+      "title": "Pose le téléphone. Commence.",
+      "subtitle": "Cinq minutes pour découvrir ton rapport au smartphone. Anonyme, sans inscription, gratuit.",
+      "primary": "Commencer maintenant",
+      "secondary": "Tirer une carte"
+    },
     "pillars": {
       "title": "Sept piliers, une démarche cohérente",
       "subtitle": "Chaque décision du projet est ancrée dans au moins un de ces axes.",
