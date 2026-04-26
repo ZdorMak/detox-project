@@ -178,7 +178,6 @@ export function Experience({ surveyHref }: ExperienceProps) {
               <ChoiceView
                 scene={scene}
                 t={t}
-                reduceMotion={reduceMotion}
                 onChoose={(opt) => handleChoice(scene, opt)}
               />
             )}
@@ -225,11 +224,10 @@ function NarrationView({
 interface ChoiceViewProps {
   scene: ChoiceScene;
   t: ReturnType<typeof useTranslations>;
-  reduceMotion: boolean;
   onChoose: (opt: "A" | "B") => void;
 }
 
-function ChoiceView({ scene, t, reduceMotion, onChoose }: ChoiceViewProps) {
+function ChoiceView({ scene, t, onChoose }: ChoiceViewProps) {
   return (
     <div className="space-y-6">
       <SceneVisual sceneId={scene.id} />

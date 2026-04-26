@@ -19,7 +19,7 @@ type EventInput = {
 const FLUSH_AFTER = 10;
 const FLUSH_DELAY_MS = 2_000;
 
-let buffer: EventInput[] = [];
+const buffer: EventInput[] = [];
 let timer: ReturnType<typeof setTimeout> | null = null;
 
 function scheduleFlush() {
