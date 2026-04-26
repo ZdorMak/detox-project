@@ -54,6 +54,18 @@
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  /* Use Georgia serif for top-level headings — gives the project an editorial,
+     "thoughtful publication" feel rather than a generic SaaS look. */
+  h1, h2, .font-display {
+    font-family: Georgia, "Times New Roman", "DejaVu Serif", serif;
+    letter-spacing: -0.015em;
+  }
+  /* Subtle gradient utility for hero / pillar accents. */
+  .bg-grain {
+    background-image:
+      radial-gradient(circle at 20% 0%, hsl(var(--primary) / 0.06), transparent 40%),
+      radial-gradient(circle at 80% 100%, hsl(var(--primary) / 0.04), transparent 50%);
+  }
   /* Visually hidden but kept available to screen readers. */
   .sr-only {
     position: absolute;
