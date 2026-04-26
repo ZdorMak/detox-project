@@ -138,38 +138,41 @@ export function SurveyClient({
   );
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
-      {/* Sticky progress header */}
+    <div className="mx-auto max-w-3xl px-4 py-10">
+      {/* Sticky progress header — bigger, with rich progress bar */}
       <div
-        className="sticky top-0 z-10 -mx-4 mb-6 bg-background/90 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+        className="sticky top-0 z-10 -mx-4 mb-8 border-b border-border bg-background/85 px-4 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/70"
         role="region"
         aria-label={t("a11y.progressRegion")}
       >
-        <div className="flex items-center justify-between text-sm">
-          <span className="font-medium">
+        <div className="flex items-baseline justify-between gap-3">
+          <span className="font-display text-base font-semibold">
             {t("progress.label", { current: answeredCount, total })}
           </span>
-          <span aria-live="polite" className="text-muted-foreground">
-            {t("progress.percent", { pct: progressPct })}
+          <span
+            aria-live="polite"
+            className="font-display text-2xl font-bold tabular-nums text-rose-600 dark:text-rose-400"
+          >
+            {progressPct}%
           </span>
         </div>
         <div
-          className="mt-2 h-2 w-full overflow-hidden rounded-full bg-secondary"
+          className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-rose-100 dark:bg-rose-950/40"
           role="progressbar"
           aria-valuenow={progressPct}
           aria-valuemin={0}
           aria-valuemax={100}
         >
           <div
-            className="h-full bg-primary transition-all"
+            className="h-full rounded-full bg-gradient-to-r from-rose-500 to-amber-500 transition-all duration-500 ease-out"
             style={{ width: `${progressPct}%` }}
           />
         </div>
       </div>
 
-      <p className="mb-4 text-sm text-muted-foreground">{t("intro")}</p>
+      <p className="mb-6 text-sm leading-relaxed text-muted-foreground">{t("intro")}</p>
 
-      <ol className="space-y-4">
+      <ol className="space-y-5">
         {SAS_SV_ITEMS.map((item) => (
           <li key={item.id} className="list-none">
             <QuestionCard
@@ -189,7 +192,7 @@ export function SurveyClient({
         ))}
       </ol>
 
-      <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+      <div className="mt-10 flex flex-wrap items-center justify-between gap-3">
         <Button
           type="button"
           variant="ghost"
@@ -198,7 +201,9 @@ export function SurveyClient({
         >
           ← {t("nav.prev")}
         </Button>
-        <span className="text-xs text-muted-foreground">{t("nav.keyboardHint")}</span>
+        <span className="hidden text-xs text-muted-foreground sm:inline">
+          {t("nav.keyboardHint")}
+        </span>
         <Button
           type="button"
           variant="ghost"
@@ -210,8 +215,15 @@ export function SurveyClient({
       </div>
 
       {allComplete && (
-        <div className="mt-6 flex justify-end">
-          <Button onClick={() => router.push(resultsHref)} size="lg">
+        <div className="mt-10 rounded-2xl border border-emerald-300 bg-gradient-to-br from-emerald-50 to-teal-50 p-6 text-center shadow-lg dark:border-emerald-700 dark:from-emerald-950/40 dark:to-teal-950/40">
+          <p className="font-display text-lg font-semibold text-emerald-800 dark:text-emerald-100">
+            ✓ {t("progress.label", { current: answeredCount, total })}
+          </p>
+          <Button
+            onClick={() => router.push(resultsHref)}
+            size="lg"
+            className="mt-4 bg-gradient-to-r from-emerald-600 to-teal-600 px-8 shadow-lg shadow-emerald-500/30 hover:from-emerald-700 hover:to-teal-700"
+          >
             {t("nav.seeResults")} →
           </Button>
         </div>
@@ -231,6 +243,20 @@ interface QuestionCardProps {
   t: ReturnType<typeof useTranslations>;
 }
 
+/**
+ * Likert palette: graded 1 (strong disagree, cool teal) → 6 (strong agree,
+ * warm rose). Picked to feel symmetric around the middle and match the
+ * survey's overall colour story.
+ */
+const LIKERT_PALETTE: Record<number, { bg: string; ring: string; ringSel: string; bgSel: string; text: string; textSel: string }> = {
+  1: { bg: "bg-teal-50 dark:bg-teal-950/30",       ring: "border-teal-200 dark:border-teal-800",       ringSel: "border-teal-600",   bgSel: "bg-teal-600",   text: "text-teal-900 dark:text-teal-100",   textSel: "text-white" },
+  2: { bg: "bg-cyan-50 dark:bg-cyan-950/30",       ring: "border-cyan-200 dark:border-cyan-800",       ringSel: "border-cyan-600",   bgSel: "bg-cyan-600",   text: "text-cyan-900 dark:text-cyan-100",   textSel: "text-white" },
+  3: { bg: "bg-sky-50 dark:bg-sky-950/30",         ring: "border-sky-200 dark:border-sky-800",         ringSel: "border-sky-600",    bgSel: "bg-sky-600",    text: "text-sky-900 dark:text-sky-100",     textSel: "text-white" },
+  4: { bg: "bg-amber-50 dark:bg-amber-950/30",     ring: "border-amber-200 dark:border-amber-800",     ringSel: "border-amber-600",  bgSel: "bg-amber-600",  text: "text-amber-900 dark:text-amber-100", textSel: "text-white" },
+  5: { bg: "bg-orange-50 dark:bg-orange-950/30",   ring: "border-orange-200 dark:border-orange-800",   ringSel: "border-orange-600", bgSel: "bg-orange-600", text: "text-orange-900 dark:text-orange-100", textSel: "text-white" },
+  6: { bg: "bg-rose-50 dark:bg-rose-950/30",       ring: "border-rose-200 dark:border-rose-800",       ringSel: "border-rose-600",   bgSel: "bg-rose-600",   text: "text-rose-900 dark:text-rose-100",   textSel: "text-white" },
+};
+
 function QuestionCardInner(
   {
     item,
@@ -245,21 +271,42 @@ function QuestionCardInner(
   ref: React.Ref<HTMLDivElement>,
 ) {
   const groupId = `sas-q-${item.id}`;
+  const isAnswered = currentValue !== undefined;
   return (
     <div
       ref={ref}
       onFocus={onFocusActivate}
       onClick={onFocusActivate}
       className={cn(
-        "rounded-lg border bg-card p-4 shadow-sm transition-all",
-        isActive ? "border-primary ring-2 ring-primary/20" : "border-border",
+        "group relative rounded-2xl border bg-card p-6 shadow-sm transition-all duration-300",
+        isActive
+          ? "border-rose-300 shadow-lg ring-4 ring-rose-200/40 dark:border-rose-700 dark:ring-rose-900/30"
+          : "border-border hover:border-rose-200 hover:shadow-md",
       )}
       aria-current={isActive ? "step" : undefined}
     >
-      <div className="mb-3 flex items-baseline justify-between gap-3">
-        <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          {t("questionLabel", { n: item.id })}
+      {/* Top-right answered indicator */}
+      {isAnswered && !isSaving && (
+        <span
+          className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300"
+          aria-hidden="true"
+          title="Answered"
+        >
+          ✓
         </span>
+      )}
+
+      <div className="mb-4 flex items-baseline justify-between gap-3">
+        <div className="flex items-baseline gap-3">
+          <span
+            className="font-display text-3xl font-bold leading-none text-rose-600 dark:text-rose-400 tabular-nums"
+          >
+            {String(item.id).padStart(2, "0")}
+          </span>
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            {t("questionLabel", { n: item.id })}
+          </span>
+        </div>
         {isSaving && (
           <span className="text-xs text-muted-foreground" role="status">
             {t("status.saving")}
@@ -274,7 +321,7 @@ function QuestionCardInner(
 
       <p
         id={`${groupId}-prompt`}
-        className="mb-4 text-base font-medium leading-snug"
+        className="font-display mb-6 text-balance text-lg font-semibold leading-snug sm:text-xl"
       >
         {item.fr}
       </p>
@@ -286,6 +333,7 @@ function QuestionCardInner(
       >
         {SAS_SV_LIKERT.map((option) => {
           const checked = currentValue === option.value;
+          const palette = LIKERT_PALETTE[option.value]!;
           return (
             <button
               key={option.value}
@@ -298,19 +346,27 @@ function QuestionCardInner(
                 onSelect(option.value);
               }}
               className={cn(
-                "flex min-h-[3rem] flex-col items-center justify-center rounded-md border text-xs font-medium leading-tight transition-colors",
+                "flex min-h-[4rem] flex-col items-center justify-center rounded-xl border-2 px-2 py-2 text-xs font-medium leading-tight transition-all duration-200",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                 checked
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-input bg-background hover:bg-accent hover:text-accent-foreground",
+                  ? `${palette.ringSel} ${palette.bgSel} ${palette.textSel} shadow-md scale-[1.03]`
+                  : `${palette.ring} ${palette.bg} ${palette.text} hover:scale-[1.03]`,
               )}
             >
-              <span className="text-base font-bold">{option.value}</span>
-              <span className="mt-0.5 px-1 text-[10px] sm:text-xs">{option.fr}</span>
+              <span
+                className={cn(
+                  "font-display text-xl font-bold tabular-nums",
+                  checked ? "" : "opacity-90",
+                )}
+              >
+                {option.value}
+              </span>
+              <span className="mt-0.5 px-1 text-[9px] sm:text-[10px]">{option.fr}</span>
             </button>
           );
         })}
       </div>
+
     </div>
   );
 }
