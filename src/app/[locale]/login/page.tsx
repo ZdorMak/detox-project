@@ -55,7 +55,6 @@ export default async function LoginPage({
 
       <LoginForm next={safeNext} labels={{
         google: t("login.google"),
-        apple: t("login.apple"),
         magicHeading: t("login.magicHeading"),
         magicLabel: t("login.magicLabel"),
         magicPlaceholder: t("login.magicPlaceholder"),
