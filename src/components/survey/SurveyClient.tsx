@@ -14,6 +14,11 @@ interface SurveyClientProps {
   resultsHref: string;
 }
 
+// SAS_SV_ITEMS is a const-tuple of 10 entries (see src/lib/survey/sas-sv.ts).
+// These never undefined — assert once here so the rest of the component reads cleanly.
+const FIRST_ITEM = SAS_SV_ITEMS[0]!;
+const LAST_ITEM = SAS_SV_ITEMS[SAS_SV_ITEMS.length - 1]!;
+
 /**
  * Mobile-first SAS-SV survey UI.
  * - 1 question per screen on small viewports.
@@ -35,7 +40,7 @@ export function SurveyClient({
   const [errorItemId, setErrorItemId] = useState<number | null>(null);
   // Use the first unanswered item as cursor; if all answered, point to the last one.
   const [cursor, setCursor] = useState<number>(
-    initialNextItemId ?? SAS_SV_ITEMS[SAS_SV_ITEMS.length - 1].id,
+    initialNextItemId ?? LAST_ITEM.id,
   );
 
   const answeredCount = Object.keys(answers).length;
@@ -92,12 +97,18 @@ export function SurveyClient({
 
   const goPrev = useCallback(() => {
     const idx = SAS_SV_ITEMS.findIndex((it) => it.id === cursor);
-    if (idx > 0) setCursor(SAS_SV_ITEMS[idx - 1].id);
+    if (idx > 0) {
+      const prev = SAS_SV_ITEMS[idx - 1];
+      if (prev) setCursor(prev.id);
+    }
   }, [cursor]);
 
   const goNext = useCallback(() => {
     const idx = SAS_SV_ITEMS.findIndex((it) => it.id === cursor);
-    if (idx < SAS_SV_ITEMS.length - 1) setCursor(SAS_SV_ITEMS[idx + 1].id);
+    if (idx < SAS_SV_ITEMS.length - 1) {
+      const next = SAS_SV_ITEMS[idx + 1];
+      if (next) setCursor(next.id);
+    }
   }, [cursor]);
 
   // Global key handler: 1-6 to answer current; arrows to navigate.
@@ -183,7 +194,7 @@ export function SurveyClient({
           type="button"
           variant="ghost"
           onClick={goPrev}
-          disabled={cursor === SAS_SV_ITEMS[0].id}
+          disabled={cursor === FIRST_ITEM.id}
         >
           ← {t("nav.prev")}
         </Button>
@@ -192,7 +203,7 @@ export function SurveyClient({
           type="button"
           variant="ghost"
           onClick={goNext}
-          disabled={cursor === SAS_SV_ITEMS[SAS_SV_ITEMS.length - 1].id}
+          disabled={cursor === LAST_ITEM.id}
         >
           {t("nav.next")} →
         </Button>
