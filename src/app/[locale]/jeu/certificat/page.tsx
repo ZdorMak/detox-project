@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { getOrCreateSession } from "@/lib/session";
+import { createClient as createServerSupabase } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getLevel } from "@/lib/challenges/levels";
 import { ACHIEVEMENTS } from "@/lib/challenges/achievements";
@@ -35,6 +36,25 @@ export default async function CertificatePage({
 
   const session = await getOrCreateSession();
   const supabase = createAdminClient();
+
+  // Fetch the signed-in user (if any) so we can default the certificate
+  // name to their Google profile. Falls back to the manual ?name= override.
+  const ssrSupabase = await createServerSupabase();
+  const {
+    data: { user: authUser },
+  } = await ssrSupabase.auth.getUser();
+  let googleName: string | null = null;
+  if (authUser) {
+    const meta = authUser.user_metadata as Record<string, unknown> | undefined;
+    const fullName = (meta?.full_name as string | undefined) ?? (meta?.name as string | undefined);
+    const givenName = meta?.given_name as string | undefined;
+    const familyName = meta?.family_name as string | undefined;
+    googleName =
+      (fullName && fullName.trim()) ||
+      ([givenName, familyName].filter(Boolean).join(" ").trim() || null) ||
+      authUser.email ||
+      null;
+  }
 
   const [attemptsRes, achievementsRes, programsRes] = await Promise.all([
     supabase
@@ -82,7 +102,9 @@ export default async function CertificatePage({
     .map((p) => ({ id: p.id, emoji: p.emoji, title: t(`programs.items.${p.id}.title` as const) }));
 
   const localePrefix = locale === "fr" ? "" : `/${locale}`;
-  const playerName = (name ?? "").trim().slice(0, 60);
+  // Resolution order: explicit ?name= override → Google profile → empty (shows "Anonymous").
+  const overrideName = (name ?? "").trim();
+  const playerName = (overrideName || (googleName ?? "")).slice(0, 60);
 
   return (
     <main id="main" className="min-h-screen bg-muted/30">
