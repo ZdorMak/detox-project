@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getOrCreateSession } from "@/lib/session";
+import type { Json } from "@/types/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -59,7 +60,9 @@ export async function POST(req: NextRequest) {
       event_type: e.event_type,
       timestamp_ms: e.timestamp_ms,
       video_position_s: e.video_position_s ?? null,
-      metadata: e.metadata ?? null,
+      // zod validates `metadata` as a record of unknown — Supabase wants the
+      // recursive `Json` type. zod's runtime guarantees the shape is JSON-safe.
+      metadata: (e.metadata ?? null) as Json,
     }));
 
     const { error } = await supabase.from("video_events").insert(rows);
