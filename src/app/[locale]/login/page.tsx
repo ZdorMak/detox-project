@@ -18,10 +18,10 @@ export default async function LoginPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ next?: string; error?: string; sent?: string }>;
+  searchParams: Promise<{ next?: string; error?: string }>;
 }) {
   const { locale } = await params;
-  const { next, error, sent } = await searchParams;
+  const { next, error } = await searchParams;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "auth" });
 
@@ -35,15 +35,6 @@ export default async function LoginPage({
         <p className="mt-2 text-sm text-muted-foreground">{t("login.subtitle")}</p>
       </header>
 
-      {sent === "1" && (
-        <div
-          role="status"
-          className="mb-6 rounded-lg border border-emerald-300 bg-emerald-50 p-4 text-sm text-emerald-900 dark:border-emerald-700 dark:bg-emerald-950 dark:text-emerald-100"
-        >
-          {t("login.magicSent")}
-        </div>
-      )}
-
       {error && (
         <div
           role="alert"
@@ -55,12 +46,6 @@ export default async function LoginPage({
 
       <LoginForm next={safeNext} labels={{
         google: t("login.google"),
-        magicHeading: t("login.magicHeading"),
-        magicLabel: t("login.magicLabel"),
-        magicPlaceholder: t("login.magicPlaceholder"),
-        magicSubmit: t("login.magicSubmit"),
-        magicHint: t("login.magicHint"),
-        divider: t("login.divider"),
       }} />
 
       <p className="mt-8 text-center text-xs text-muted-foreground">

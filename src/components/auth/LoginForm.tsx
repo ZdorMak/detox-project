@@ -9,28 +9,23 @@ interface LoginFormProps {
   next: string;
   labels: {
     google: string;
-    magicHeading: string;
-    magicLabel: string;
-    magicPlaceholder: string;
-    magicSubmit: string;
-    magicHint: string;
-    divider: string;
   };
 }
 
 /**
- * Two sign-in paths in one form: Google, magic-link email.
+ * Sign-in via Google OAuth.
  *
- * Both end up at /auth/callback?next=<safeReturn>, where the route
- * handler exchanges the code/token for a session cookie and redirects.
+ * Redirects to /auth/callback?next=<safeReturn>, where the route handler
+ * exchanges the code for a session cookie and finishes sign-in.
  *
- * If Google isn't enabled in Supabase Dashboard yet, the click will
- * surface a localized error from Supabase — we display it in-line.
+ * Magic-link via email is intentionally OFF for now — the Supabase Free
+ * tier's default outbound email rate-limits (~3 emails/hour) are too low
+ * for a public deployment. Re-enable once we've configured a proper SMTP
+ * provider (Resend / Postmark / SES) in Supabase Dashboard → Auth → SMTP.
  */
 export function LoginForm({ next, labels }: LoginFormProps) {
   const t = useTranslations("auth.login");
   const supabase = createClient();
-  const [email, setEmail] = useState("");
   const [pending, setPending] = useState(false);
   const [oauthError, setOauthError] = useState<string | null>(null);
 
@@ -49,28 +44,6 @@ export function LoginForm({ next, labels }: LoginFormProps) {
         setOauthError(error.message);
       }
       // On success, the browser is redirected by Supabase; we never reach here.
-    } finally {
-      setPending(false);
-    }
-  }
-
-  async function sendMagicLink(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email) return;
-    setPending(true);
-    setOauthError(null);
-    try {
-      const { error } = await supabase.auth.signInWithOtp({
-        email,
-        options: { emailRedirectTo: callbackUrl },
-      });
-      if (error) {
-        console.error("[auth/login] magic link failed:", error);
-        setOauthError(error.message);
-      } else {
-        // Use a query flag so the server-rendered page shows the success state.
-        window.location.search = `?sent=1&next=${encodeURIComponent(next)}`;
-      }
     } finally {
       setPending(false);
     }
@@ -95,33 +68,6 @@ export function LoginForm({ next, labels }: LoginFormProps) {
         <GoogleIcon />
         {labels.google}
       </Button>
-
-      <div className="relative my-6 text-center text-xs uppercase tracking-wider text-muted-foreground">
-        <span className="bg-background px-2">{labels.divider}</span>
-        <span aria-hidden="true" className="absolute left-0 right-0 top-1/2 -z-10 border-t border-border" />
-      </div>
-
-      <form onSubmit={(e) => void sendMagicLink(e)} className="space-y-3">
-        <h2 className="text-sm font-semibold">{labels.magicHeading}</h2>
-        <label htmlFor="email" className="sr-only">
-          {labels.magicLabel}
-        </label>
-        <input
-          id="email"
-          type="email"
-          required
-          autoComplete="email"
-          inputMode="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder={labels.magicPlaceholder}
-          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        />
-        <Button type="submit" size="lg" className="w-full" disabled={pending || !email}>
-          {labels.magicSubmit}
-        </Button>
-        <p className="text-xs text-muted-foreground">{labels.magicHint}</p>
-      </form>
     </div>
   );
 }
@@ -136,4 +82,3 @@ function GoogleIcon() {
     </svg>
   );
 }
-
