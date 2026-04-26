@@ -426,6 +426,66 @@
       "notice_one_feeling": {
         "title": "Nomme ce que tu ressens",
         "body": "Pose-toi la question : qu'est-ce que je ressens là, maintenant ? Trouve un mot précis."
+      },
+      "find_yellow_things": {
+        "title": "Cinq jaunes",
+        "body": "Trouve cinq objets jaunes autour de toi. N'importe quel jaune compte."
+      },
+      "people_walking_pace": {
+        "title": "Trois rythmes",
+        "body": "Observe trois personnes qui marchent. Plus vite que toi, plus lent, ou pareil ?"
+      },
+      "true_sky_color": {
+        "title": "La vraie couleur du ciel",
+        "body": "Regarde le ciel. Quelle est sa couleur exacte ? Pas \"bleu\" — précise."
+      },
+      "ask_favorite_song": {
+        "title": "Sa chanson du moment",
+        "body": "Demande à quelqu'un quelle chanson il/elle écoute en boucle ces jours-ci. Écoute-la après si tu veux."
+      },
+      "handwritten_note": {
+        "title": "Une note manuscrite",
+        "body": "Écris une note à la main pour quelqu'un — même une seule phrase. Donne-la ou laisse-la."
+      },
+      "off_topic_question": {
+        "title": "Une question hors sujet",
+        "body": "Pose à un·e prof, un parent ou un·e ami·e une question qui n'a rien à voir avec l'école. Sur sa vie, ses goûts, ses souvenirs."
+      },
+      "jumping_jacks_20": {
+        "title": "Vingt jumping jacks",
+        "body": "Vingt sauts avec écartement bras-jambes. Compte à voix haute si ça aide."
+      },
+      "balance_one_leg": {
+        "title": "Sur une jambe",
+        "body": "Tiens 30 secondes en équilibre sur une jambe. Puis l'autre jambe. Discret, partout."
+      },
+      "non_dominant_hand": {
+        "title": "La main faible",
+        "body": "Pendant les 3 prochaines minutes, fais tout avec ta main non dominante : écrire, manger, taper."
+      },
+      "paper_airplane": {
+        "title": "Avion en papier",
+        "body": "Plie un avion en papier. Lance-le. Si possible, vise quelque chose."
+      },
+      "song_for_today": {
+        "title": "La chanson de ta journée",
+        "body": "Si ta journée d'aujourd'hui était une chanson, ce serait laquelle ? Écoute-la (sans être sur le téléphone)."
+      },
+      "five_words_now": {
+        "title": "Cinq mots, maintenant",
+        "body": "Écris (ou pense) cinq mots qui décrivent ce que tu es à cet instant précis."
+      },
+      "gratitude_one_person": {
+        "title": "Une personne importante",
+        "body": "Pense à une personne qui compte pour toi en ce moment. Pourquoi est-ce qu'elle compte ?"
+      },
+      "silver_lining": {
+        "title": "Le bon côté",
+        "body": "Pense à quelque chose de pas génial qui s'est passé hier. Trouve un seul aspect positif. Même petit."
+      },
+      "silence_60_sec": {
+        "title": "Soixante secondes de silence",
+        "body": "Une minute. Pas de musique, pas d'écran, pas de mots. Juste le silence et toi."
       }
     }
   },

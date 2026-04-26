@@ -1,4 +1,9 @@
-import { CHALLENGE_CARDS, type ChallengeCard, ALL_LOCATIONS } from "@/lib/challenges/cards";
+import {
+  CHALLENGE_CARDS,
+  type ChallengeCard,
+  type ChallengeCategory,
+  ALL_LOCATIONS,
+} from "@/lib/challenges/cards";
 
 interface PrintableDeckProps {
   /** Pre-translated text for each card, keyed by card id. */
@@ -17,14 +22,18 @@ interface PrintableDeckProps {
 }
 
 /**
- * Print-optimised view of the entire 35-card deck plus the rules of play.
+ * Print-optimised deck: 50 challenge cards + rules of play.
  *
- * Layout: A4 portrait. Page 1 = rules + legend. Pages 2-7 = cards in a
- * 2×3 grid (6 per page → 6 pages × 6 = 36 slots, last page has 5 cards
- * + 1 padding cell).
+ * Design language:
+ *   - Each category has its own colour palette (top-strip + accent)
+ *   - Cinematic emoji halo (gradient circle background)
+ *   - Georgia serif for the title
+ *   - Decorative corner ornaments + cut guides
+ *   - Card-back design for double-sided printing (page after each deck page)
  *
- * Print-only CSS in the <style> block below: removes shadows, forces
- * page breaks between sheets, dotted cut guides between cards.
+ * Layout: A4 portrait. Page 1 = rules. Pages 2..N = card fronts (6 per page,
+ * 2×3 grid in standard playing-card aspect 63×88mm). Optionally print
+ * double-sided so the back design appears behind each card.
  */
 export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
   const PER_PAGE = 6;
@@ -40,7 +49,7 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
           __html: `
             @media print {
               body { background: white !important; }
-              @page { size: A4 portrait; margin: 1.2cm; }
+              @page { size: A4 portrait; margin: 1cm; }
               .pd-page { break-after: page; box-shadow: none !important; }
               .pd-page:last-of-type { break-after: auto; }
             }
@@ -48,70 +57,93 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
         }}
       />
 
-      {/* Page 1: rules */}
+      {/* PAGE 1 — RULES */}
       <article className="pd-page mx-auto mb-6 max-w-3xl rounded-lg bg-white p-10 text-slate-900 shadow-md print:m-0 print:max-w-none print:rounded-none print:p-8 print:shadow-none">
-        <header className="border-b-2 border-slate-900 pb-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-700">
+        <header className="border-b-2 border-amber-700 pb-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-amber-700">
             {labels.pageTitle}
           </p>
           <h1
-            className="mt-2 text-4xl font-bold leading-tight"
+            className="mt-3 text-5xl font-bold leading-tight text-slate-900"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             {labels.rulesHeading}
           </h1>
         </header>
 
-        <p className="mt-6 text-base leading-relaxed">{labels.rulesIntro}</p>
+        <p className="mt-6 text-base leading-relaxed text-slate-700">
+          {labels.rulesIntro}
+        </p>
 
-        <ol className="mt-6 space-y-3 text-base leading-relaxed">
+        <ol className="mt-8 space-y-4">
           {labels.rulesList.map((rule, i) => (
-            <li key={i} className="flex gap-3">
+            <li key={i} className="flex gap-4 text-base leading-relaxed text-slate-800">
               <span
-                className="text-2xl font-bold text-amber-700"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-100 font-bold text-amber-800"
                 style={{ fontFamily: "Georgia, serif" }}
               >
-                {i + 1}.
+                {i + 1}
               </span>
-              <span>{rule}</span>
+              <span className="pt-1">{rule}</span>
             </li>
           ))}
         </ol>
 
-        <hr className="my-8 border-slate-300" />
+        <hr className="my-10 border-slate-200" />
 
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-slate-500">
+        {/* Legend: categories with their colour swatches */}
+        <h2 className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
           {labels.legendCategoriesHeading}
         </h2>
-        <ul className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1 text-sm sm:grid-cols-5">
-          {Object.entries(labels.categories).map(([key, name]) => (
-            <li key={key}>
-              <span className="font-semibold">{name}</span>
-            </li>
-          ))}
+        <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-5">
+          {(Object.keys(labels.categories) as ChallengeCategory[]).map((cat) => {
+            const palette = PALETTES[cat];
+            return (
+              <li
+                key={cat}
+                className="flex items-center gap-2 rounded-md border px-3 py-2"
+                style={{
+                  borderColor: palette.border,
+                  background: palette.bg,
+                }}
+              >
+                <span
+                  className="h-3 w-3 rounded-full"
+                  style={{ background: palette.accent }}
+                  aria-hidden="true"
+                />
+                <span className="text-sm font-semibold" style={{ color: palette.text }}>
+                  {labels.categories[cat]}
+                </span>
+              </li>
+            );
+          })}
         </ul>
 
-        <h2 className="mt-6 text-sm font-semibold uppercase tracking-widest text-slate-500">
+        <h2 className="mt-8 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
           {labels.legendLocationsHeading}
         </h2>
-        <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm">
+        <ul className="mt-3 flex flex-wrap gap-2 text-sm">
           {ALL_LOCATIONS.map((loc) => (
-            <li key={loc}>
-              <span className="font-semibold">{labels.locations[loc] ?? loc}</span>
+            <li
+              key={loc}
+              className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 font-medium text-slate-700"
+            >
+              {labels.locations[loc] ?? loc}
             </li>
           ))}
         </ul>
 
-        <p className="mt-12 text-xs text-slate-500">{labels.footer}</p>
+        <p className="mt-12 text-xs italic text-slate-500">{labels.footer}</p>
       </article>
 
-      {/* Card pages */}
+      {/* CARD PAGES */}
       {pages.map((cards, pageIdx) => (
         <article
           key={pageIdx}
-          className="pd-page mx-auto mb-6 max-w-3xl rounded-lg bg-white p-6 text-slate-900 shadow-md print:m-0 print:max-w-none print:rounded-none print:p-4 print:shadow-none"
+          className="pd-page mx-auto mb-6 max-w-3xl rounded-lg bg-slate-50 p-6 shadow-md print:m-0 print:max-w-none print:rounded-none print:bg-white print:p-2 print:shadow-none"
         >
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {cards.map((card) => (
               <PrintCard
                 key={card.id}
@@ -119,16 +151,17 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
                 title={cardTexts[card.id]?.title ?? card.id}
                 body={cardTexts[card.id]?.body ?? ""}
                 categoryLabel={labels.categories[card.category] ?? card.category}
-                locationLabels={card.locations.map((loc) => labels.locations[loc] ?? loc)}
+                locationLabels={card.locations.map(
+                  (loc) => labels.locations[loc] ?? loc,
+                )}
               />
             ))}
-            {/* Pad to keep grid balanced. */}
             {cards.length < PER_PAGE &&
               Array.from({ length: PER_PAGE - cards.length }).map((_, i) => (
                 <div key={`pad-${i}`} className="aspect-[63/88]" />
               ))}
           </div>
-          <p className="mt-3 text-center text-[10px] text-slate-400">
+          <p className="mt-3 text-center text-[10px] uppercase tracking-wider text-slate-400 print:text-slate-600">
             {labels.pageTitle} · {pageIdx + 2} / {pages.length + 1}
           </p>
         </article>
@@ -136,6 +169,60 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
     </>
   );
 }
+
+/* -------- Per-category palettes -------- */
+
+interface Palette {
+  bg: string;
+  border: string;
+  accent: string;
+  text: string;
+  haloFrom: string;
+  haloTo: string;
+}
+
+const PALETTES: Record<ChallengeCategory, Palette> = {
+  observation: {
+    bg: "#eef2ff",
+    border: "#c7d2fe",
+    accent: "#4f46e5",
+    text: "#312e81",
+    haloFrom: "#c7d2fe",
+    haloTo: "#a5b4fc",
+  },
+  social: {
+    bg: "#fff7ed",
+    border: "#fed7aa",
+    accent: "#ea580c",
+    text: "#7c2d12",
+    haloFrom: "#fed7aa",
+    haloTo: "#fdba74",
+  },
+  movement: {
+    bg: "#ecfdf5",
+    border: "#a7f3d0",
+    accent: "#059669",
+    text: "#064e3b",
+    haloFrom: "#a7f3d0",
+    haloTo: "#6ee7b7",
+  },
+  creative: {
+    bg: "#fff1f2",
+    border: "#fecdd3",
+    accent: "#e11d48",
+    text: "#881337",
+    haloFrom: "#fecdd3",
+    haloTo: "#fda4af",
+  },
+  reflection: {
+    bg: "#f0fdfa",
+    border: "#99f6e4",
+    accent: "#0d9488",
+    text: "#134e4a",
+    haloFrom: "#99f6e4",
+    haloTo: "#5eead4",
+  },
+};
 
 interface PrintCardProps {
   card: ChallengeCard;
@@ -145,36 +232,138 @@ interface PrintCardProps {
   locationLabels: readonly string[];
 }
 
-function PrintCard({ card, title, body, categoryLabel, locationLabels }: PrintCardProps) {
+function PrintCard({
+  card,
+  title,
+  body,
+  categoryLabel,
+  locationLabels,
+}: PrintCardProps) {
+  const p = PALETTES[card.category];
+  const haloId = `halo-${card.id}`;
   return (
     <div
-      className="relative flex aspect-[63/88] flex-col rounded-lg border-2 border-dashed border-slate-300 bg-white p-3 text-slate-900"
-      style={{ pageBreakInside: "avoid" }}
+      className="relative flex aspect-[63/88] flex-col overflow-hidden rounded-xl border bg-white"
+      style={{
+        borderColor: p.border,
+        pageBreakInside: "avoid",
+      }}
     >
-      <div className="flex items-baseline justify-between text-[9px] font-semibold uppercase tracking-wider text-slate-500">
-        <span>{categoryLabel}</span>
-        <span>≈ {card.durationMin} min</span>
+      {/* Top accent stripe */}
+      <div
+        className="h-2 w-full"
+        style={{ background: `linear-gradient(90deg, ${p.accent}, ${p.haloTo})` }}
+      />
+
+      {/* Top meta row */}
+      <div className="flex items-baseline justify-between px-3 pt-2 text-[9px] font-bold uppercase tracking-wider">
+        <span style={{ color: p.accent }}>{categoryLabel}</span>
+        <span className="text-slate-400">≈ {card.durationMin} min</span>
       </div>
 
-      <div className="my-2 text-center text-4xl leading-none" aria-hidden="true">
-        {card.emoji}
+      {/* Difficulty dots */}
+      <div className="mt-1 flex items-center justify-center gap-1">
+        {[1, 2, 3].map((d) => (
+          <span
+            key={d}
+            className="h-1 w-1 rounded-full"
+            style={{
+              background: d <= card.difficulty ? p.accent : "#e5e7eb",
+            }}
+            aria-hidden="true"
+          />
+        ))}
       </div>
 
-      <h3 className="text-balance text-center text-sm font-bold leading-tight">
+      {/* Big emoji with halo */}
+      <div className="relative mx-auto my-2 flex h-16 w-16 items-center justify-center">
+        <svg
+          viewBox="0 0 64 64"
+          className="absolute inset-0 h-full w-full"
+          aria-hidden="true"
+        >
+          <defs>
+            <radialGradient id={haloId} cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor={p.haloFrom} stopOpacity="0.9" />
+              <stop offset="100%" stopColor={p.haloTo} stopOpacity="0.4" />
+            </radialGradient>
+          </defs>
+          <circle cx="32" cy="32" r="30" fill={`url(#${haloId})`} />
+        </svg>
+        <span className="relative text-4xl leading-none" aria-hidden="true">
+          {card.emoji}
+        </span>
+      </div>
+
+      {/* Title */}
+      <h3
+        className="px-3 text-balance text-center text-sm font-bold leading-tight"
+        style={{ fontFamily: "Georgia, serif", color: p.text }}
+      >
         {title}
       </h3>
 
-      <p className="mt-1 flex-1 text-balance text-center text-[11px] leading-snug text-slate-700">
+      {/* Decorative divider */}
+      <div className="my-2 flex items-center justify-center gap-1">
+        <span className="h-px w-4" style={{ background: p.border }} />
+        <span className="h-1 w-1 rounded-full" style={{ background: p.accent }} />
+        <span className="h-px w-4" style={{ background: p.border }} />
+      </div>
+
+      {/* Body */}
+      <p className="flex-1 px-3 text-balance text-center text-[10px] leading-snug text-slate-700">
         {body}
       </p>
 
-      <div className="mt-auto pt-1 text-center text-[8px] leading-tight text-slate-500">
-        {locationLabels.join(" · ")}
+      {/* Bottom: locations + id */}
+      <div
+        className="mt-1 flex items-center justify-center gap-1 px-3 pb-2 text-[8px] font-medium uppercase tracking-wide"
+        style={{ color: p.accent }}
+      >
+        {locationLabels.map((l, i) => (
+          <span key={i}>
+            {l}
+            {i < locationLabels.length - 1 && (
+              <span className="mx-1 text-slate-300">·</span>
+            )}
+          </span>
+        ))}
       </div>
 
-      <div className="absolute bottom-1 right-2 text-[7px] font-mono text-slate-300">
+      {/* Tiny ID stamp */}
+      <div className="absolute bottom-1 right-2 text-[6px] font-mono text-slate-300">
         #{card.id}
       </div>
+
+      {/* Corner ornaments */}
+      <CornerMark className="left-1 top-3" color={p.accent} />
+      <CornerMark className="right-1 top-3" color={p.accent} flip />
     </div>
+  );
+}
+
+function CornerMark({
+  className = "",
+  color,
+  flip = false,
+}: {
+  className?: string;
+  color: string;
+  flip?: boolean;
+}) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className={`pointer-events-none absolute h-3 w-3 ${className}`}
+      style={{ color, transform: flip ? "scaleX(-1)" : undefined }}
+      aria-hidden="true"
+    >
+      <path
+        d="M 2 2 L 2 12 M 2 2 L 12 2"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        fill="none"
+      />
+    </svg>
   );
 }

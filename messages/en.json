@@ -390,6 +390,66 @@
       "notice_one_feeling": {
         "title": "Name what you feel",
         "body": "Ask yourself: what am I feeling right now? Find one precise word."
+      },
+      "find_yellow_things": {
+        "title": "Five yellows",
+        "body": "Find five yellow objects around you. Any shade of yellow counts."
+      },
+      "people_walking_pace": {
+        "title": "Three paces",
+        "body": "Watch three people walking. Faster than you, slower, or the same?"
+      },
+      "true_sky_color": {
+        "title": "The sky's real colour",
+        "body": "Look at the sky. What's its exact colour? Not 'blue' — be precise."
+      },
+      "ask_favorite_song": {
+        "title": "Their current song",
+        "body": "Ask someone which song they're playing on repeat these days. Listen to it after if you want."
+      },
+      "handwritten_note": {
+        "title": "A handwritten note",
+        "body": "Write someone a note by hand — even one sentence. Give it or leave it for them."
+      },
+      "off_topic_question": {
+        "title": "An off-topic question",
+        "body": "Ask a teacher, parent or friend a question that has nothing to do with school or work. About their life, taste, memories."
+      },
+      "jumping_jacks_20": {
+        "title": "Twenty jumping jacks",
+        "body": "Twenty jumping jacks. Count out loud if it helps."
+      },
+      "balance_one_leg": {
+        "title": "On one leg",
+        "body": "Hold a one-leg balance for 30 seconds. Then the other leg. Subtle, anywhere."
+      },
+      "non_dominant_hand": {
+        "title": "The weak hand",
+        "body": "For the next 3 minutes, do everything with your non-dominant hand: write, eat, type."
+      },
+      "paper_airplane": {
+        "title": "Paper airplane",
+        "body": "Fold a paper plane. Throw it. If you can, aim at something."
+      },
+      "song_for_today": {
+        "title": "Your day's song",
+        "body": "If your day today were a song, what would it be? Play it (without staring at the phone)."
+      },
+      "five_words_now": {
+        "title": "Five words, now",
+        "body": "Write (or just think) five words that describe who you are at this exact moment."
+      },
+      "gratitude_one_person": {
+        "title": "One important person",
+        "body": "Think of one person who matters to you right now. Why do they matter?"
+      },
+      "silver_lining": {
+        "title": "The bright side",
+        "body": "Think of something not great that happened yesterday. Find one positive angle. Even small."
+      },
+      "silence_60_sec": {
+        "title": "Sixty seconds of silence",
+        "body": "One minute. No music, no screen, no words. Just silence and you."
       }
     }
   },

@@ -72,50 +72,65 @@ const ACTIVE_OUTDOOR: readonly Location[] = ["home", "outside", "with_friends"];
 const PEOPLE_PRESENT: readonly Location[] = ["home", "school", "transport", "outside", "with_friends"];
 
 export const CHALLENGE_CARDS: readonly ChallengeCard[] = [
-  // OBSERVATION (7) — looking at the world without a screen
+  // OBSERVATION (10) — looking at the world without a screen
   { id: "window_describe",     category: "observation", durationMin: 2,  difficulty: 1, emoji: "🪟", locations: ["home", "school", "outside"] },
   { id: "five_sounds",         category: "observation", durationMin: 3,  difficulty: 1, emoji: "👂", locations: ANYWHERE },
   { id: "count_colors",        category: "observation", durationMin: 2,  difficulty: 1, emoji: "🎨", locations: ANYWHERE },
   { id: "stranger_outfit",     category: "observation", durationMin: 5,  difficulty: 2, emoji: "👀", locations: ["school", "transport", "outside", "with_friends"] },
   { id: "sky_minute",          category: "observation", durationMin: 1,  difficulty: 1, emoji: "☁️", locations: ["home", "school", "transport", "outside"] },
   { id: "object_history",      category: "observation", durationMin: 5,  difficulty: 2, emoji: "🔎", locations: ANYWHERE },
-  { id: "scan_room_details",   category: "observation", durationMin: 3,  difficulty: 1, emoji: "🔬", locations: ANYWHERE }, // NEW — covers all locations
+  { id: "scan_room_details",   category: "observation", durationMin: 3,  difficulty: 1, emoji: "🔬", locations: ANYWHERE },
+  { id: "find_yellow_things",  category: "observation", durationMin: 3,  difficulty: 1, emoji: "🟡", locations: ANYWHERE },
+  { id: "people_walking_pace", category: "observation", durationMin: 4,  difficulty: 2, emoji: "🚶‍♀️", locations: ["school", "transport", "outside", "with_friends"] },
+  { id: "true_sky_color",      category: "observation", durationMin: 2,  difficulty: 2, emoji: "🌈", locations: ["home", "school", "outside"] },
 
-  // SOCIAL (7)
+  // SOCIAL (10)
   { id: "ask_day",             category: "social",      durationMin: 3,  difficulty: 1, emoji: "💬", locations: PEOPLE_PRESENT },
   { id: "compliment_someone",  category: "social",      durationMin: 2,  difficulty: 2, emoji: "🌷", locations: PEOPLE_PRESENT },
   { id: "phone_call_friend",   category: "social",      durationMin: 10, difficulty: 2, emoji: "☎️", locations: ["home", "outside"] },
   { id: "thank_someone",       category: "social",      durationMin: 2,  difficulty: 1, emoji: "🙏", locations: PEOPLE_PRESENT },
   { id: "ask_advice",          category: "social",      durationMin: 5,  difficulty: 2, emoji: "🤝", locations: ["home", "school", "with_friends"] },
   { id: "share_meal_no_phone", category: "social",      durationMin: 15, difficulty: 3, emoji: "🍽️", locations: ["home", "with_friends"] },
-  { id: "smile_at_stranger",   category: "social",      durationMin: 1,  difficulty: 1, emoji: "🙂", locations: ["school", "transport", "outside", "with_friends"] }, // NEW
+  { id: "smile_at_stranger",   category: "social",      durationMin: 1,  difficulty: 1, emoji: "🙂", locations: ["school", "transport", "outside", "with_friends"] },
+  { id: "ask_favorite_song",   category: "social",      durationMin: 3,  difficulty: 1, emoji: "🎶", locations: PEOPLE_PRESENT },
+  { id: "handwritten_note",    category: "social",      durationMin: 5,  difficulty: 2, emoji: "✉️", locations: ["home", "school", "with_friends"] },
+  { id: "off_topic_question",  category: "social",      durationMin: 3,  difficulty: 2, emoji: "🤔", locations: ["home", "school", "with_friends"] },
 
-  // MOVEMENT (7)
+  // MOVEMENT (10)
   { id: "ten_squats",          category: "movement",    durationMin: 1,  difficulty: 1, emoji: "🏋️", locations: ACTIVE_INDOOR.concat(["outside"]) },
   { id: "stretch_one_minute",  category: "movement",    durationMin: 1,  difficulty: 1, emoji: "🤸", locations: ANYWHERE },
   { id: "walk_around_block",   category: "movement",    durationMin: 10, difficulty: 2, emoji: "🚶", locations: ["outside"] },
   { id: "stairs_three_times",  category: "movement",    durationMin: 3,  difficulty: 2, emoji: "🪜", locations: ["home", "school", "outside"] },
   { id: "dance_one_song",      category: "movement",    durationMin: 4,  difficulty: 2, emoji: "💃", locations: ["home", "with_friends"] },
   { id: "barefoot_outside",    category: "movement",    durationMin: 5,  difficulty: 3, emoji: "🦶", locations: ["outside"] },
-  { id: "shoulder_rolls",      category: "movement",    durationMin: 1,  difficulty: 1, emoji: "💪", locations: ANYWHERE }, // NEW — quiet movement everywhere
+  { id: "shoulder_rolls",      category: "movement",    durationMin: 1,  difficulty: 1, emoji: "💪", locations: ANYWHERE },
+  { id: "jumping_jacks_20",    category: "movement",    durationMin: 2,  difficulty: 2, emoji: "🤾", locations: ["home", "outside", "with_friends"] },
+  { id: "balance_one_leg",     category: "movement",    durationMin: 1,  difficulty: 1, emoji: "🦩", locations: ANYWHERE },
+  { id: "non_dominant_hand",   category: "movement",    durationMin: 3,  difficulty: 2, emoji: "✋", locations: ANYWHERE },
 
-  // CREATIVE (7)
+  // CREATIVE (10)
   { id: "draw_what_you_see",   category: "creative",    durationMin: 5,  difficulty: 1, emoji: "✏️", locations: ANYWHERE },
   { id: "write_haiku",         category: "creative",    durationMin: 5,  difficulty: 2, emoji: "📝", locations: ANYWHERE },
   { id: "fold_paper_thing",    category: "creative",    durationMin: 5,  difficulty: 2, emoji: "📄", locations: ["home", "school", "with_friends"] },
   { id: "rearrange_desk",      category: "creative",    durationMin: 10, difficulty: 1, emoji: "🗂️", locations: ["home", "school"] },
   { id: "letter_to_future_me", category: "creative",    durationMin: 10, difficulty: 3, emoji: "💌", locations: ["home", "school", "outside"] },
   { id: "humming_a_tune",      category: "creative",    durationMin: 2,  difficulty: 1, emoji: "🎵", locations: ANYWHERE },
-  { id: "invent_a_story",      category: "creative",    durationMin: 5,  difficulty: 2, emoji: "📖", locations: ANYWHERE }, // NEW
+  { id: "invent_a_story",      category: "creative",    durationMin: 5,  difficulty: 2, emoji: "📖", locations: ANYWHERE },
+  { id: "paper_airplane",      category: "creative",    durationMin: 4,  difficulty: 2, emoji: "🛩️", locations: ["home", "school", "with_friends"] },
+  { id: "song_for_today",      category: "creative",    durationMin: 3,  difficulty: 1, emoji: "🎤", locations: ANYWHERE },
+  { id: "five_words_now",      category: "creative",    durationMin: 3,  difficulty: 1, emoji: "📚", locations: ANYWHERE },
 
-  // REFLECTION (7)
+  // REFLECTION (10)
   { id: "eyes_closed_minute",  category: "reflection",  durationMin: 1,  difficulty: 1, emoji: "🧘", locations: ANYWHERE },
   { id: "three_good_things",   category: "reflection",  durationMin: 3,  difficulty: 1, emoji: "✨", locations: ANYWHERE },
   { id: "breathing_4_7_8",     category: "reflection",  durationMin: 3,  difficulty: 2, emoji: "🌬️", locations: ANYWHERE },
   { id: "imagine_summer",      category: "reflection",  durationMin: 2,  difficulty: 1, emoji: "🏖️", locations: ANYWHERE },
   { id: "what_will_matter",    category: "reflection",  durationMin: 5,  difficulty: 3, emoji: "⏳", locations: ANYWHERE },
   { id: "drink_water_slowly",  category: "reflection",  durationMin: 2,  difficulty: 1, emoji: "💧", locations: ANYWHERE },
-  { id: "notice_one_feeling",  category: "reflection",  durationMin: 2,  difficulty: 1, emoji: "💗", locations: ANYWHERE }, // NEW
+  { id: "notice_one_feeling",  category: "reflection",  durationMin: 2,  difficulty: 1, emoji: "💗", locations: ANYWHERE },
+  { id: "gratitude_one_person",category: "reflection",  durationMin: 3,  difficulty: 1, emoji: "🌟", locations: ANYWHERE },
+  { id: "silver_lining",       category: "reflection",  durationMin: 4,  difficulty: 2, emoji: "🌤️", locations: ANYWHERE },
+  { id: "silence_60_sec",      category: "reflection",  durationMin: 1,  difficulty: 1, emoji: "🤫", locations: ANYWHERE },
 ] as const;
 
 const CARDS_BY_ID = new Map(CHALLENGE_CARDS.map((c) => [c.id, c]));
