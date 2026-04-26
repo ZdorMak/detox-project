@@ -13,7 +13,8 @@
       "title": "Understand your relationship with your smartphone",
       "subtitle": "An interactive video experience and a scientifically validated questionnaire, designed with and for Swiss schools.",
       "cta": "Start the test",
-      "ctaSubtitle": "5–8 minutes · Anonymous · No sign-up"
+      "ctaSubtitle": "5–8 minutes · Anonymous · No sign-up",
+      "ctaSecondary": "Or draw a 'Put down the phone' card →"
     },
     "pillars": {
       "title": "Seven pillars, one coherent approach",
@@ -64,6 +65,167 @@
     "accept": "I accept",
     "decline": "Decline",
     "learnMore": "Learn more"
+  },
+  "challenges": {
+    "metadata": {
+      "title": "Put down the phone — Detox"
+    },
+    "title": "Put down the phone",
+    "subtitle": "Draw a card. Do the thing. Come back and tell us if you did it. No grade, no judgement.",
+    "progress": {
+      "completed": "done",
+      "skipped": "skipped"
+    },
+    "actions": {
+      "accept": "I'll try",
+      "decline": "Another card",
+      "completed": "I did it",
+      "skipped": "Not this time"
+    },
+    "hints": {
+      "honor": "We trust you — nobody's checking."
+    },
+    "active": {
+      "label": "Active card",
+      "hint": "Put the phone down for about {min, plural, one {# minute} other {# minutes}}. Come back when you're done."
+    },
+    "done": {
+      "title": "Nice work.",
+      "body": "You did {completed, plural, =0 {no cards} one {# card} other {# cards}} and skipped {skipped, plural, =0 {none} one {# time} other {# times}}. Come back tomorrow — there will still be cards.",
+      "home": "Back home"
+    },
+    "cardMeta": {
+      "duration": "≈ {min, plural, one {# min} other {# min}}"
+    },
+    "categories": {
+      "observation": "Observation",
+      "social": "Social",
+      "movement": "Movement",
+      "creative": "Creative",
+      "reflection": "Reflection"
+    },
+    "cards": {
+      "window_describe": {
+        "title": "At the window",
+        "body": "Go to a window. Describe out loud, in two sentences, what you see."
+      },
+      "five_sounds": {
+        "title": "Five sounds",
+        "body": "Close your eyes. Count five different sounds around you."
+      },
+      "count_colors": {
+        "title": "Six colours",
+        "body": "Find six objects of different colours in the room."
+      },
+      "stranger_outfit": {
+        "title": "Stranger's outfit",
+        "body": "The next person you cross paths with: silently note three things they're wearing."
+      },
+      "sky_minute": {
+        "title": "One minute of sky",
+        "body": "Step outside or look out a window. Watch the sky for one minute, doing nothing else."
+      },
+      "object_history": {
+        "title": "The oldest object",
+        "body": "Find the oldest object near you. Imagine its story."
+      },
+      "ask_day": {
+        "title": "How was your day?",
+        "body": "Ask someone nearby how their day went. Really listen."
+      },
+      "compliment_someone": {
+        "title": "A compliment",
+        "body": "Give someone a sincere compliment — not on their looks, on something they did."
+      },
+      "phone_call_friend": {
+        "title": "A phone call",
+        "body": "Call someone (yes, by voice, not by message). Just to say hi."
+      },
+      "thank_someone": {
+        "title": "Thank you",
+        "body": "Thank someone — a parent, a friend, a teacher — for something specific."
+      },
+      "ask_advice": {
+        "title": "Some advice",
+        "body": "Ask someone older for advice on anything. Note what they say."
+      },
+      "share_meal_no_phone": {
+        "title": "Phone-free meal",
+        "body": "Your next meal — table, chair, phone in another room. Eat with conversation or in silence."
+      },
+      "ten_squats": {
+        "title": "Ten squats",
+        "body": "Stand up and do ten squats. Count out loud if it helps."
+      },
+      "stretch_one_minute": {
+        "title": "Stretch",
+        "body": "One minute to stretch whatever hurts — neck, shoulders, back."
+      },
+      "walk_around_block": {
+        "title": "Walk the block",
+        "body": "Step outside for a ten-minute walk. No earbuds, no phone in hand."
+      },
+      "stairs_three_times": {
+        "title": "Stairs, three times",
+        "body": "Go up and down a flight of stairs three times. Breathe well."
+      },
+      "dance_one_song": {
+        "title": "One song, standing",
+        "body": "Put on a song you love. Stand up. Move until it ends."
+      },
+      "barefoot_outside": {
+        "title": "Barefoot outside",
+        "body": "If you can, walk barefoot on grass or earth for five minutes."
+      },
+      "draw_what_you_see": {
+        "title": "Draw what you see",
+        "body": "Take paper and pen. Draw an object in front of you. It doesn't need to be pretty."
+      },
+      "write_haiku": {
+        "title": "A haiku",
+        "body": "Write three lines: 5 syllables, 7 syllables, 5 syllables. About anything."
+      },
+      "fold_paper_thing": {
+        "title": "Fold something",
+        "body": "Take a sheet of paper. Fold a plane, a frog, a flower — what you know or improvise."
+      },
+      "rearrange_desk": {
+        "title": "Tidy your desk",
+        "body": "Ten minutes to tidy your work space. Throw out what's useless."
+      },
+      "letter_to_future_me": {
+        "title": "Letter to one-year-from-now you",
+        "body": "Write a letter to yourself a year from now. Three things you want to remember."
+      },
+      "humming_a_tune": {
+        "title": "Hum a tune",
+        "body": "Hum a melody for two minutes. Made-up or not — doesn't matter."
+      },
+      "eyes_closed_minute": {
+        "title": "Eyes closed",
+        "body": "One minute, eyes closed. Don't try not to think. Just sit."
+      },
+      "three_good_things": {
+        "title": "Three good things",
+        "body": "Note (in your head or on paper) three things that went well today, even small ones."
+      },
+      "breathing_4_7_8": {
+        "title": "4-7-8 breathing",
+        "body": "Inhale 4 seconds, hold 7, exhale 8. Four cycles."
+      },
+      "imagine_summer": {
+        "title": "Summer memory",
+        "body": "Close your eyes. Picture one moment from this summer you remember well."
+      },
+      "what_will_matter": {
+        "title": "Ten years from now",
+        "body": "Think about what you're doing today. What will still matter in ten years?"
+      },
+      "drink_water_slowly": {
+        "title": "A glass, slowly",
+        "body": "Pour yourself a glass of water. Drink it doing nothing else. Feel each sip."
+      }
+    }
   },
   "experience": {
     "metadata": {

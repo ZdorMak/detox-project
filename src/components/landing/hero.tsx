@@ -24,6 +24,9 @@ export function Hero() {
             <Link href="/experience">{t("cta")}</Link>
           </Button>
           <p className="text-xs text-muted-foreground">{t("ctaSubtitle")}</p>
+          <Button asChild variant="link" size="sm" className="mt-2">
+            <Link href="/jeu">{t("ctaSecondary")}</Link>
+          </Button>
         </div>
       </div>
     </section>
