@@ -6,6 +6,7 @@ import { deriveResult, getSurveyState } from "@/lib/survey/state";
 import { SAS_SV_MAX_SCORE, SAS_SV_MIN_SCORE, type RiskBand, type SasSymptom } from "@/lib/survey/sas-sv";
 import { ResourcesBlock } from "@/components/results/ResourcesBlock";
 import { Button } from "@/components/ui/button";
+import { retakeAction } from "./actions";
 
 export const dynamic = "force-dynamic";
 
@@ -114,9 +115,12 @@ export default async function ResultsPage({
       <ResourcesBlock />
 
       <div className="mt-8 flex flex-wrap items-center gap-3">
-        <Button asChild variant="outline">
-          <Link href={`${localePrefix}/survey`}>{t("actions.retake")}</Link>
-        </Button>
+        <form action={retakeAction}>
+          <input type="hidden" name="localePrefix" value={localePrefix} />
+          <Button type="submit" variant="outline">
+            {t("actions.retake")}
+          </Button>
+        </form>
         <Button asChild>
           <Link href={`${localePrefix}/`}>{t("actions.home")}</Link>
         </Button>
