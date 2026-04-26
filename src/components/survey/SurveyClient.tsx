@@ -1,8 +1,9 @@
 "use client";
 
-import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { motion, AnimatePresence } from "framer-motion";
 import { SAS_SV_ITEMS, SAS_SV_LIKERT, type SasItem } from "@/lib/survey/sas-sv";
 import type { SurveyAnswers } from "@/lib/survey/state";
 import { Button } from "@/components/ui/button";
@@ -14,18 +15,20 @@ interface SurveyClientProps {
   resultsHref: string;
 }
 
-// SAS_SV_ITEMS is a const-tuple of 10 entries (see src/lib/survey/sas-sv.ts).
-// These never undefined — assert once here so the rest of the component reads cleanly.
 const FIRST_ITEM = SAS_SV_ITEMS[0]!;
 const LAST_ITEM = SAS_SV_ITEMS[SAS_SV_ITEMS.length - 1]!;
 
 /**
- * Mobile-first SAS-SV survey UI.
- * - 1 question per screen on small viewports.
- * - 3 questions per screen on >= md viewports.
- * - Keyboard nav: Tab + 1..6 to answer, ArrowLeft/Right for prev/next.
- * - Persists each answer to /api/survey/answer immediately (resume-friendly).
- * - WCAG 2.1 AA: visible focus rings, ARIA radiogroup, live region for status.
+ * Single-question, slider-driven SAS-SV survey.
+ *
+ * - One question on screen at a time, slides in from the right.
+ * - Answer via a custom-styled native <input type="range"> (1..6) — works
+ *   with keyboard, mouse drag, touch, AND screen readers (single
+ *   accessible element with aria-valuenow).
+ * - Picking a value writes immediately to the server (resume-friendly)
+ *   and auto-advances after a short delay so the user feels momentum.
+ * - Manual "Suivant" button + keyboard 1..6 / arrows still work as
+ *   alternatives.
  */
 export function SurveyClient({
   initialAnswers,
@@ -38,26 +41,33 @@ export function SurveyClient({
   const [answers, setAnswers] = useState<SurveyAnswers>(initialAnswers);
   const [savingItemId, setSavingItemId] = useState<number | null>(null);
   const [errorItemId, setErrorItemId] = useState<number | null>(null);
-  // Use the first unanswered item as cursor; if all answered, point to the last one.
   const [cursor, setCursor] = useState<number>(
     initialNextItemId ?? LAST_ITEM.id,
   );
 
+  const currentItem = SAS_SV_ITEMS.find((it) => it.id === cursor) ?? FIRST_ITEM;
+  const currentIndex = SAS_SV_ITEMS.findIndex((it) => it.id === cursor);
   const answeredCount = Object.keys(answers).length;
   const total = SAS_SV_ITEMS.length;
   const allComplete = answeredCount === total;
+  const isCurrentAnswered = answers[cursor] !== undefined;
 
-  // Per-card refs so we can scroll the active card into view on mobile.
-  const cardRefs = useRef<Map<number, HTMLDivElement | null>>(new Map());
+  const goPrev = useCallback(() => {
+    if (currentIndex > 0) {
+      const prev = SAS_SV_ITEMS[currentIndex - 1];
+      if (prev) setCursor(prev.id);
+    }
+  }, [currentIndex]);
 
-  useEffect(() => {
-    const node = cardRefs.current.get(cursor);
-    node?.scrollIntoView({ behavior: "smooth", block: "center" });
-  }, [cursor]);
+  const goNext = useCallback(() => {
+    if (currentIndex < SAS_SV_ITEMS.length - 1) {
+      const next = SAS_SV_ITEMS[currentIndex + 1];
+      if (next) setCursor(next.id);
+    }
+  }, [currentIndex]);
 
   const submitAnswer = useCallback(
-    async (itemId: number, value: number) => {
-      // Optimistic update for snappy UX.
+    async (itemId: number, value: number, autoAdvance = true) => {
       setAnswers((prev) => ({ ...prev, [itemId]: value }));
       setErrorItemId(null);
       setSavingItemId(itemId);
@@ -73,16 +83,16 @@ export function SurveyClient({
           isComplete: boolean;
           nextItemId: number | null;
         };
-        if (data.isComplete) {
-          // Brief pause so the user sees their last selection before redirect.
-          setTimeout(() => router.push(resultsHref), 250);
-        } else if (data.nextItemId) {
-          setCursor(data.nextItemId);
+        if (autoAdvance) {
+          if (data.isComplete) {
+            setTimeout(() => router.push(resultsHref), 500);
+          } else if (data.nextItemId) {
+            setTimeout(() => setCursor(data.nextItemId!), 450);
+          }
         }
       } catch (err) {
         console.error("answer save failed:", err);
         setErrorItemId(itemId);
-        // Roll back the optimistic update so the UI doesn't lie about state.
         setAnswers((prev) => {
           const next = { ...prev };
           delete next[itemId];
@@ -95,26 +105,9 @@ export function SurveyClient({
     [router, resultsHref],
   );
 
-  const goPrev = useCallback(() => {
-    const idx = SAS_SV_ITEMS.findIndex((it) => it.id === cursor);
-    if (idx > 0) {
-      const prev = SAS_SV_ITEMS[idx - 1];
-      if (prev) setCursor(prev.id);
-    }
-  }, [cursor]);
-
-  const goNext = useCallback(() => {
-    const idx = SAS_SV_ITEMS.findIndex((it) => it.id === cursor);
-    if (idx < SAS_SV_ITEMS.length - 1) {
-      const next = SAS_SV_ITEMS[idx + 1];
-      if (next) setCursor(next.id);
-    }
-  }, [cursor]);
-
-  // Global key handler: 1-6 to answer current; arrows to navigate.
+  // Keyboard 1-6 to answer current; arrows for prev/next.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      // Avoid hijacking when user is typing somewhere with text input.
       const tag = (e.target as HTMLElement | null)?.tagName?.toLowerCase();
       if (tag === "input" || tag === "textarea" || tag === "select") return;
       if (e.key >= "1" && e.key <= "6") {
@@ -138,8 +131,8 @@ export function SurveyClient({
   );
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10">
-      {/* Sticky progress header — bigger, with rich progress bar */}
+    <div className="mx-auto max-w-2xl px-4 py-10">
+      {/* Sticky progress header */}
       <div
         className="sticky top-0 z-10 -mx-4 mb-8 border-b border-border bg-background/85 px-4 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/70"
         role="region"
@@ -170,206 +163,316 @@ export function SurveyClient({
         </div>
       </div>
 
-      <p className="mb-6 text-sm leading-relaxed text-muted-foreground">{t("intro")}</p>
+      <p className="mb-6 text-center text-sm leading-relaxed text-muted-foreground">
+        {t("intro")}
+      </p>
 
-      <ol className="space-y-5">
-        {SAS_SV_ITEMS.map((item) => (
-          <li key={item.id} className="list-none">
-            <QuestionCard
-              ref={(el) => {
-                cardRefs.current.set(item.id, el);
-              }}
-              item={item}
-              currentValue={answers[item.id]}
-              isActive={cursor === item.id}
-              isSaving={savingItemId === item.id}
-              hasError={errorItemId === item.id}
-              onSelect={(v) => void submitAnswer(item.id, v)}
-              onFocusActivate={() => setCursor(item.id)}
-              t={t}
-            />
-          </li>
-        ))}
-      </ol>
+      {/* Single question */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={cursor}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+        >
+          <QuestionCard
+            item={currentItem}
+            currentValue={answers[currentItem.id]}
+            isSaving={savingItemId === currentItem.id}
+            hasError={errorItemId === currentItem.id}
+            onSelect={(v, autoAdvance = true) =>
+              void submitAnswer(currentItem.id, v, autoAdvance)
+            }
+            t={t}
+          />
+        </motion.div>
+      </AnimatePresence>
 
-      <div className="mt-10 flex flex-wrap items-center justify-between gap-3">
+      {/* Nav row */}
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
         <Button
           type="button"
-          variant="ghost"
+          variant="outline"
+          size="lg"
           onClick={goPrev}
-          disabled={cursor === FIRST_ITEM.id}
+          disabled={currentIndex === 0}
         >
           ← {t("nav.prev")}
         </Button>
         <span className="hidden text-xs text-muted-foreground sm:inline">
           {t("nav.keyboardHint")}
         </span>
-        <Button
-          type="button"
-          variant="ghost"
-          onClick={goNext}
-          disabled={cursor === LAST_ITEM.id}
-        >
-          {t("nav.next")} →
-        </Button>
-      </div>
-
-      {allComplete && (
-        <div className="mt-10 rounded-2xl border border-emerald-300 bg-gradient-to-br from-emerald-50 to-teal-50 p-6 text-center shadow-lg dark:border-emerald-700 dark:from-emerald-950/40 dark:to-teal-950/40">
-          <p className="font-display text-lg font-semibold text-emerald-800 dark:text-emerald-100">
-            ✓ {t("progress.label", { current: answeredCount, total })}
-          </p>
+        {currentIndex < SAS_SV_ITEMS.length - 1 ? (
           <Button
-            onClick={() => router.push(resultsHref)}
+            type="button"
             size="lg"
-            className="mt-4 bg-gradient-to-r from-emerald-600 to-teal-600 px-8 shadow-lg shadow-emerald-500/30 hover:from-emerald-700 hover:to-teal-700"
+            onClick={goNext}
+            disabled={!isCurrentAnswered}
+            className={cn(
+              "bg-gradient-to-r from-rose-500 to-amber-500 px-6 hover:from-rose-600 hover:to-amber-600",
+              !isCurrentAnswered && "opacity-40",
+            )}
+          >
+            {t("nav.next")} →
+          </Button>
+        ) : (
+          <Button
+            type="button"
+            size="lg"
+            onClick={() => router.push(resultsHref)}
+            disabled={!allComplete}
+            className={cn(
+              "bg-gradient-to-r from-emerald-600 to-teal-600 px-6 shadow-lg shadow-emerald-500/30 hover:from-emerald-700 hover:to-teal-700",
+              !allComplete && "opacity-40",
+            )}
           >
             {t("nav.seeResults")} →
           </Button>
+        )}
+      </div>
+
+      {allComplete && currentIndex < SAS_SV_ITEMS.length - 1 && (
+        <div className="mt-6 rounded-xl border border-emerald-300 bg-emerald-50 p-4 text-center text-sm text-emerald-800 dark:border-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-100">
+          {t("progress.label", { current: answeredCount, total })} ·{" "}
+          <button
+            type="button"
+            onClick={() => router.push(resultsHref)}
+            className="font-semibold underline hover:no-underline"
+          >
+            {t("nav.seeResults")} →
+          </button>
         </div>
       )}
     </div>
   );
 }
+
+/* --- Question card with the slider --- */
 
 interface QuestionCardProps {
   item: SasItem;
   currentValue: number | undefined;
-  isActive: boolean;
   isSaving: boolean;
   hasError: boolean;
-  onSelect: (value: number) => void;
-  onFocusActivate: () => void;
+  onSelect: (value: number, autoAdvance?: boolean) => void;
   t: ReturnType<typeof useTranslations>;
 }
 
-/**
- * Likert palette: graded 1 (strong disagree, cool teal) → 6 (strong agree,
- * warm rose). Picked to feel symmetric around the middle and match the
- * survey's overall colour story.
- */
-const LIKERT_PALETTE: Record<number, { bg: string; ring: string; ringSel: string; bgSel: string; text: string; textSel: string }> = {
-  1: { bg: "bg-teal-50 dark:bg-teal-950/30",       ring: "border-teal-200 dark:border-teal-800",       ringSel: "border-teal-600",   bgSel: "bg-teal-600",   text: "text-teal-900 dark:text-teal-100",   textSel: "text-white" },
-  2: { bg: "bg-cyan-50 dark:bg-cyan-950/30",       ring: "border-cyan-200 dark:border-cyan-800",       ringSel: "border-cyan-600",   bgSel: "bg-cyan-600",   text: "text-cyan-900 dark:text-cyan-100",   textSel: "text-white" },
-  3: { bg: "bg-sky-50 dark:bg-sky-950/30",         ring: "border-sky-200 dark:border-sky-800",         ringSel: "border-sky-600",    bgSel: "bg-sky-600",    text: "text-sky-900 dark:text-sky-100",     textSel: "text-white" },
-  4: { bg: "bg-amber-50 dark:bg-amber-950/30",     ring: "border-amber-200 dark:border-amber-800",     ringSel: "border-amber-600",  bgSel: "bg-amber-600",  text: "text-amber-900 dark:text-amber-100", textSel: "text-white" },
-  5: { bg: "bg-orange-50 dark:bg-orange-950/30",   ring: "border-orange-200 dark:border-orange-800",   ringSel: "border-orange-600", bgSel: "bg-orange-600", text: "text-orange-900 dark:text-orange-100", textSel: "text-white" },
-  6: { bg: "bg-rose-50 dark:bg-rose-950/30",       ring: "border-rose-200 dark:border-rose-800",       ringSel: "border-rose-600",   bgSel: "bg-rose-600",   text: "text-rose-900 dark:text-rose-100",   textSel: "text-white" },
-};
+const SLIDER_GRADIENT = "linear-gradient(to right, #14b8a6, #06b6d4, #0ea5e9, #f59e0b, #f97316, #f43f5e)";
 
-function QuestionCardInner(
-  {
-    item,
-    currentValue,
-    isActive,
-    isSaving,
-    hasError,
-    onSelect,
-    onFocusActivate,
-    t,
-  }: QuestionCardProps,
-  ref: React.Ref<HTMLDivElement>,
-) {
+function QuestionCard({
+  item,
+  currentValue,
+  isSaving,
+  hasError,
+  onSelect,
+  t,
+}: QuestionCardProps) {
+  // Local state mirrors the slider so dragging feels instant; we commit on release.
+  const [localValue, setLocalValue] = useState<number>(currentValue ?? 3);
+  const [committed, setCommitted] = useState<boolean>(currentValue !== undefined);
+
+  // Reset when the item changes (new question loaded).
+  useEffect(() => {
+    setLocalValue(currentValue ?? 3);
+    setCommitted(currentValue !== undefined);
+  }, [item.id, currentValue]);
+
+  const handleCommit = (value: number, autoAdvance = true) => {
+    setLocalValue(value);
+    setCommitted(true);
+    onSelect(value, autoAdvance);
+  };
+
   const groupId = `sas-q-${item.id}`;
-  const isAnswered = currentValue !== undefined;
+  const labelOpt = SAS_SV_LIKERT.find((o) => o.value === localValue);
+
   return (
-    <div
-      ref={ref}
-      onFocus={onFocusActivate}
-      onClick={onFocusActivate}
-      className={cn(
-        "group relative rounded-2xl border bg-card p-6 shadow-sm transition-all duration-300",
-        isActive
-          ? "border-rose-300 shadow-lg ring-4 ring-rose-200/40 dark:border-rose-700 dark:ring-rose-900/30"
-          : "border-border hover:border-rose-200 hover:shadow-md",
-      )}
-      aria-current={isActive ? "step" : undefined}
+    <article
+      className="relative overflow-hidden rounded-3xl border-2 border-rose-200 bg-card p-6 shadow-xl dark:border-rose-900 sm:p-10"
+      aria-current="step"
     >
-      {/* Top-right answered indicator */}
-      {isAnswered && !isSaving && (
-        <span
-          className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300"
-          aria-hidden="true"
-          title="Answered"
-        >
-          ✓
-        </span>
-      )}
-
-      <div className="mb-4 flex items-baseline justify-between gap-3">
-        <div className="flex items-baseline gap-3">
-          <span
-            className="font-display text-3xl font-bold leading-none text-rose-600 dark:text-rose-400 tabular-nums"
-          >
-            {String(item.id).padStart(2, "0")}
-          </span>
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            {t("questionLabel", { n: item.id })}
-          </span>
-        </div>
-        {isSaving && (
-          <span className="text-xs text-muted-foreground" role="status">
-            {t("status.saving")}
-          </span>
-        )}
-        {hasError && (
-          <span className="text-xs text-destructive" role="alert">
-            {t("status.saveFailed")}
-          </span>
-        )}
-      </div>
-
-      <p
-        id={`${groupId}-prompt`}
-        className="font-display mb-6 text-balance text-lg font-semibold leading-snug sm:text-xl"
-      >
-        {item.fr}
-      </p>
-
+      {/* Decorative rose halo top-left */}
       <div
-        role="radiogroup"
-        aria-labelledby={`${groupId}-prompt`}
-        className="grid grid-cols-3 gap-2 sm:grid-cols-6"
-      >
-        {SAS_SV_LIKERT.map((option) => {
-          const checked = currentValue === option.value;
-          const palette = LIKERT_PALETTE[option.value]!;
-          return (
-            <button
-              key={option.value}
-              type="button"
-              role="radio"
-              aria-checked={checked}
-              tabIndex={isActive ? 0 : -1}
-              onClick={(e) => {
-                e.stopPropagation();
-                onSelect(option.value);
-              }}
-              className={cn(
-                "flex min-h-[4rem] flex-col items-center justify-center rounded-xl border-2 px-2 py-2 text-xs font-medium leading-tight transition-all duration-200",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                checked
-                  ? `${palette.ringSel} ${palette.bgSel} ${palette.textSel} shadow-md scale-[1.03]`
-                  : `${palette.ring} ${palette.bg} ${palette.text} hover:scale-[1.03]`,
-              )}
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-16 -top-16 h-48 w-48 rounded-full bg-rose-200/30 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-amber-200/30 blur-3xl"
+      />
+
+      <div className="relative">
+        {/* Question number */}
+        <div className="flex items-baseline justify-between gap-3">
+          <div className="flex items-baseline gap-3">
+            <span className="font-display text-5xl font-bold leading-none text-rose-600 dark:text-rose-400 tabular-nums">
+              {String(item.id).padStart(2, "0")}
+            </span>
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+              / {String(SAS_SV_ITEMS.length).padStart(2, "0")}
+            </span>
+          </div>
+          {isSaving && (
+            <span className="text-xs text-muted-foreground" role="status">
+              {t("status.saving")}
+            </span>
+          )}
+          {hasError && (
+            <span className="text-xs text-destructive" role="alert">
+              {t("status.saveFailed")}
+            </span>
+          )}
+          {committed && !isSaving && !hasError && (
+            <span
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300"
+              aria-hidden="true"
+              title="Saved"
             >
-              <span
+              ✓
+            </span>
+          )}
+        </div>
+
+        {/* The prompt */}
+        <p
+          id={`${groupId}-prompt`}
+          className="font-display mt-6 text-balance text-2xl font-semibold leading-snug sm:text-3xl"
+        >
+          {item.fr}
+        </p>
+
+        {/* Slider */}
+        <div className="mt-10">
+          {/* Big current value display */}
+          <div className="mb-4 flex items-end justify-between">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              {t("questionLabel", { n: item.id })}
+            </p>
+            <div className="text-right">
+              <p
                 className={cn(
-                  "font-display text-xl font-bold tabular-nums",
-                  checked ? "" : "opacity-90",
+                  "font-display text-6xl font-bold leading-none tabular-nums transition-colors",
+                  committed ? "text-rose-600 dark:text-rose-400" : "text-muted-foreground/50",
                 )}
               >
-                {option.value}
-              </span>
-              <span className="mt-0.5 px-1 text-[9px] sm:text-[10px]">{option.fr}</span>
-            </button>
-          );
-        })}
+                {committed ? localValue : "—"}
+              </p>
+              {labelOpt && committed && (
+                <p className="mt-1 text-sm font-medium">{labelOpt.fr}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Color-graded track + native input */}
+          <div className="relative h-12">
+            {/* Track background gradient */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 top-1/2 h-3 -translate-y-1/2 rounded-full opacity-90"
+              style={{ background: SLIDER_GRADIENT }}
+            />
+            {/* Stops dots */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-between px-1.5"
+            >
+              {[1, 2, 3, 4, 5, 6].map((n) => (
+                <span
+                  key={n}
+                  className="h-2 w-2 rounded-full bg-white/80 shadow"
+                />
+              ))}
+            </div>
+            {/* The actual range input */}
+            <input
+              type="range"
+              min={1}
+              max={6}
+              step={1}
+              value={localValue}
+              aria-labelledby={`${groupId}-prompt`}
+              onChange={(e) => setLocalValue(Number(e.target.value))}
+              onMouseUp={(e) => handleCommit(Number(e.currentTarget.value))}
+              onTouchEnd={(e) => handleCommit(Number(e.currentTarget.value))}
+              onKeyUp={(e) => handleCommit(Number(e.currentTarget.value))}
+              className="survey-slider absolute inset-0 h-full w-full cursor-pointer appearance-none bg-transparent"
+            />
+          </div>
+
+          {/* Scale labels */}
+          <div className="mt-3 flex justify-between text-[10px] font-medium uppercase tracking-wider text-muted-foreground sm:text-xs">
+            <span>1 · Pas du tout</span>
+            <span>6 · Tout à fait</span>
+          </div>
+
+          {/* Quick-tap buttons (1..6) for users who prefer numeric clicks */}
+          <div className="mt-6 grid grid-cols-6 gap-1.5">
+            {SAS_SV_LIKERT.map((option) => {
+              const checked = localValue === option.value && committed;
+              return (
+                <button
+                  key={option.value}
+                  type="button"
+                  aria-pressed={checked}
+                  onClick={() => handleCommit(option.value)}
+                  className={cn(
+                    "rounded-lg border-2 py-2 text-center font-display text-sm font-bold tabular-nums transition-all",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                    checked
+                      ? "border-rose-600 bg-rose-600 text-white shadow-md"
+                      : "border-border bg-background text-muted-foreground hover:border-rose-300 hover:text-foreground",
+                  )}
+                >
+                  {option.value}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
-    </div>
+      {/* Slider thumb styling — must be in a global style block since pseudo-elements
+          can't be styled by Tailwind alone. */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .survey-slider::-webkit-slider-thumb {
+              -webkit-appearance: none;
+              appearance: none;
+              width: 36px;
+              height: 36px;
+              border-radius: 50%;
+              background: white;
+              border: 3px solid #f43f5e;
+              box-shadow: 0 6px 20px rgba(244, 63, 94, 0.35);
+              cursor: pointer;
+              transition: transform 0.15s ease, box-shadow 0.15s ease;
+            }
+            .survey-slider::-webkit-slider-thumb:hover {
+              transform: scale(1.15);
+              box-shadow: 0 10px 28px rgba(244, 63, 94, 0.45);
+            }
+            .survey-slider::-webkit-slider-thumb:active {
+              transform: scale(1.05);
+            }
+            .survey-slider::-moz-range-thumb {
+              width: 36px;
+              height: 36px;
+              border-radius: 50%;
+              background: white;
+              border: 3px solid #f43f5e;
+              box-shadow: 0 6px 20px rgba(244, 63, 94, 0.35);
+              cursor: pointer;
+            }
+            .survey-slider:focus-visible::-webkit-slider-thumb {
+              outline: 3px solid #fb7185;
+              outline-offset: 4px;
+            }
+          `,
+        }}
+      />
+    </article>
   );
 }
-
-const QuestionCard = forwardRef<HTMLDivElement, QuestionCardProps>(QuestionCardInner);
-QuestionCard.displayName = "QuestionCard";
