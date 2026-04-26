@@ -40,6 +40,12 @@ export function HeroVideo() {
 
   const next = playlist[(idx + 1) % playlist.length]!;
 
+  // URL-encode every src segment so spaces / capitals in filenames work
+  // consistently across all browsers (some normalise %20, some don't).
+  const safeSrc = encodeURI(current.src);
+  const safeNextSrc = encodeURI(next.src);
+  const safePoster = current.poster ? encodeURI(current.poster) : undefined;
+
   return (
     <div
       aria-hidden="true"
@@ -49,8 +55,8 @@ export function HeroVideo() {
         <motion.video
           key={`v-${idx}-${current.src}`}
           ref={videoRef}
-          src={current.src}
-          poster={current.poster}
+          src={safeSrc}
+          poster={safePoster}
           autoPlay
           muted
           playsInline
@@ -64,9 +70,9 @@ export function HeroVideo() {
         />
       </AnimatePresence>
 
-      {/* Preload the next clip in a hidden video element. */}
-      {playlist.length > 1 && next.src !== current.src && (
-        <link rel="preload" as="video" href={next.src} />
+      {/* Preload the next clip. */}
+      {playlist.length > 1 && safeNextSrc !== safeSrc && (
+        <link rel="preload" as="video" href={safeNextSrc} />
       )}
 
       {/* Subtle dark overlay so the headline above stays readable */}

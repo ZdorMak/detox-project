@@ -6,38 +6,47 @@
  *     hosted on Vercel's CDN, no external dependency
  *   - an absolute URL (e.g. Pexels CDN) — works but adds an external request
  *
- * The playlist auto-rotates every `displayMs` milliseconds with a crossfade.
- * If the array is empty, the hero falls back to an animated SVG (HeroSvgFallback).
+ * The playlist auto-rotates every `displayMs` ms with a crossfade.
+ * Empty array → falls back to the animated SVG (HeroSvgFallback).
  *
- * To populate (5 minutes of work):
- *   1. Go to https://www.pexels.com/videos/ — searches recommended below.
- *   2. Pick 3-4 vertical-friendly clips (16:9 or 9:16, 5-15 sec each).
- *   3. Click a video → "Free Download" button → choose 1080p or 4K MP4.
- *   4. Save files into `public/videos/` (e.g. `bedroom.mp4`, `window.mp4`).
- *   5. Replace the empty array below with `{ src: "/videos/bedroom.mp4", ... }`.
- *
- * Recommended Pexels searches (filter: "Videos"):
- *   - "teenager phone night"   → bedroom desk + lit phone
- *   - "looking out window"     → contemplative pause
- *   - "two friends talking"    → human connection
- *   - "morning routine"        → sky / coffee / start of day
- *   - "city walk"              → outside, fresh air
- *
- * Pexels licence allows free commercial use, no attribution required.
+ * Filenames with spaces / capitals are OK — `HeroVideo.tsx` runs them
+ * through `encodeURI` before they go into the <video src>. Renaming to
+ * snake_case is recommended long-term but not required.
  */
 
 export interface HeroVideoClip {
-  /** URL or path to the video file. */
+  /** URL or path to the video file (raw, will be URL-encoded by the player). */
   src: string;
   /** Optional poster image shown until the video loads. */
   poster?: string;
-  /** ms this clip is on screen before crossfade to next. Defaults to 8000. */
+  /** ms this clip is on screen before crossfade. Defaults to 8000. */
   displayMs?: number;
 }
 
 export const HERO_PLAYLIST: readonly HeroVideoClip[] = [
-  // Add clips here, e.g.:
-  // { src: "/videos/bedroom.mp4", displayMs: 8000 },
-  // { src: "/videos/window.mp4", displayMs: 8000 },
-  // { src: "/videos/talking.mp4", displayMs: 8000 },
+  {
+    // Phone scroll at night — the "before"
+    src: "/videos/A girl is scrolling through her phone at night with the road in the background.mp4",
+    displayMs: 8000,
+  },
+  {
+    // Looking out the window — the pause
+    src: "/videos/A man looks out the window at the city at night.mp4",
+    displayMs: 8000,
+  },
+  {
+    // Friends with phone interruption — the social cost
+    src: "/videos/Two young men on bicycles are talking, and one of them takes out his phone.mp4",
+    displayMs: 9000,
+  },
+  {
+    // Morning routine — the "after"
+    src: "/videos/A man is pouring hot coffee in the kitchen.mp4",
+    displayMs: 7000,
+  },
+  {
+    // Nature walk — the reward
+    src: "/videos/A girl walking with her dog in an autumn forest.mp4",
+    displayMs: 9000,
+  },
 ];
