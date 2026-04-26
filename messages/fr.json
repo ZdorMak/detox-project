@@ -72,6 +72,126 @@
     },
     "title": "Pose le téléphone",
     "subtitle": "Tire une carte. Fais la chose. Reviens dire si tu l'as fait. Aucune note, aucun jugement.",
+    "nav": {
+      "programs": "Programmes",
+      "profile": "Mon profil"
+    },
+    "levels": {
+      "debutant": { "label": "Débutant·e", "subtitle": "Tu commences. C'est déjà beaucoup." },
+      "curieux":  { "label": "Curieux·se", "subtitle": "Tu explores, ça te plaît." },
+      "engage":   { "label": "Engagé·e",   "subtitle": "Tu en as fait une habitude." },
+      "habitue":  { "label": "Habitué·e",  "subtitle": "Le téléphone, tu le poses sans y penser." },
+      "maitre":   { "label": "Maître",     "subtitle": "Modèle pour les autres." }
+    },
+    "achievements": {
+      "toast": { "unlocked": "Débloqué !" },
+      "items": {
+        "first_step": {
+          "title": "Premier pas",
+          "description": "Ta première carte terminée."
+        },
+        "five_observations": {
+          "title": "Œil aiguisé",
+          "description": "5 cartes Observation terminées."
+        },
+        "five_socials": {
+          "title": "Lien",
+          "description": "5 cartes Social terminées."
+        },
+        "five_movements": {
+          "title": "Bouge !",
+          "description": "5 cartes Mouvement terminées."
+        },
+        "five_creatives": {
+          "title": "Inventif·ve",
+          "description": "5 cartes Création terminées."
+        },
+        "five_reflections": {
+          "title": "Calme",
+          "description": "5 cartes Réflexion terminées."
+        },
+        "full_circle": {
+          "title": "Tour complet",
+          "description": "Au moins 1 carte de chaque catégorie."
+        },
+        "marathon": {
+          "title": "Marathon",
+          "description": "10 cartes terminées en une seule journée."
+        },
+        "meal_phone_free": {
+          "title": "Sans écran à table",
+          "description": "Tu as terminé un repas sans téléphone."
+        },
+        "night_owl": {
+          "title": "Couche-tard",
+          "description": "Une carte terminée entre 22 h et 2 h."
+        },
+        "early_bird": {
+          "title": "Lève-tôt",
+          "description": "Une carte terminée entre 5 h et 7 h."
+        },
+        "program_first": {
+          "title": "Premier programme",
+          "description": "Tu as terminé un programme entier."
+        }
+      }
+    },
+    "programs": {
+      "metadata": { "title": "Programmes — Pose le téléphone" },
+      "title": "Programmes",
+      "subtitle": "Des suites de cartes pensées autour d'un thème.",
+      "progress": "Progression",
+      "stepOf": "Étape {current} sur {total}",
+      "backToList": "← Tous les programmes",
+      "items": {
+        "matin_sans_ecran": {
+          "title": "Matin sans écran",
+          "description": "5 cartes pour commencer la journée doucement."
+        },
+        "connexions": {
+          "title": "Connexions",
+          "description": "10 cartes pour renforcer les liens autour de toi."
+        },
+        "bouge_ton_corps": {
+          "title": "Bouge ton corps",
+          "description": "7 cartes pour bouger un peu chaque jour."
+        },
+        "sept_jours_calme": {
+          "title": "Sept jours de calme",
+          "description": "7 cartes pour ralentir et respirer."
+        }
+      }
+    },
+    "profile": {
+      "metadata": { "title": "Mon profil — Pose le téléphone" },
+      "title": "Mon profil",
+      "levelLabel": "Niveau",
+      "toNext": "Encore {n} cartes pour {next}",
+      "achievementsTitle": "Succès ({unlocked} / {total})",
+      "programsTitle": "Programmes",
+      "backToCards": "Tirer une carte",
+      "viewProfile": "Mon profil",
+      "viewCertificate": "Voir mon certificat",
+      "home": "Accueil",
+      "skippedCount": "{n} cartes passées au total."
+    },
+    "certificate": {
+      "metadata": { "title": "Mon certificat — Pose le téléphone" },
+      "back": "Retour au profil",
+      "print": "Imprimer / PDF",
+      "nameLabel": "Ton nom (optionnel)",
+      "namePlaceholder": "Ton prénom",
+      "nameUpdate": "Mettre à jour",
+      "headline": "Pose le téléphone",
+      "subhead": "Certificat de présence",
+      "quote": "Tu as posé le téléphone {n} fois. Chaque fois était un choix.",
+      "memberSince": "Premier défi le",
+      "achievementsTitle": "Succès débloqués",
+      "programsTitle": "Programmes terminés",
+      "noProgramsYet": "Aucun programme terminé pour l'instant — c'est OK.",
+      "footer": "Detox · Projet HEFP · 2026",
+      "unnamed": "Joueur·euse anonyme"
+    },
     "progress": {
       "completed": "faits",
       "skipped": "passés"
@@ -80,7 +200,8 @@
       "accept": "J'essaie",
       "decline": "Une autre carte",
       "completed": "Je l'ai fait",
-      "skipped": "Pas cette fois"
+      "skipped": "Pas cette fois",
+      "finish": "Terminer la session →"
     },
     "hints": {
       "honor": "On te fait confiance — personne ne vérifie."

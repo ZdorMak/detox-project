@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import type { ChallengeCard, Location } from "@/lib/challenges/cards";
+import { getAchievement } from "@/lib/challenges/achievements";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LocationPicker } from "./LocationPicker";
+import { AchievementToast } from "./AchievementToast";
 
 type Phase = "intro" | "active" | "done";
 type Outcome = "completed" | "skipped" | "declined";
@@ -18,6 +20,7 @@ interface GameProps {
   initialSkipped: number;
   initialLocation: Location;
   homeHref: string;
+  profileHref: string;
 }
 
 const LOCATION_STORAGE_KEY = "detox_location_v1";
@@ -35,6 +38,7 @@ export function Game({
   initialSkipped,
   initialLocation,
   homeHref,
+  profileHref,
 }: GameProps) {
   const t = useTranslations("challenges");
   const router = useRouter();
@@ -45,6 +49,8 @@ export function Game({
   const [completed, setCompleted] = useState(initialCompleted);
   const [skipped, setSkipped] = useState(initialSkipped);
   const [pending, setPending] = useState(false);
+  /** Achievements just unlocked, queued for toast display. */
+  const [pendingToasts, setPendingToasts] = useState<string[]>([]);
 
   // Hydrate location from localStorage on mount — the server-rendered initial
   // value is just a fallback when localStorage is empty.
@@ -110,8 +116,16 @@ export function Game({
           body: JSON.stringify({ cardId: card.id, outcome }),
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = (await res.json()) as { ok: boolean; unlocked: string[] };
         if (outcome === "completed") setCompleted((n) => n + 1);
         if (outcome === "skipped") setSkipped((n) => n + 1);
+        if (data.unlocked && data.unlocked.length > 0) {
+          // Only queue achievements we know about (defensive).
+          const known = data.unlocked.filter((id) => getAchievement(id));
+          if (known.length > 0) {
+            setPendingToasts((q) => [...q, ...known]);
+          }
+        }
         const next = await fetchNextCard(location);
         if (next) {
           setCard(next);
@@ -131,6 +145,11 @@ export function Game({
 
   return (
     <div className="mx-auto max-w-xl px-4 py-6">
+      <AchievementToast
+        queue={pendingToasts}
+        onDismiss={(id) => setPendingToasts((q) => q.filter((x) => x !== id))}
+      />
+
       <div className="mb-4">
         <LocationPicker value={location} onChange={(l) => void handleLocationChange(l)} />
       </div>
@@ -190,6 +209,15 @@ export function Game({
             <p className="mt-3 text-center text-xs text-muted-foreground">
               {t("hints.honor")}
             </p>
+            <div className="mt-4 flex justify-center">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => router.push(profileHref)}
+              >
+                {t("actions.finish")}
+              </Button>
+            </div>
           </motion.div>
         )}
         {phase === "active" && card && (
@@ -216,6 +244,15 @@ export function Game({
                 disabled={pending}
               >
                 {t("actions.skipped")}
+              </Button>
+            </div>
+            <div className="mt-4 flex justify-center">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => router.push(profileHref)}
+              >
+                {t("actions.finish")}
               </Button>
             </div>
           </motion.div>

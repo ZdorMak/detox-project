@@ -1,7 +1,10 @@
+import Link from "next/link";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { getOrCreateSession } from "@/lib/session";
 import { getChallengeStats, pickNextCard } from "@/lib/challenges/state";
+import { getLevel } from "@/lib/challenges/levels";
 import { Game } from "@/components/challenges/Game";
+import { Button } from "@/components/ui/button";
 
 export const dynamic = "force-dynamic";
 
@@ -26,9 +29,9 @@ export default async function ChallengesPage({
 
   const session = await getOrCreateSession();
   const stats = await getChallengeStats(session.id);
-  // Server-side default — the client overrides this from localStorage on mount.
   const defaultLocation = "home";
   const initialCard = pickNextCard(stats, defaultLocation);
+  const level = getLevel(stats.totalCompleted);
 
   const localePrefix = locale === "fr" ? "" : `/${locale}`;
 
@@ -41,6 +44,24 @@ export default async function ChallengesPage({
         <p className="mt-2 text-balance text-sm text-muted-foreground">
           {t("subtitle")}
         </p>
+
+        {/* Level pill + nav */}
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+          <span className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 px-3 py-1 text-xs font-medium text-amber-900 dark:border-amber-500 dark:bg-amber-950/40 dark:text-amber-100">
+            <span aria-hidden="true">🏅</span>
+            {t(`levels.${level.current.id}.label` as const)}
+          </span>
+          <Button asChild variant="ghost" size="sm">
+            <Link href={`${localePrefix}/jeu/programmes`}>
+              {t("nav.programs")}
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm">
+            <Link href={`${localePrefix}/jeu/profil`}>
+              {t("nav.profile")}
+            </Link>
+          </Button>
+        </div>
       </header>
 
       <Game
@@ -49,6 +70,7 @@ export default async function ChallengesPage({
         initialSkipped={stats.totalSkipped}
         initialLocation={defaultLocation}
         homeHref={`${localePrefix}/`}
+        profileHref={`${localePrefix}/jeu/profil`}
       />
     </main>
   );

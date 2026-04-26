@@ -72,6 +72,90 @@
     },
     "title": "Put down the phone",
     "subtitle": "Draw a card. Do the thing. Come back and tell us if you did it. No grade, no judgement.",
+    "nav": {
+      "programs": "Programs",
+      "profile": "My profile"
+    },
+    "levels": {
+      "debutant": { "label": "Beginner",  "subtitle": "You're starting. That already counts." },
+      "curieux":  { "label": "Curious",   "subtitle": "You're exploring, and you like it." },
+      "engage":   { "label": "Engaged",   "subtitle": "You've made it a habit." },
+      "habitue":  { "label": "Regular",   "subtitle": "Putting the phone down without thinking." },
+      "maitre":   { "label": "Master",    "subtitle": "A model for others." }
+    },
+    "achievements": {
+      "toast": { "unlocked": "Unlocked!" },
+      "items": {
+        "first_step":       { "title": "First step",          "description": "Your first completed card." },
+        "five_observations":{ "title": "Sharp eye",           "description": "5 Observation cards completed." },
+        "five_socials":     { "title": "Connection",          "description": "5 Social cards completed." },
+        "five_movements":   { "title": "Move!",               "description": "5 Movement cards completed." },
+        "five_creatives":   { "title": "Inventive",           "description": "5 Creative cards completed." },
+        "five_reflections": { "title": "Calm",                "description": "5 Reflection cards completed." },
+        "full_circle":      { "title": "Full circle",         "description": "At least one card from every category." },
+        "marathon":         { "title": "Marathon",            "description": "10 cards completed in a single day." },
+        "meal_phone_free":  { "title": "Phone-free meal",     "description": "You finished a meal without your phone." },
+        "night_owl":        { "title": "Night owl",           "description": "A card finished between 10 pm and 2 am." },
+        "early_bird":       { "title": "Early bird",          "description": "A card finished between 5 am and 7 am." },
+        "program_first":    { "title": "First program",       "description": "You finished a whole program." }
+      }
+    },
+    "programs": {
+      "metadata": { "title": "Programs — Put down the phone" },
+      "title": "Programs",
+      "subtitle": "Themed sequences of cards, designed to build a habit.",
+      "progress": "Progress",
+      "stepOf": "Step {current} of {total}",
+      "backToList": "← All programs",
+      "items": {
+        "matin_sans_ecran": {
+          "title": "Screen-free morning",
+          "description": "5 cards to start the day gently."
+        },
+        "connexions": {
+          "title": "Connections",
+          "description": "10 cards to strengthen the bonds around you."
+        },
+        "bouge_ton_corps": {
+          "title": "Move your body",
+          "description": "7 cards to move a little each day."
+        },
+        "sept_jours_calme": {
+          "title": "Seven days of calm",
+          "description": "7 cards to slow down and breathe."
+        }
+      }
+    },
+    "profile": {
+      "metadata": { "title": "My profile — Put down the phone" },
+      "title": "My profile",
+      "levelLabel": "Level",
+      "toNext": "{n} more cards for {next}",
+      "achievementsTitle": "Achievements ({unlocked} / {total})",
+      "programsTitle": "Programs",
+      "backToCards": "Draw a card",
+      "viewProfile": "My profile",
+      "viewCertificate": "View my certificate",
+      "home": "Home",
+      "skippedCount": "{n} cards skipped overall."
+    },
+    "certificate": {
+      "metadata": { "title": "My certificate — Put down the phone" },
+      "back": "Back to profile",
+      "print": "Print / PDF",
+      "nameLabel": "Your name (optional)",
+      "namePlaceholder": "Your name",
+      "nameUpdate": "Update",
+      "headline": "Put down the phone",
+      "subhead": "Certificate of presence",
+      "quote": "You put the phone down {n} times. Each one was a choice.",
+      "memberSince": "First challenge on",
+      "achievementsTitle": "Achievements earned",
+      "programsTitle": "Programs completed",
+      "noProgramsYet": "No programs finished yet — that's OK.",
+      "footer": "Detox · HEFP project · 2026",
+      "unnamed": "Anonymous player"
+    },
     "progress": {
       "completed": "done",
       "skipped": "skipped"
@@ -80,7 +164,8 @@
       "accept": "I'll try",
       "decline": "Another card",
       "completed": "I did it",
-      "skipped": "Not this time"
+      "skipped": "Not this time",
+      "finish": "Finish session →"
     },
     "hints": {
       "honor": "We trust you — nobody's checking."
