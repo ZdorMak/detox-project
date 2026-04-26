@@ -4,44 +4,45 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* WELLNESS palette — sage-led, warm sand accents, rose for emphasis. */
+    --background: 35 30% 99%;          /* #fdfcf9 — almost-white cream */
+    --foreground: 200 25% 12%;         /* deep slate, easy on the eye */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --primary: 173 80% 24%; /* teal-700 — pillar.durable */
+    --card-foreground: 200 25% 12%;
+    --primary: 168 65% 32%;            /* sage / teal-700, main action */
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 72% 51%;
+    --secondary: 35 30% 95%;           /* warm sand surface */
+    --secondary-foreground: 200 25% 18%;
+    --muted: 35 25% 94%;
+    --muted-foreground: 200 12% 42%;
+    --accent: 24 90% 95%;              /* peach surface */
+    --accent-foreground: 24 70% 22%;
+    --destructive: 350 75% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 173 80% 24%;
-    --radius: 0.625rem;
+    --border: 35 22% 88%;
+    --input: 35 22% 88%;
+    --ring: 168 60% 38%;
+    --radius: 0.875rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --primary: 173 70% 50%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 173 70% 50%;
+    --background: 200 30% 7%;          /* deep teal-slate */
+    --foreground: 35 25% 95%;
+    --card: 200 25% 10%;
+    --card-foreground: 35 25% 95%;
+    --primary: 168 60% 50%;
+    --primary-foreground: 200 30% 7%;
+    --secondary: 200 22% 14%;
+    --secondary-foreground: 35 25% 95%;
+    --muted: 200 22% 14%;
+    --muted-foreground: 200 12% 65%;
+    --accent: 24 60% 18%;
+    --accent-foreground: 24 80% 90%;
+    --destructive: 350 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 200 18% 18%;
+    --input: 200 18% 18%;
+    --ring: 168 55% 55%;
   }
 
   * {
@@ -49,23 +50,23 @@
   }
   html {
     -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
   }
-  /* Use Georgia serif for top-level headings — gives the project an editorial,
-     "thoughtful publication" feel rather than a generic SaaS look. */
+
+  /* Display font for top-level headings — Fraunces (editorial, optical-size aware). */
   h1, h2, .font-display {
-    font-family: Georgia, "Times New Roman", "DejaVu Serif", serif;
-    letter-spacing: -0.015em;
+    font-family: var(--font-display), Georgia, ui-serif, serif;
+    letter-spacing: -0.02em;
+    font-feature-settings: "ss01" 1;
   }
-  /* Subtle gradient utility for hero / pillar accents. */
-  .bg-grain {
-    background-image:
-      radial-gradient(circle at 20% 0%, hsl(var(--primary) / 0.06), transparent 40%),
-      radial-gradient(circle at 80% 100%, hsl(var(--primary) / 0.04), transparent 50%);
+  h3, h4 {
+    letter-spacing: -0.01em;
   }
+
   /* Visually hidden but kept available to screen readers. */
   .sr-only {
     position: absolute;
@@ -82,6 +83,19 @@
   .skip-link {
     @apply absolute left-2 top-2 z-50 -translate-y-16 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground transition focus:translate-y-0;
   }
+
+  /* Subtle ambient texture for hero / feature sections. */
+  .bg-grain {
+    background-image:
+      radial-gradient(circle at 18% 0%, hsl(var(--primary) / 0.06), transparent 45%),
+      radial-gradient(circle at 82% 100%, hsl(24 80% 60% / 0.05), transparent 50%);
+  }
+  .bg-grain-strong {
+    background-image:
+      radial-gradient(circle at 20% 10%, hsl(var(--primary) / 0.10), transparent 40%),
+      radial-gradient(circle at 80% 90%, hsl(24 80% 60% / 0.08), transparent 45%);
+  }
+
   /* Honour reduced-motion preference. */
   @media (prefers-reduced-motion: reduce) {
     *,
