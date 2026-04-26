@@ -66,6 +66,35 @@
     "decline": "Refuser",
     "learnMore": "En savoir plus"
   },
+  "auth": {
+    "metadata": { "title": "Connexion — Detox" },
+    "menu": {
+      "signIn": "Se connecter",
+      "signOut": "Se déconnecter"
+    },
+    "login": {
+      "title": "Se connecter",
+      "subtitle": "Sauvegarde ta progression sur tous tes appareils. Optionnel.",
+      "google": "Continuer avec Google",
+      "apple": "Continuer avec Apple",
+      "divider": "ou",
+      "magicHeading": "Lien magique par email",
+      "magicLabel": "Adresse email",
+      "magicPlaceholder": "ton@email.ch",
+      "magicSubmit": "Recevoir le lien",
+      "magicHint": "On t'envoie un lien à cliquer. Pas de mot de passe à retenir.",
+      "magicSent": "Lien envoyé. Vérifie ta boîte mail (et le dossier spam).",
+      "consent": "En te connectant, tu acceptes que ton email soit stocké pour identifier ton compte. Tu peux te déconnecter à tout moment.",
+      "skipPrompt": "Pas envie de te connecter ?",
+      "skipLink": "Continuer en anonyme",
+      "errors": {
+        "generic": "Connexion échouée. Réessaie.",
+        "missing_code": "Lien invalide ou expiré.",
+        "missing_email": "Aucun email associé à ce compte.",
+        "exchange_failed": "Impossible de finaliser la connexion. Réessaie."
+      }
+    }
+  },
   "challenges": {
     "metadata": {
       "title": "Pose le téléphone — Detox"

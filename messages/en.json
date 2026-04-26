@@ -66,6 +66,35 @@
     "decline": "Decline",
     "learnMore": "Learn more"
   },
+  "auth": {
+    "metadata": { "title": "Sign in — Detox" },
+    "menu": {
+      "signIn": "Sign in",
+      "signOut": "Sign out"
+    },
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Save your progress across devices. Optional.",
+      "google": "Continue with Google",
+      "apple": "Continue with Apple",
+      "divider": "or",
+      "magicHeading": "Magic email link",
+      "magicLabel": "Email address",
+      "magicPlaceholder": "you@email.ch",
+      "magicSubmit": "Send me the link",
+      "magicHint": "We email you a link to click. No password to remember.",
+      "magicSent": "Link sent. Check your inbox (and spam folder).",
+      "consent": "By signing in you agree to your email being stored to identify your account. You can sign out at any time.",
+      "skipPrompt": "Don't want to sign in?",
+      "skipLink": "Continue anonymously",
+      "errors": {
+        "generic": "Sign-in failed. Try again.",
+        "missing_code": "Invalid or expired link.",
+        "missing_email": "No email associated with this account.",
+        "exchange_failed": "Couldn't finish sign-in. Try again."
+      }
+    }
+  },
   "challenges": {
     "metadata": {
       "title": "Put down the phone — Detox"

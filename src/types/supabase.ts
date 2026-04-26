@@ -1,7 +1,7 @@
-// Auto-generated after migration 004_programs_and_achievements.
-// Manually expanded with the two new tables (program_progress, achievements_unlocked)
-// and the new `points` column on challenge_attempts. Re-generate via the
-// Supabase MCP `generate_typescript_types` next time the schema changes.
+// Auto-generated after migration 005_players_and_session_linkage.
+// Includes: players, sessions.user_id, achievements_unlocked, program_progress,
+// challenge_attempts.points. Re-generate via the Supabase MCP next time the
+// schema changes.
 
 export type Json =
   | string
@@ -227,6 +227,7 @@ export type Database = {
           school_id: string | null
           started_at: string
           user_agent_hash: string | null
+          user_id: string | null
         }
         Insert: {
           anonymous_id: string
@@ -235,6 +236,7 @@ export type Database = {
           school_id?: string | null
           started_at?: string
           user_agent_hash?: string | null
+          user_id?: string | null
         }
         Update: {
           anonymous_id?: string
@@ -243,10 +245,43 @@ export type Database = {
           school_id?: string | null
           started_at?: string
           user_agent_hash?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {
             foreignKeyName: "sessions_school_id_fkey"
+            columns: ["school_id"]
+            isOneToOne: false
+            referencedRelation: "schools"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      players: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          email: string
+          id: string
+          school_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          email: string
+          id: string
+          school_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          email?: string
+          id?: string
+          school_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "players_school_id_fkey"
             columns: ["school_id"]
             isOneToOne: false
             referencedRelation: "schools"
