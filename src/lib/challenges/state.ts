@@ -1,5 +1,10 @@
 import { createAdminClient } from "@/lib/supabase/admin";
-import { CHALLENGE_CARDS, type ChallengeCard } from "./cards";
+import {
+  CHALLENGE_CARDS,
+  cardsForLocation,
+  type ChallengeCard,
+  type Location,
+} from "./cards";
 
 export type Outcome = "completed" | "skipped" | "declined";
 
@@ -59,23 +64,54 @@ export async function getChallengeStats(sessionId: string): Promise<ChallengeSta
 
 /**
  * Pick the next card to show. Strategy:
- *  1. Prefer cards the player hasn't drawn yet (any outcome).
- *  2. Among unseen, prefer easier cards first (difficulty 1 → 2 → 3) — the
+ *  1. Filter to the player's current location.
+ *  2. Prefer cards the player hasn't drawn yet (any outcome).
+ *  3. Among unseen, prefer easier cards first (difficulty 1 → 2 → 3) — the
  *     deck "warms up" the player before tougher real-world asks.
- *  3. Within a difficulty band, pick a random card so two players don't see
+ *  4. Within a difficulty band, pick a random card so two players don't see
  *     identical sequences.
- *  4. If everything is drawn, recycle from completed/skipped uniformly.
- *
- * Returns null only if the deck is empty (never in practice — there are 30 cards).
+ *  5. If everything available at this location is drawn, recycle from the
+ *     same location pool uniformly.
  */
-export function pickNextCard(stats: ChallengeStats): ChallengeCard | null {
-  const unseen = CHALLENGE_CARDS.filter((c) => !stats.drawnIds.has(c.id));
-  const pool = unseen.length > 0 ? unseen : [...CHALLENGE_CARDS];
-  if (pool.length === 0) return null;
-
-  // Sort by difficulty ascending, then take all cards in the lowest band present.
+export function pickNextCard(
+  stats: ChallengeStats,
+  location: Location,
+): ChallengeCard | null {
+  const atLocation = cardsForLocation(location);
+  if (atLocation.length === 0) {
+    // Coverage check in cards.ts guarantees this never happens. Defensive.
+    return null;
+  }
+  const unseen = atLocation.filter((c) => !stats.drawnIds.has(c.id));
+  const pool = unseen.length > 0 ? unseen : atLocation;
   const minDifficulty = Math.min(...pool.map((c) => c.difficulty));
   const band = pool.filter((c) => c.difficulty === minDifficulty);
   const idx = Math.floor(Math.random() * band.length);
   return band[idx] ?? null;
 }
+
+/** Whether `id` is a known location string — used to validate query params. */
+const VALID_LOCATIONS = new Set<string>([
+  "home",
+  "school",
+  "transport",
+  "outside",
+  "with_friends",
+]);
+export function parseLocation(raw: string | null | undefined): Location {
+  if (raw && VALID_LOCATIONS.has(raw)) return raw as Location;
+  return "home";
+}
+
+/** Convenience for listing how many cards exist at a given location, by category. */
+export function locationStats(location: Location): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const card of cardsForLocation(location)) {
+    out[card.category] = (out[card.category] ?? 0) + 1;
+  }
+  out.total = cardsForLocation(location).length;
+  return out;
+}
+
+// Re-export for callers that import everything from one place.
+export { CHALLENGE_CARDS };

@@ -1,12 +1,13 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
-import type { ChallengeCard } from "@/lib/challenges/cards";
+import type { ChallengeCard, Location } from "@/lib/challenges/cards";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { LocationPicker } from "./LocationPicker";
 
 type Phase = "intro" | "active" | "done";
 type Outcome = "completed" | "skipped" | "declined";
@@ -15,30 +16,88 @@ interface GameProps {
   initialCard: ChallengeCard | null;
   initialCompleted: number;
   initialSkipped: number;
+  initialLocation: Location;
   homeHref: string;
 }
+
+const LOCATION_STORAGE_KEY = "detox_location_v1";
 
 /**
  * "Pose le téléphone" client UI. Honor system — the player tells the game
  * whether they actually did the thing.
  *
- * Loop: draw card → accept / decline → (if accepted) "j'ai fait" / "skip" →
- * server log → fetch next card from /api/challenges/next.
+ * Loop: pick location → draw card → accept / decline →
+ * (if accepted) "j'ai fait" / "skip" → server log → fetch next card.
  */
 export function Game({
   initialCard,
   initialCompleted,
   initialSkipped,
+  initialLocation,
   homeHref,
 }: GameProps) {
   const t = useTranslations("challenges");
   const router = useRouter();
 
+  const [location, setLocation] = useState<Location>(initialLocation);
   const [card, setCard] = useState<ChallengeCard | null>(initialCard);
   const [phase, setPhase] = useState<Phase>(initialCard ? "intro" : "done");
   const [completed, setCompleted] = useState(initialCompleted);
   const [skipped, setSkipped] = useState(initialSkipped);
   const [pending, setPending] = useState(false);
+
+  // Hydrate location from localStorage on mount — the server-rendered initial
+  // value is just a fallback when localStorage is empty.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const stored = window.localStorage.getItem(LOCATION_STORAGE_KEY);
+    if (stored && stored !== location) {
+      const valid = ["home", "school", "transport", "outside", "with_friends"];
+      if (valid.includes(stored)) {
+        setLocation(stored as Location);
+        // Refetch card for the localStorage location.
+        void fetchNextCard(stored as Location).then((next) => {
+          if (next) {
+            setCard(next);
+            setPhase("intro");
+          }
+        });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const persistLocation = useCallback((loc: Location) => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(LOCATION_STORAGE_KEY, loc);
+    }
+  }, []);
+
+  const fetchNextCard = useCallback(
+    async (loc: Location): Promise<ChallengeCard | null> => {
+      const res = await fetch(`/api/challenges/next?location=${encodeURIComponent(loc)}`);
+      if (!res.ok) return null;
+      const data = (await res.json()) as { card: ChallengeCard | null };
+      return data.card;
+    },
+    [],
+  );
+
+  const handleLocationChange = useCallback(
+    async (next: Location) => {
+      setLocation(next);
+      persistLocation(next);
+      setPending(true);
+      try {
+        const nextCard = await fetchNextCard(next);
+        setCard(nextCard);
+        setPhase(nextCard ? "intro" : "done");
+      } finally {
+        setPending(false);
+      }
+    },
+    [fetchNextCard, persistLocation],
+  );
 
   const logOutcome = useCallback(
     async (outcome: Outcome) => {
@@ -53,16 +112,9 @@ export function Game({
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         if (outcome === "completed") setCompleted((n) => n + 1);
         if (outcome === "skipped") setSkipped((n) => n + 1);
-        // Fetch the next card.
-        const nextRes = await fetch("/api/challenges/next");
-        if (!nextRes.ok) {
-          setCard(null);
-          setPhase("done");
-          return;
-        }
-        const next = (await nextRes.json()) as { card: ChallengeCard | null };
-        if (next.card) {
-          setCard(next.card);
+        const next = await fetchNextCard(location);
+        if (next) {
+          setCard(next);
           setPhase("intro");
         } else {
           setCard(null);
@@ -74,27 +126,15 @@ export function Game({
         setPending(false);
       }
     },
-    [card, pending],
+    [card, pending, location, fetchNextCard],
   );
 
-  if (phase === "done" || !card) {
-    return (
-      <DoneCard
-        completed={completed}
-        skipped={skipped}
-        homeHref={homeHref}
-        onRouter={router.push}
-        labels={{
-          title: t("done.title"),
-          body: t("done.body", { completed, skipped }),
-          home: t("done.home"),
-        }}
-      />
-    );
-  }
-
   return (
-    <div className="mx-auto max-w-xl px-4 py-8">
+    <div className="mx-auto max-w-xl px-4 py-6">
+      <div className="mb-4">
+        <LocationPicker value={location} onChange={(l) => void handleLocationChange(l)} />
+      </div>
+
       <ProgressHeader
         completed={completed}
         skipped={skipped}
@@ -105,7 +145,27 @@ export function Game({
       />
 
       <AnimatePresence mode="wait">
-        {phase === "intro" && (
+        {(phase === "done" || !card) && (
+          <motion.div
+            key="done"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -24 }}
+          >
+            <DoneCard
+              completed={completed}
+              skipped={skipped}
+              homeHref={homeHref}
+              onRouter={router.push}
+              labels={{
+                title: t("done.title"),
+                body: t("done.body", { completed, skipped }),
+                home: t("done.home"),
+              }}
+            />
+          </motion.div>
+        )}
+        {phase === "intro" && card && (
           <motion.div
             key={`intro-${card.id}`}
             initial={{ opacity: 0, y: 24 }}
@@ -115,11 +175,7 @@ export function Game({
           >
             <CardFace card={card} t={t} />
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <Button
-                size="lg"
-                onClick={() => setPhase("active")}
-                disabled={pending}
-              >
+              <Button size="lg" onClick={() => setPhase("active")} disabled={pending}>
                 {t("actions.accept")}
               </Button>
               <Button
@@ -136,7 +192,7 @@ export function Game({
             </p>
           </motion.div>
         )}
-        {phase === "active" && (
+        {phase === "active" && card && (
           <motion.div
             key={`active-${card.id}`}
             initial={{ opacity: 0, scale: 0.96 }}
@@ -220,9 +276,7 @@ function CardFace({ card, t }: CardFaceProps) {
     <div className="rounded-2xl border-2 border-border bg-card p-8 shadow-sm">
       <div className="flex items-center justify-between text-xs uppercase tracking-wider text-muted-foreground">
         <span>{t(`categories.${card.category}` as const)}</span>
-        <span>
-          {t("cardMeta.duration", { min: card.durationMin })}
-        </span>
+        <span>{t("cardMeta.duration", { min: card.durationMin })}</span>
       </div>
       <div className="mt-6 text-center text-7xl" aria-hidden="true">
         {card.emoji}

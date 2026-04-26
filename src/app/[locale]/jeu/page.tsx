@@ -26,7 +26,9 @@ export default async function ChallengesPage({
 
   const session = await getOrCreateSession();
   const stats = await getChallengeStats(session.id);
-  const initialCard = pickNextCard(stats);
+  // Server-side default — the client overrides this from localStorage on mount.
+  const defaultLocation = "home";
+  const initialCard = pickNextCard(stats, defaultLocation);
 
   const localePrefix = locale === "fr" ? "" : `/${locale}`;
 
@@ -45,6 +47,7 @@ export default async function ChallengesPage({
         initialCard={initialCard}
         initialCompleted={stats.totalCompleted}
         initialSkipped={stats.totalSkipped}
+        initialLocation={defaultLocation}
         homeHref={`${localePrefix}/`}
       />
     </main>

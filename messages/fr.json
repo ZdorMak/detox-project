@@ -104,6 +104,18 @@
       "creative": "Création",
       "reflection": "Réflexion"
     },
+    "locations": {
+      "ariaLabel": "Choisis ton lieu",
+      "prompt": "Tu es :",
+      "changeTo": "Changer pour :",
+      "options": {
+        "home": "À la maison",
+        "school": "À l'école",
+        "transport": "En transport",
+        "outside": "Dehors",
+        "with_friends": "Avec des ami·es"
+      }
+    },
     "cards": {
       "window_describe": {
         "title": "À la fenêtre",
@@ -224,6 +236,26 @@
       "drink_water_slowly": {
         "title": "Un verre, lentement",
         "body": "Verse-toi un verre d'eau. Bois-le sans rien faire d'autre. Sens les gorgées."
+      },
+      "scan_room_details": {
+        "title": "Détails autour de toi",
+        "body": "Trouve trois petits détails que tu n'avais jamais remarqués jusque-là."
+      },
+      "smile_at_stranger": {
+        "title": "Un sourire",
+        "body": "Souris à la prochaine personne avec qui tu croises le regard. Sans rien dire."
+      },
+      "shoulder_rolls": {
+        "title": "Roulements d'épaules",
+        "body": "Dix lents roulements vers l'arrière, puis dix vers l'avant. Discret, partout."
+      },
+      "invent_a_story": {
+        "title": "Invente une histoire",
+        "body": "Choisis quelqu'un autour de toi (sans qu'il/elle s'en aperçoive). Imagine sa journée."
+      },
+      "notice_one_feeling": {
+        "title": "Nomme ce que tu ressens",
+        "body": "Pose-toi la question : qu'est-ce que je ressens là, maintenant ? Trouve un mot précis."
       }
     }
   },

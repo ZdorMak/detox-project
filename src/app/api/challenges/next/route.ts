@@ -1,21 +1,27 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { getOrCreateSession } from "@/lib/session";
-import { getChallengeStats, pickNextCard } from "@/lib/challenges/state";
+import {
+  getChallengeStats,
+  parseLocation,
+  pickNextCard,
+} from "@/lib/challenges/state";
 
 export const dynamic = "force-dynamic";
 
 /**
- * GET /api/challenges/next
+ * GET /api/challenges/next?location=home|school|transport|outside|with_friends
  *
  * Returns the next card to show — preferring unseen cards, easier first.
- * Used by the client after each attempt is logged.
+ * Filters by the player's current location so we never suggest "Sors marcher"
+ * while they're sitting in class.
  */
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
     const session = await getOrCreateSession();
     const stats = await getChallengeStats(session.id);
-    const card = pickNextCard(stats);
-    return NextResponse.json({ card });
+    const location = parseLocation(req.nextUrl.searchParams.get("location"));
+    const card = pickNextCard(stats, location);
+    return NextResponse.json({ card, location });
   } catch (err) {
     console.error("[/api/challenges/next] error:", err);
     return NextResponse.json({ error: "next_failed" }, { status: 500 });

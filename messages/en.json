@@ -104,6 +104,18 @@
       "creative": "Creative",
       "reflection": "Reflection"
     },
+    "locations": {
+      "ariaLabel": "Pick your location",
+      "prompt": "You're:",
+      "changeTo": "Change to:",
+      "options": {
+        "home": "At home",
+        "school": "At school",
+        "transport": "In transit",
+        "outside": "Outside",
+        "with_friends": "With friends"
+      }
+    },
     "cards": {
       "window_describe": {
         "title": "At the window",
@@ -224,6 +236,26 @@
       "drink_water_slowly": {
         "title": "A glass, slowly",
         "body": "Pour yourself a glass of water. Drink it doing nothing else. Feel each sip."
+      },
+      "scan_room_details": {
+        "title": "Details around you",
+        "body": "Find three small details you'd never noticed before."
+      },
+      "smile_at_stranger": {
+        "title": "A smile",
+        "body": "Smile at the next person whose eyes meet yours. No words needed."
+      },
+      "shoulder_rolls": {
+        "title": "Shoulder rolls",
+        "body": "Ten slow rolls backward, then ten forward. Subtle, works anywhere."
+      },
+      "invent_a_story": {
+        "title": "Invent a story",
+        "body": "Pick someone around you (without them noticing). Imagine their day."
+      },
+      "notice_one_feeling": {
+        "title": "Name what you feel",
+        "body": "Ask yourself: what am I feeling right now? Find one precise word."
       }
     }
   },
