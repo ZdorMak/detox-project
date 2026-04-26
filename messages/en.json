@@ -164,8 +164,29 @@
       "backToCards": "Draw a card",
       "viewProfile": "My profile",
       "viewCertificate": "View my certificate",
+      "printDeck": "Print the cards",
       "home": "Home",
       "skippedCount": "{n} cards skipped overall."
+    },
+    "print": {
+      "metadata": { "title": "Printable version — Put down the phone" },
+      "pageTitle": "Put down the phone — Printable cards",
+      "backToGame": "Back to the game",
+      "tip": "Print on A4, then cut the cards along the dotted lines.",
+      "printAction": "🖨️ Print / PDF",
+      "rulesHeading": "Classroom rules",
+      "rulesIntro": "A short activity to put the phone down and do something together. No screens needed once the cards are printed.",
+      "rules": {
+        "1": "Shuffle the deck. Draw a card at random.",
+        "2": "Read it out loud. Choose: 'I'll try' or 'another card'.",
+        "3": "Do the action in under 15 minutes. No one's timing you — be honest with yourself.",
+        "4": "Come back to the table: share (or not — that's fine too).",
+        "5": "Tick the card on your tracking sheet. Draw another whenever you want.",
+        "6": "As a group: draw one shared card per session. Compare your experiences."
+      },
+      "legendCategories": "Categories",
+      "legendLocations": "Possible locations",
+      "footer": "Detox · HEFP project · 2026 · Cards under open licence"
     },
     "certificate": {
       "metadata": { "title": "My certificate — Put down the phone" },

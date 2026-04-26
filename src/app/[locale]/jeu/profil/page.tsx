@@ -229,6 +229,11 @@ export default async function ProfilePage({
             🏅 {t("profile.viewCertificate")}
           </Link>
         </Button>
+        <Button asChild variant="outline">
+          <Link href={`${localePrefix}/jeu/imprimer`}>
+            🖨️ {t("profile.printDeck")}
+          </Link>
+        </Button>
         <Button asChild variant="ghost">
           <Link href={`${localePrefix}/`}>{t("profile.home")}</Link>
         </Button>

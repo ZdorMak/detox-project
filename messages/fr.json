@@ -200,8 +200,29 @@
       "backToCards": "Tirer une carte",
       "viewProfile": "Mon profil",
       "viewCertificate": "Voir mon certificat",
+      "printDeck": "Imprimer les cartes",
       "home": "Accueil",
       "skippedCount": "{n} cartes passées au total."
+    },
+    "print": {
+      "metadata": { "title": "Version imprimable — Pose le téléphone" },
+      "pageTitle": "Pose le téléphone — Cartes imprimables",
+      "backToGame": "Retour au jeu",
+      "tip": "Imprime sur A4 puis découpe les cartes le long des pointillés.",
+      "printAction": "🖨️ Imprimer / PDF",
+      "rulesHeading": "Règles du jeu en classe",
+      "rulesIntro": "Une activité courte pour reposer le téléphone et faire quelque chose ensemble. Aucun écran requis pour jouer une fois les cartes imprimées.",
+      "rules": {
+        "1": "Mélange les cartes. Tire-en une au hasard.",
+        "2": "Lis-la à voix haute. Choisis : « j'essaie » ou « une autre carte ».",
+        "3": "Fais l'action en moins de 15 minutes. Personne ne te chronomètre — tu es honnête avec toi-même.",
+        "4": "Reviens à la table : raconte (ou pas — c'est OK aussi).",
+        "5": "Coche la carte sur ta feuille de suivi. Tire-en une autre quand tu veux.",
+        "6": "En groupe : tirez une carte commune par séance. Comparez vos expériences."
+      },
+      "legendCategories": "Catégories",
+      "legendLocations": "Lieux possibles",
+      "footer": "Detox · Projet HEFP · 2026 · Cartes sous licence libre"
     },
     "certificate": {
       "metadata": { "title": "Mon certificat — Pose le téléphone" },
