@@ -5,6 +5,8 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { PROGRAMS } from "@/lib/challenges/programs";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { MobileGameNav } from "@/components/challenges/MobileGameNav";
 
 export const dynamic = "force-dynamic";
 
@@ -44,7 +46,9 @@ export default async function ProgramsPage({
   const localePrefix = locale === "fr" ? "" : `/${locale}`;
 
   return (
-    <main id="main" className="mx-auto max-w-2xl px-4 py-8">
+    <>
+      <SiteHeader locale={locale} next={`${localePrefix}/jeu/programmes`} />
+      <main id="main" className="mx-auto max-w-2xl px-4 py-8 pb-24 md:pb-8">
       <header className="mb-8 text-center">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {t("programs.title")}
@@ -109,6 +113,8 @@ export default async function ProgramsPage({
           <Link href={`${localePrefix}/jeu/profil`}>{t("profile.viewProfile")}</Link>
         </Button>
       </div>
-    </main>
+      </main>
+      <MobileGameNav locale={locale} active="programs" />
+    </>
   );
 }

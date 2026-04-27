@@ -6,8 +6,7 @@ import { Pillars } from "@/components/landing/pillars";
 import { CtaBanner } from "@/components/landing/CtaBanner";
 import { Footer } from "@/components/landing/footer";
 import { ConsentBanner } from "@/components/consent/consent-banner";
-import { UserMenu } from "@/components/auth/UserMenu";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 
 export default async function LandingPage({
   params,
@@ -20,10 +19,7 @@ export default async function LandingPage({
 
   return (
     <>
-      <div className="absolute right-4 top-4 z-20 flex items-center gap-2">
-        <ThemeToggle />
-        <UserMenu locale={locale} next={`${localePrefix}/`} />
-      </div>
+      <SiteHeader locale={locale} next={`${localePrefix}/`} hideBrand />
       <main id="main">
         <Hero />
         <HowItWorks />

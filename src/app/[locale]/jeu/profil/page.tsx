@@ -7,6 +7,8 @@ import { ACHIEVEMENTS } from "@/lib/challenges/achievements";
 import { PROGRAMS } from "@/lib/challenges/programs";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { MobileGameNav } from "@/components/challenges/MobileGameNav";
 
 export const dynamic = "force-dynamic";
 
@@ -62,7 +64,9 @@ export default async function ProfilePage({
   const localePrefix = locale === "fr" ? "" : `/${locale}`;
 
   return (
-    <main id="main" className="mx-auto max-w-2xl px-4 py-8">
+    <>
+      <SiteHeader locale={locale} next={`${localePrefix}/jeu/profil`} />
+      <main id="main" className="mx-auto max-w-2xl px-4 py-8 pb-24 md:pb-8">
       <header className="mb-8 text-center">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {t("profile.title")}
@@ -242,6 +246,8 @@ export default async function ProfilePage({
       <p className="mt-6 text-center text-xs text-muted-foreground">
         {t("profile.skippedCount", { n: totalSkipped })}
       </p>
-    </main>
+      </main>
+      <MobileGameNav locale={locale} active="profile" />
+    </>
   );
 }

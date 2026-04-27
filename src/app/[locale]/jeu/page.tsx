@@ -5,6 +5,8 @@ import { getChallengeStats, pickNextCard } from "@/lib/challenges/state";
 import { getLevel } from "@/lib/challenges/levels";
 import { Game } from "@/components/challenges/Game";
 import { Button } from "@/components/ui/button";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { MobileGameNav } from "@/components/challenges/MobileGameNav";
 
 export const dynamic = "force-dynamic";
 
@@ -36,8 +38,10 @@ export default async function ChallengesPage({
   const localePrefix = locale === "fr" ? "" : `/${locale}`;
 
   return (
-    <main id="main">
-      <header className="mx-auto max-w-xl px-4 pb-2 pt-8 text-center">
+    <>
+      <SiteHeader locale={locale} next={`${localePrefix}/jeu`} />
+      <main id="main" className="pb-20 md:pb-0">
+        <header className="mx-auto max-w-xl px-4 pb-2 pt-8 text-center">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {t("title")}
         </h1>
@@ -64,14 +68,16 @@ export default async function ChallengesPage({
         </div>
       </header>
 
-      <Game
-        initialCard={initialCard}
-        initialCompleted={stats.totalCompleted}
-        initialSkipped={stats.totalSkipped}
-        initialLocation={defaultLocation}
-        homeHref={`${localePrefix}/`}
-        profileHref={`${localePrefix}/jeu/profil`}
-      />
-    </main>
+        <Game
+          initialCard={initialCard}
+          initialCompleted={stats.totalCompleted}
+          initialSkipped={stats.totalSkipped}
+          initialLocation={defaultLocation}
+          homeHref={`${localePrefix}/`}
+          profileHref={`${localePrefix}/jeu/profil`}
+        />
+      </main>
+      <MobileGameNav locale={locale} active="cards" />
+    </>
   );
 }
