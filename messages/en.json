@@ -662,6 +662,13 @@
       "seeResults": "See my results",
       "keyboardHint": "Keyboard: 1–6 to answer, ← → to navigate."
     },
+    "scaleName": "Smartphone Addiction Scale",
+    "questionLabelEyebrow": "Question {n} · this past week",
+    "anonNote": "Anonymous · no sign-up",
+    "dialIdle": "Drag · or press 1–6",
+    "dialMin": "Strongly disagree",
+    "dialMax": "Strongly agree",
+    "dialKeyboardHint": "or press 1–6",
     "status": {
       "saving": "Saving…",
       "saveFailed": "Save failed — try again."

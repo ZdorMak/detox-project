@@ -698,6 +698,13 @@
       "seeResults": "Voir mes résultats",
       "keyboardHint": "Astuce clavier : 1–6 pour répondre, ← → pour naviguer."
     },
+    "scaleName": "Échelle d'addiction au smartphone",
+    "questionLabelEyebrow": "Question {n} · cette semaine",
+    "anonNote": "Anonyme · sans inscription",
+    "dialIdle": "Glisse · ou tape 1–6",
+    "dialMin": "Pas du tout d'accord",
+    "dialMax": "Tout à fait d'accord",
+    "dialKeyboardHint": "ou tape 1–6",
     "status": {
       "saving": "Enregistrement…",
       "saveFailed": "Échec — réessaie."
