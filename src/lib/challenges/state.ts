@@ -5,6 +5,7 @@ import {
   cardsForLocation,
   type ChallengeCard,
   type Location,
+  type TimeOfDay,
 } from "./cards";
 
 export type Outcome = "completed" | "skipped" | "declined";
@@ -80,12 +81,18 @@ export async function getChallengeStats(sessionId: string): Promise<ChallengeSta
 export function pickNextCard(
   stats: ChallengeStats,
   location: Location,
+  timeOfDay?: TimeOfDay,
 ): ChallengeCard | null {
-  const atLocation = cardsForLocation(location);
-  if (atLocation.length === 0) {
-    // Coverage check in cards.ts guarantees this never happens. Defensive.
-    return null;
+  let atLocation = cardsForLocation(location);
+  if (timeOfDay) {
+    const filtered = atLocation.filter(
+      (c) => !c.excludedTimes?.includes(timeOfDay),
+    );
+    // If filtering by time wipes out the pool entirely (shouldn't happen
+    // given coverage), fall back to ignoring time so the deck never stalls.
+    if (filtered.length > 0) atLocation = filtered;
   }
+  if (atLocation.length === 0) return null;
   const unseen = atLocation.filter((c) => !stats.drawnIds.has(c.id));
   const pool = unseen.length > 0 ? unseen : atLocation;
   const minDifficulty = Math.min(...pool.map((c) => c.difficulty));

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { getOrCreateSession } from "@/lib/session";
 import { getChallengeStats, pickNextCard } from "@/lib/challenges/state";
+import { timeOfDayFromHour } from "@/lib/challenges/cards";
 import { getLevel } from "@/lib/challenges/levels";
 import { Game } from "@/components/challenges/Game";
 import { Button } from "@/components/ui/button";
@@ -32,7 +33,11 @@ export default async function ChallengesPage({
   const session = await getOrCreateSession();
   const stats = await getChallengeStats(session.id);
   const defaultLocation = "home";
-  const initialCard = pickNextCard(stats, defaultLocation);
+  // Server-side initial pick uses Europe/Zurich-equivalent (UTC+1/+2) as a
+  // reasonable default for FR-CH users. Client refetches with local hour
+  // immediately on mount, so this is just a first-paint approximation.
+  const serverHour = (new Date().getUTCHours() + 1) % 24;
+  const initialCard = pickNextCard(stats, defaultLocation, timeOfDayFromHour(serverHour));
   const level = getLevel(stats.totalCompleted);
 
   const localePrefix = locale === "fr" ? "" : `/${locale}`;

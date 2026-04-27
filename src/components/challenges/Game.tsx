@@ -81,7 +81,12 @@ export function Game({
 
   const fetchNextCard = useCallback(
     async (loc: Location): Promise<ChallengeCard | null> => {
-      const res = await fetch(`/api/challenges/next?location=${encodeURIComponent(loc)}`);
+      // Pass the local hour so the server can filter time-inappropriate cards
+      // (no late-night jumping jacks, no 3 a.m. phone calls).
+      const hour = new Date().getHours();
+      const res = await fetch(
+        `/api/challenges/next?location=${encodeURIComponent(loc)}&hour=${hour}`,
+      );
       if (!res.ok) return null;
       const data = (await res.json()) as { card: ChallengeCard | null };
       return data.card;

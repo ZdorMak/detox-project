@@ -49,6 +49,29 @@ export const ALL_LOCATIONS: readonly Location[] = [
   "with_friends",
 ] as const;
 
+/**
+ * Discrete time-of-day buckets. Cards may opt OUT of certain buckets via
+ * `excludedTimes` — e.g. loud movement at night disturbs neighbours, late
+ * phone calls feel awkward, etc.
+ *
+ * Hour ranges (local time):
+ *   morning   05–10
+ *   midday    11–14
+ *   afternoon 15–18
+ *   evening   19–21
+ *   night     22–04
+ */
+export type TimeOfDay = "morning" | "midday" | "afternoon" | "evening" | "night";
+
+export function timeOfDayFromHour(hour: number): TimeOfDay {
+  const h = ((hour % 24) + 24) % 24;
+  if (h >= 5 && h <= 10) return "morning";
+  if (h >= 11 && h <= 14) return "midday";
+  if (h >= 15 && h <= 18) return "afternoon";
+  if (h >= 19 && h <= 21) return "evening";
+  return "night";
+}
+
 export interface ChallengeCard {
   /** Stable id used in DB + i18n keys. snake_case, never reused. */
   id: string;
@@ -61,6 +84,12 @@ export interface ChallengeCard {
   emoji: string;
   /** Locations where this card is sensible. Must include at least one. */
   locations: readonly Location[];
+  /**
+   * If present, the card is filtered OUT during these time-of-day windows.
+   * Used to spare neighbours from late-night jumping jacks, weird phone
+   * calls at 3 a.m., etc. Cards without this field are always eligible.
+   */
+  excludedTimes?: readonly TimeOfDay[];
 }
 
 // Convenience presets — keep the array literals readable.
@@ -87,24 +116,24 @@ export const CHALLENGE_CARDS: readonly ChallengeCard[] = [
   // SOCIAL (10)
   { id: "ask_day",             category: "social",      durationMin: 3,  difficulty: 1, emoji: "💬", locations: PEOPLE_PRESENT },
   { id: "compliment_someone",  category: "social",      durationMin: 2,  difficulty: 2, emoji: "🌷", locations: PEOPLE_PRESENT },
-  { id: "phone_call_friend",   category: "social",      durationMin: 10, difficulty: 2, emoji: "☎️", locations: ["home", "outside"] },
+  { id: "phone_call_friend",   category: "social",      durationMin: 10, difficulty: 2, emoji: "☎️", locations: ["home", "outside"], excludedTimes: ["night"] },
   { id: "thank_someone",       category: "social",      durationMin: 2,  difficulty: 1, emoji: "🙏", locations: PEOPLE_PRESENT },
   { id: "ask_advice",          category: "social",      durationMin: 5,  difficulty: 2, emoji: "🤝", locations: ["home", "school", "with_friends"] },
-  { id: "share_meal_no_phone", category: "social",      durationMin: 15, difficulty: 3, emoji: "🍽️", locations: ["home", "with_friends"] },
+  { id: "share_meal_no_phone", category: "social",      durationMin: 15, difficulty: 3, emoji: "🍽️", locations: ["home", "with_friends"], excludedTimes: ["night"] },
   { id: "smile_at_stranger",   category: "social",      durationMin: 1,  difficulty: 1, emoji: "🙂", locations: ["school", "transport", "outside", "with_friends"] },
   { id: "ask_favorite_song",   category: "social",      durationMin: 3,  difficulty: 1, emoji: "🎶", locations: PEOPLE_PRESENT },
   { id: "handwritten_note",    category: "social",      durationMin: 5,  difficulty: 2, emoji: "✉️", locations: ["home", "school", "with_friends"] },
   { id: "off_topic_question",  category: "social",      durationMin: 3,  difficulty: 2, emoji: "🤔", locations: ["home", "school", "with_friends"] },
 
   // MOVEMENT (10)
-  { id: "ten_squats",          category: "movement",    durationMin: 1,  difficulty: 1, emoji: "🏋️", locations: ACTIVE_INDOOR.concat(["outside"]) },
+  { id: "ten_squats",          category: "movement",    durationMin: 1,  difficulty: 1, emoji: "🏋️", locations: ACTIVE_INDOOR.concat(["outside"]), excludedTimes: ["night"] },
   { id: "stretch_one_minute",  category: "movement",    durationMin: 1,  difficulty: 1, emoji: "🤸", locations: ANYWHERE },
-  { id: "walk_around_block",   category: "movement",    durationMin: 10, difficulty: 2, emoji: "🚶", locations: ["outside"] },
-  { id: "stairs_three_times",  category: "movement",    durationMin: 3,  difficulty: 2, emoji: "🪜", locations: ["home", "school", "outside"] },
-  { id: "dance_one_song",      category: "movement",    durationMin: 4,  difficulty: 2, emoji: "💃", locations: ["home", "with_friends"] },
-  { id: "barefoot_outside",    category: "movement",    durationMin: 5,  difficulty: 3, emoji: "🦶", locations: ["outside"] },
+  { id: "walk_around_block",   category: "movement",    durationMin: 10, difficulty: 2, emoji: "🚶", locations: ["outside"], excludedTimes: ["night"] },
+  { id: "stairs_three_times",  category: "movement",    durationMin: 3,  difficulty: 2, emoji: "🪜", locations: ["home", "school", "outside"], excludedTimes: ["night"] },
+  { id: "dance_one_song",      category: "movement",    durationMin: 4,  difficulty: 2, emoji: "💃", locations: ["home", "with_friends"], excludedTimes: ["night"] },
+  { id: "barefoot_outside",    category: "movement",    durationMin: 5,  difficulty: 3, emoji: "🦶", locations: ["outside"], excludedTimes: ["night", "evening"] },
   { id: "shoulder_rolls",      category: "movement",    durationMin: 1,  difficulty: 1, emoji: "💪", locations: ANYWHERE },
-  { id: "jumping_jacks_20",    category: "movement",    durationMin: 2,  difficulty: 2, emoji: "🤾", locations: ["home", "outside", "with_friends"] },
+  { id: "jumping_jacks_20",    category: "movement",    durationMin: 2,  difficulty: 2, emoji: "🤾", locations: ["home", "outside", "with_friends"], excludedTimes: ["night"] },
   { id: "balance_one_leg",     category: "movement",    durationMin: 1,  difficulty: 1, emoji: "🦩", locations: ANYWHERE },
   { id: "non_dominant_hand",   category: "movement",    durationMin: 3,  difficulty: 2, emoji: "✋", locations: ANYWHERE },
 
