@@ -29,6 +29,22 @@ Visitors watch an interactive video with branching choice points and complete a 
 | Video | video.js (added Week 3) |
 | Hosting | Vercel |
 
+## Voice & content
+
+These rules apply to all FR copy in the product. They keep the editorial tone consistent and make AI-assisted PRs respect the brand register.
+
+- **Pronouns:** `tu` / `toi`, never `vous`. Inclusive forms: `engagé·e`, `ami·es`, `enseignant·es`.
+- **Tone:** calm, observational, non-judgemental. *Lecture honnête*, *signal*, never *évaluation* / *verdict*.
+- **No emoji.** One exception in the codebase: 🖨️ on the print button. Don't add others.
+- **Casing:** sentence case body and CTAs. UPPERCASE only via `.cd-mono`.
+- **The `<em>` rule:** in any display headline, the emotional payload goes inside `<em>` — it renders italic + amber via CSS. Every section header has one.
+- **French typography:** non-breaking space before `?` `!` `:` `;` and inside `« … »`. Em-dashes (`—`) for asides.
+- **Numbers:** Swiss conventions (`4 h 37 min`, `300–800 CHF`, `96 fois par jour`, 24-h clock).
+- **Length:** hero headlines ≤ 2 lines. Card body ≤ 26ch. Question titles 1 line.
+- **Hard nos:** marketing puff (*révolutionnaire*), gamified shaming (*tu as échoué*), score-as-verdict language ("you failed", "addicted", "diagnosed").
+
+The accent palette is intentionally minimal: one amber accent (`--cd-accent`), one good (`--good`), one danger (`--danger`). Don't invent new accents. The `--pillar-*` palette is reserved for the 7-pillar grid on the landing page.
+
 ## Seven mandatory pillars
 
 Every feature ties back to at least one of these axes:

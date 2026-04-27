@@ -57,6 +57,47 @@
     --radius-sm: 4px;
     --radius-lg: 18px;
     --radius-xl: 28px;
+
+    /* Spacing rhythm */
+    --space-1: 4px;  --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+    --space-5: 24px; --space-6: 32px;  --space-7: 48px;  --space-8: 64px;
+    --space-9: 80px; --space-10: 100px; --space-11: 140px;
+
+    /* Shadow tokens (currently inlined throughout) */
+    --shadow-card: 0 30px 80px -30px rgb(0 0 0 / 0.75),
+                   inset 0 1px 0 oklch(1 0 0 / 0.06);
+    --shadow-cta:  0 14px 50px -12px var(--accent-glow);
+    --shadow-cta-hover: 0 18px 60px -10px var(--accent-glow);
+    --shadow-phone: inset 0 1px 0 oklch(1 0 0 / 0.06),
+                    0 60px 100px -30px rgb(0 0 0 / 0.7);
+
+    /* Type scale */
+    --t-h1: clamp(56px, 8.6vw, 132px);
+    --t-h2: clamp(36px, 5vw, 72px);
+    --t-h3: 32px;
+    --t-h4: 24px;
+    --t-display-q: clamp(40px, 5vw, 64px);
+    --t-score: 192px;
+    --t-body: 16px;
+    --t-body-lg: 18px;
+    --t-meta: 14px;
+    --t-mono: 11px;
+
+    /* Card category tints (already inlined in .card-inner — extract them) */
+    --cat-senses: oklch(0.84 0.17 80);
+    --cat-body:   oklch(0.78 0.15 25);
+    --cat-social: oklch(0.80 0.15 295);
+    --cat-space:  oklch(0.82 0.14 195);
+    --cat-time:   oklch(0.84 0.16 145);
+
+    /* Pillar palette (landing 7-pillar grid only — do NOT extend) */
+    --pillar-durable:           #0F766E;
+    --pillar-addiction:         #B91C1C;
+    --pillar-collab:            #7C3AED;
+    --pillar-innovation:        #0284C7;
+    --pillar-smartphone:        #65A30D;
+    --pillar-interdisciplinaire:#D97706;
+    --pillar-accessible:        #0EA5E9;
   }
 
   .light, [data-theme="light"] {
@@ -168,6 +209,25 @@
   .cd-btn-ghost { background: transparent; color: var(--fg); box-shadow: inset 0 0 0 1px var(--line-2); }
   .cd-btn-ghost:hover { background: var(--bg-2); box-shadow: inset 0 0 0 1px var(--fg-3); }
   .cd-btn-lg { padding: 18px 28px; font-size: 15px; }
+
+  /* Reusable pill / tag */
+  .pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 16px; border-radius: 99px;
+    background: var(--bg-2); border: 1px solid var(--line);
+    font-family: var(--font-mono), monospace;
+    font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--fg-2);
+  }
+  .pill-accent { color: var(--cd-accent); border-color: var(--cd-accent); }
+
+  /* Basic card surface (18px radius) */
+  .surface {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
 
   /* Animations */
   @keyframes glow-breathe { 0%, 100% { opacity: 0.6; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1.08); } }
