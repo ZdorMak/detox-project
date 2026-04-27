@@ -2,24 +2,32 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Inter, Fraunces } from "next/font/google";
+import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { themeInitScript } from "@/components/ui/theme-toggle";
 import "../globals.css";
 
-// Inter — body sans (Linear, Vercel, Notion grade).
+// Inter — body sans.
 const fontSans = Inter({
   subsets: ["latin", "latin-ext"],
   variable: "--font-sans",
   display: "swap",
 });
 
-// Fraunces — display serif with optical size + soft contrast (editorial vibe).
-const fontDisplay = Fraunces({
+// Instrument Serif — display serif (italic accent everywhere).
+const fontDisplay = Instrument_Serif({
   subsets: ["latin", "latin-ext"],
   variable: "--font-display",
+  weight: "400",
+  style: ["normal", "italic"],
   display: "swap",
-  axes: ["opsz", "SOFT"],
+});
+
+// JetBrains Mono — uppercase labels and meta.
+const fontMono = JetBrains_Mono({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 export function generateStaticParams() {
@@ -57,7 +65,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${fontSans.variable} ${fontDisplay.variable}`} suppressHydrationWarning>
+    <html lang={locale} className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`} suppressHydrationWarning>
       <head>
         {/* Anti-FOUC: apply saved theme before React hydrates. */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />

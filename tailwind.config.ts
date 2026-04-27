@@ -70,9 +70,17 @@ const config: Config = {
         ],
         display: [
           "var(--font-display)",
+          "Iowan Old Style",
           "Georgia",
           "ui-serif",
           "serif",
+        ],
+        mono: [
+          "var(--font-mono)",
+          "ui-monospace",
+          "SF Mono",
+          "Menlo",
+          "monospace",
         ],
       },
     },

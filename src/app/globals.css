@@ -2,101 +2,178 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Detox design tokens — adapted from the Claude Design export.
+ * Dark-navy ambient + warm amber accent. Editorial italic display
+ * (Instrument Serif), Inter for body, JetBrains Mono for labels.
+ *
+ * The Tailwind layer underneath continues to use the existing HSL
+ * `--background`, `--foreground` etc. so existing components work; we
+ * also expose the original `--bg`, `--fg`, `--accent` etc. so we can
+ * write Claude-Design-style markup directly.
+ */
+
 @layer base {
-  /* DARK-FIRST palette inspired by the Claude Design export:
-     deep purple-near-black background, warm gold accent, editorial feel. */
   :root {
-    /* Light mode — kept as a soft cream for users who flip the toggle. */
-    --background: 35 25% 97%;
-    --foreground: 270 25% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 270 25% 10%;
-    --primary: 38 78% 56%;            /* warm gold #e8a83a */
-    --primary-foreground: 270 25% 10%;
-    --secondary: 35 22% 94%;
-    --secondary-foreground: 270 25% 18%;
-    --muted: 35 22% 94%;
-    --muted-foreground: 270 10% 42%;
-    --accent: 38 70% 95%;
-    --accent-foreground: 38 70% 22%;
-    --destructive: 0 75% 55%;
+    /* Tailwind-compatible HSL tokens (used by `bg-background` etc.) */
+    --background: 265 22% 9%;
+    --foreground: 60 12% 96%;
+    --card: 265 18% 12%;
+    --card-foreground: 60 12% 96%;
+    --primary: 38 76% 60%;
+    --primary-foreground: 265 30% 8%;
+    --secondary: 265 14% 16%;
+    --secondary-foreground: 60 10% 92%;
+    --muted: 265 12% 18%;
+    --muted-foreground: 60 6% 60%;
+    --accent: 38 50% 18%;
+    --accent-foreground: 38 80% 80%;
+    --destructive: 18 75% 55%;
     --destructive-foreground: 0 0% 100%;
-    --border: 35 22% 88%;
-    --input: 35 22% 88%;
-    --ring: 38 70% 56%;
+    --border: 265 12% 22%;
+    --input: 265 12% 22%;
+    --ring: 38 76% 60%;
     --radius: 0.625rem;
+
+    /* === Claude-Design native tokens (oklch) — direct port === */
+    --bg: oklch(0.14 0.012 265);
+    --bg-2: oklch(0.18 0.014 265);
+    --bg-3: oklch(0.22 0.016 265);
+    --bg-4: oklch(0.26 0.018 265);
+    --line: oklch(0.28 0.014 265);
+    --line-2: oklch(0.36 0.016 265);
+    --fg: oklch(0.97 0.005 80);
+    --fg-2: oklch(0.78 0.01 80);
+    --fg-3: oklch(0.58 0.01 80);
+    --fg-4: oklch(0.42 0.01 80);
+    --cd-accent: oklch(0.84 0.17 80);
+    --cd-accent-2: oklch(0.74 0.19 80);
+    --accent-soft: oklch(0.84 0.17 80 / 0.14);
+    --accent-glow: oklch(0.84 0.17 80 / 0.32);
+    --good: oklch(0.78 0.15 155);
+    --danger: oklch(0.68 0.20 25);
+    --pad-x: clamp(20px, 6vw, 80px);
+
+    --radius-sm: 4px;
+    --radius-lg: 18px;
+    --radius-xl: 28px;
   }
 
-  /* DARK mode — the actual brand. Used by default (see html-class fallback). */
-  .dark {
-    --background: 270 30% 5%;          /* #0a0810 — claude design background */
-    --foreground: 38 30% 92%;          /* warm cream text on dark */
-    --card: 270 25% 8%;                /* slightly lighter than bg, layered */
-    --card-foreground: 38 30% 92%;
-    --primary: 38 78% 57%;             /* #e8a83a gold accent */
-    --primary-foreground: 270 30% 5%;
-    --secondary: 270 18% 13%;
-    --secondary-foreground: 38 30% 92%;
-    --muted: 270 18% 13%;
-    --muted-foreground: 270 8% 60%;
-    --accent: 38 30% 16%;
-    --accent-foreground: 38 70% 75%;
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 270 15% 16%;
-    --input: 270 15% 16%;
-    --ring: 38 78% 57%;
+  .light, [data-theme="light"] {
+    --background: 60 30% 97%;
+    --foreground: 265 22% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 265 22% 12%;
+    --primary: 38 76% 50%;
+    --primary-foreground: 60 30% 97%;
+    --muted: 60 18% 92%;
+    --muted-foreground: 265 8% 42%;
+    --border: 60 15% 86%;
+    --input: 60 15% 86%;
+
+    --bg: oklch(0.97 0.004 80);
+    --bg-2: oklch(0.94 0.005 80);
+    --bg-3: oklch(0.90 0.007 80);
+    --bg-4: oklch(0.86 0.008 80);
+    --line: oklch(0.84 0.008 80);
+    --line-2: oklch(0.74 0.010 80);
+    --fg: oklch(0.18 0.015 265);
+    --fg-2: oklch(0.32 0.012 265);
+    --fg-3: oklch(0.50 0.010 265);
+    --fg-4: oklch(0.68 0.008 265);
+    --accent-soft: oklch(0.78 0.18 80 / 0.20);
+    --accent-glow: oklch(0.78 0.18 80 / 0.30);
   }
 
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; box-sizing: border-box; }
   html {
     -webkit-tap-highlight-color: transparent;
     text-rendering: optimizeLegibility;
     color-scheme: dark;
   }
   body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Display font — Fraunces serif italic for the editorial vibe. */
+  /* Editorial display — Instrument Serif on h1/h2 + .font-display utility. */
   h1, h2, .font-display {
-    font-family: var(--font-display), Georgia, ui-serif, serif;
+    font-family: var(--font-display), "Iowan Old Style", Georgia, ui-serif, serif;
     letter-spacing: -0.02em;
-    font-feature-settings: "ss01" 1;
+    font-weight: 400;
   }
-  h3, h4 {
-    letter-spacing: -0.01em;
+  /* The Claude-Design signature: italic accent on `<em>` everywhere. */
+  em {
+    font-style: italic;
+    color: var(--cd-accent);
+    font-family: var(--font-display), Georgia, ui-serif, serif;
   }
 
   .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
   }
   .skip-link {
     @apply absolute left-2 top-2 z-50 -translate-y-16 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground transition focus:translate-y-0;
   }
 
-  /* Subtle ambient texture for hero / feature sections. Plays well over dark. */
-  .bg-grain {
-    background-image:
-      radial-gradient(circle at 20% 0%, hsl(var(--primary) / 0.10), transparent 45%),
-      radial-gradient(circle at 80% 100%, hsl(var(--primary) / 0.08), transparent 50%);
+  /* === Detox utility classes (Claude-Design style) === */
+  .cd-mono {
+    font-family: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
-  .bg-grain-strong {
+  .cd-dim { color: var(--fg-3); }
+  .cd-grain {
     background-image:
-      radial-gradient(circle at 20% 10%, hsl(var(--primary) / 0.18), transparent 40%),
-      radial-gradient(circle at 80% 90%, hsl(var(--primary) / 0.14), transparent 45%);
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 96px 96px;
+    opacity: 0.3;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, #000 30%, transparent 90%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, #000 30%, transparent 90%);
+    pointer-events: none;
   }
+  .cd-glow {
+    background: radial-gradient(700px circle at 50% 50%, color-mix(in oklch, var(--cd-accent) 32%, transparent), transparent 70%);
+    opacity: 0.55;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  /* Buttons (Claude-Design native) */
+  .cd-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px; border-radius: 10px;
+    font-size: 14px; font-weight: 500; letter-spacing: -0.005em;
+    transition: transform .15s cubic-bezier(.2,.8,.2,1), background .2s, box-shadow .25s;
+  }
+  .cd-btn:hover { transform: translateY(-1px); }
+  .cd-btn-primary {
+    background: var(--cd-accent); color: oklch(0.18 0.02 80);
+    box-shadow: 0 0 0 1px var(--cd-accent), 0 14px 50px -12px var(--accent-glow);
+  }
+  .cd-btn-primary:hover {
+    background: var(--cd-accent-2);
+    box-shadow: 0 0 0 1px var(--cd-accent-2), 0 18px 60px -10px var(--accent-glow);
+  }
+  .cd-btn-ghost { background: transparent; color: var(--fg); box-shadow: inset 0 0 0 1px var(--line-2); }
+  .cd-btn-ghost:hover { background: var(--bg-2); box-shadow: inset 0 0 0 1px var(--fg-3); }
+  .cd-btn-lg { padding: 18px 28px; font-size: 15px; }
+
+  /* Animations */
+  @keyframes glow-breathe { 0%, 100% { opacity: 0.6; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1.08); } }
+  @keyframes logo-spin { to { transform: rotate(360deg); } }
+  @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.3); } }
+  @keyframes word-in { to { opacity: 1; filter: blur(0); transform: none; } }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

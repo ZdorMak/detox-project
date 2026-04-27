@@ -9,12 +9,15 @@
   },
   "landing": {
     "hero": {
-      "eyebrow": "HEFP project — SOUK 2026",
+      "eyebrow": "HEFP project · SOUK 2026 · Suisse romande",
       "title": "Understand your relationship with your smartphone",
+      "titlePart1": "Understand your",
+      "titlePart2": "relationship with your phone",
       "subtitle": "An interactive video experience and a scientifically validated questionnaire, designed with and for Swiss schools.",
       "cta": "Start the test",
       "ctaSubtitle": "5–8 minutes · Anonymous · No sign-up",
-      "ctaSecondary": "Or draw a 'Put down the phone' card →"
+      "ctaSecondary": "Draw a card",
+      "phoneCounterLabel": "min without phone"
     },
     "how": {
       "eyebrow": "How it works",
