@@ -121,10 +121,22 @@ export const themeInitScript = `
 (function() {
   try {
     var stored = localStorage.getItem(${JSON.stringify(STORAGE_KEY)});
-    var mode = (stored === 'light' || stored === 'dark' || stored === 'system') ? stored : 'system';
-    var dark = mode === 'dark' || (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    // Brand defaults to DARK — only flip to light if user explicitly chose 'light'
+    // or if they're on 'system' AND their OS prefers light.
+    var mode = (stored === 'light' || stored === 'dark' || stored === 'system') ? stored : 'dark';
+    var dark =
+      mode === 'dark' ||
+      (mode === 'system' && (
+        !window.matchMedia ||
+        window.matchMedia('(prefers-color-scheme: dark)').matches ||
+        // Treat 'no preference' as dark for the brand.
+        !window.matchMedia('(prefers-color-scheme: light)').matches
+      ));
     document.documentElement.classList.toggle('dark', dark);
     document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
-  } catch (e) {}
+  } catch (e) {
+    // On any failure, default to dark (brand).
+    document.documentElement.classList.add('dark');
+  }
 })();
 `;

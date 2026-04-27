@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { UserMenu } from "@/components/auth/UserMenu";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 
 interface SiteHeaderProps {
   locale: string;
@@ -24,15 +25,9 @@ export function SiteHeader({ locale, next, hideBrand = false }: SiteHeaderProps)
         {!hideBrand ? (
           <Link
             href={`${localePrefix}/`}
-            className="flex items-center gap-2 font-display text-lg font-bold tracking-tight transition-colors hover:text-primary"
+            className="text-primary transition-opacity hover:opacity-80"
           >
-            <span
-              aria-hidden="true"
-              className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-primary to-teal-500 text-sm shadow-sm"
-            >
-              <span className="text-white">D</span>
-            </span>
-            Detox
+            <BrandLogo size={28} withWordmark />
           </Link>
         ) : (
           <span className="h-7 w-16" aria-hidden="true" />

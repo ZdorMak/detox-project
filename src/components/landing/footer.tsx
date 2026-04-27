@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Github, Mail, BookOpen } from "lucide-react";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -9,8 +10,10 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {/* Brand + tagline */}
           <div>
-            <p className="font-display text-lg font-bold leading-tight">Detox</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            <div className="text-primary">
+              <BrandLogo size={36} withWordmark />
+            </div>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               {t("tagline")}
             </p>
           </div>
