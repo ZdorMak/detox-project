@@ -313,41 +313,93 @@ interface CardFaceProps {
   t: ReturnType<typeof useTranslations>;
 }
 
+/**
+ * Map our internal challenge categories to the Claude Design tarot tints.
+ * (observation→senses, social→social, movement→body, creative→space, reflection→time)
+ */
+function categoryTint(cat: ChallengeCard["category"]): "senses" | "body" | "social" | "space" | "time" {
+  switch (cat) {
+    case "observation": return "senses";
+    case "social": return "social";
+    case "movement": return "body";
+    case "creative": return "space";
+    case "reflection": return "time";
+  }
+}
+
+function levelDots(difficulty: 1 | 2 | 3): number {
+  // map 1→1, 2→3, 3→5 (so 5-pip badge stays meaningful even on a 3-step scale)
+  return [1, 3, 5][difficulty - 1] ?? 3;
+}
+
 function CardFace({ card, t }: CardFaceProps) {
+  const tint = categoryTint(card.category);
+  const level = levelDots(card.difficulty);
   return (
-    <div className="rounded-2xl border-2 border-border bg-card p-8 shadow-sm">
-      <div className="flex items-center justify-between text-xs uppercase tracking-wider text-muted-foreground">
-        <span>{t(`categories.${card.category}` as const)}</span>
-        <span>{t("cardMeta.duration", { min: card.durationMin })}</span>
+    <div className="card-shell">
+      <div className="card-inner" data-cat={tint}>
+        <div className="card-pattern" aria-hidden="true" />
+
+        <div className="card-corner card-corner-tl">
+          <span className="card-corner-n">{String(card.id).slice(0, 4)}</span>
+          <span className="card-corner-s">{card.emoji}</span>
+        </div>
+        <div className="card-corner card-corner-br">
+          <span className="card-corner-s">{card.emoji}</span>
+          <span className="card-corner-n">{String(card.id).slice(0, 4)}</span>
+        </div>
+
+        <div className="card-head">
+          <span className="cd-dim">DETOX · {t(`categories.${card.category}` as const)}</span>
+          <span className="card-level">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <span key={i} className={i < level ? "lvl-on" : "lvl-off"}>●</span>
+            ))}
+          </span>
+        </div>
+
+        <div className="card-body">
+          <div className="card-symbol" aria-hidden="true">{card.emoji}</div>
+          <h3 className="card-title">{t(`cards.${card.id}.title` as const)}</h3>
+          <div className="card-rule" />
+          <p className="card-d">{t(`cards.${card.id}.body` as const)}</p>
+        </div>
+
+        <div className="card-foot">
+          <span className="cd-dim">
+            {t("cardLevel", { level })} · {t("cardMeta.duration", { min: card.durationMin })}
+          </span>
+          <span className="card-mark">↗ {t("cardTry")}</span>
+        </div>
       </div>
-      <div className="mt-6 text-center text-7xl" aria-hidden="true">
-        {card.emoji}
-      </div>
-      <h2 className="mt-6 text-balance text-center text-2xl font-bold leading-tight sm:text-3xl">
-        {t(`cards.${card.id}.title` as const)}
-      </h2>
-      <p className="mt-3 text-balance text-center text-base leading-relaxed text-muted-foreground">
-        {t(`cards.${card.id}.body` as const)}
-      </p>
     </div>
   );
 }
 
 function ActiveCard({ card, t }: CardFaceProps) {
+  const tint = categoryTint(card.category);
   return (
-    <div className="rounded-2xl border-2 border-primary bg-card p-8 shadow-md ring-4 ring-primary/10">
-      <div className="text-center text-xs uppercase tracking-wider text-primary">
-        {t("active.label")}
+    <div className="card-shell" style={{ boxShadow: "0 30px 80px -30px rgb(0 0 0 / 0.85), inset 0 0 0 2px var(--cd-accent)" }}>
+      <div className="card-inner" data-cat={tint}>
+        <div className="card-pattern" aria-hidden="true" />
+        <div className="card-head">
+          <span style={{ color: "var(--cd-accent)" }}>{t("active.label")}</span>
+          <span className="card-level">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <span key={i} className={i < levelDots(card.difficulty) ? "lvl-on" : "lvl-off"}>●</span>
+            ))}
+          </span>
+        </div>
+        <div className="card-body">
+          <div className="card-symbol" aria-hidden="true">{card.emoji}</div>
+          <h3 className="card-title">{t(`cards.${card.id}.title` as const)}</h3>
+          <div className="card-rule" />
+          <p className="card-d">{t("active.hint", { min: card.durationMin })}</p>
+        </div>
+        <div className="card-foot">
+          <span className="cd-dim">{t("active.label")}</span>
+        </div>
       </div>
-      <div className="mt-4 text-center text-6xl" aria-hidden="true">
-        {card.emoji}
-      </div>
-      <h2 className="mt-4 text-balance text-center text-xl font-semibold leading-tight">
-        {t(`cards.${card.id}.title` as const)}
-      </h2>
-      <p className="mt-3 text-balance text-center text-sm text-muted-foreground">
-        {t("active.hint", { min: card.durationMin })}
-      </p>
     </div>
   );
 }

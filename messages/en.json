@@ -321,6 +321,8 @@
     "cardMeta": {
       "duration": "≈ {min, plural, one {# min} other {# min}}"
     },
+    "cardLevel": "Level {level}",
+    "cardTry": "Try",
     "categories": {
       "observation": "Observation",
       "social": "Social",
@@ -682,6 +684,23 @@
     "instrumentNote": "Pre-validated French adaptation of the SAS-SV (Kwon et al., 2013). Independent validation in progress — see methodology.",
     "personaPreface": "Your profile",
     "personaAboutHeading": "Who are you, digitally?",
+    "eyebrowResults": "Your results · SAS-SV",
+    "scoreLabel": "Score",
+    "outOf": "out of 60",
+    "fingerprintLabel": "Your fingerprint",
+    "whatLabel": "What this means",
+    "resourcesLabel": "Resources",
+    "resourceProJuventute": "anonymous 24/7 advice line",
+    "resourceAddiction": "information and support on addictions",
+    "resourceCiao": "Swiss platform for ages 11–20",
+    "ctaNext": "Draw a card",
+    "ctaAgain": "Retake the test",
+    "shareNote": "No personal data is stored. You can share your score if you want.",
+    "categoryTag": {
+      "low": "Measured",
+      "mid": "Watch",
+      "high": "Heavy"
+    },
     "personas": {
       "le_serene": {
         "title": "The Serene",

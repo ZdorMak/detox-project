@@ -357,6 +357,8 @@
     "cardMeta": {
       "duration": "≈ {min, plural, one {# min} other {# min}}"
     },
+    "cardLevel": "Niveau {level}",
+    "cardTry": "Essayer",
     "categories": {
       "observation": "Observation",
       "social": "Social",
@@ -718,6 +720,23 @@
     "instrumentNote": "Adaptation française pré-validée du SAS-SV (Kwon et al., 2013). Validation indépendante en cours — voir notre méthodologie.",
     "personaPreface": "Ton profil",
     "personaAboutHeading": "Qui es-tu, en numérique ?",
+    "eyebrowResults": "Tes résultats · SAS-SV",
+    "scoreLabel": "Score",
+    "outOf": "sur 60",
+    "fingerprintLabel": "Ton empreinte",
+    "whatLabel": "Ce que ça veut dire",
+    "resourcesLabel": "Ressources",
+    "resourceProJuventute": "conseil 24h/24, anonyme",
+    "resourceAddiction": "info et soutien autour des addictions",
+    "resourceCiao": "plateforme suisse pour les 11–20 ans",
+    "ctaNext": "Tirer une carte",
+    "ctaAgain": "Refaire le test",
+    "shareNote": "Aucune donnée personnelle n'est stockée. Tu peux partager ton score si tu veux.",
+    "categoryTag": {
+      "low": "Mesuré",
+      "mid": "À surveiller",
+      "high": "Intensif"
+    },
     "personas": {
       "le_serene": {
         "title": "Le Serein",
