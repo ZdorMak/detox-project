@@ -1,11 +1,8 @@
-import Link from "next/link";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { getOrCreateSession } from "@/lib/session";
 import { getChallengeStats, pickNextCard } from "@/lib/challenges/state";
 import { timeOfDayFromHour } from "@/lib/challenges/cards";
-import { getLevel } from "@/lib/challenges/levels";
 import { Game } from "@/components/challenges/Game";
-import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { MobileGameNav } from "@/components/challenges/MobileGameNav";
 
@@ -33,54 +30,57 @@ export default async function ChallengesPage({
   const session = await getOrCreateSession();
   const stats = await getChallengeStats(session.id);
   const defaultLocation = "home";
-  // Server-side initial pick uses Europe/Zurich-equivalent (UTC+1/+2) as a
-  // reasonable default for FR-CH users. Client refetches with local hour
-  // immediately on mount, so this is just a first-paint approximation.
   const serverHour = (new Date().getUTCHours() + 1) % 24;
   const initialCard = pickNextCard(stats, defaultLocation, timeOfDayFromHour(serverHour));
-  const level = getLevel(stats.totalCompleted);
 
   const localePrefix = locale === "fr" ? "" : `/${locale}`;
+  const drawn = stats.totalCompleted + stats.totalSkipped + stats.totalDeclined;
 
   return (
     <>
       <SiteHeader locale={locale} next={`${localePrefix}/jeu`} />
-      <main id="main" className="pb-20 md:pb-0">
-        <header className="mx-auto max-w-xl px-4 pb-2 pt-8 text-center">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          {t("title")}
-        </h1>
-        <p className="mt-2 text-balance text-sm text-muted-foreground">
-          {t("subtitle")}
-        </p>
+      <main id="main" className="cards-screen pb-20 md:pb-0">
+        <div
+          className="mx-auto max-w-[1200px] px-8 py-[60px]"
+          style={{ paddingLeft: "var(--pad-x)", paddingRight: "var(--pad-x)" }}
+        >
+          <div className="mb-6">
+            <div
+              className="cd-mono mb-3 flex items-center gap-3.5"
+              style={{ color: "var(--fg-3)" }}
+            >
+              <span className="cd-dim">{String(drawn + 1).padStart(2, "0")}</span>
+              <span className="h-px w-20" style={{ background: "var(--line-2)" }} />
+              <span>{t("cardsHeaderEyebrow", { current: drawn + 1, total: 50 })}</span>
+            </div>
+            <h1
+              className="font-display max-w-[16ch] text-balance leading-[0.96]"
+              style={{
+                fontSize: "clamp(48px, 6vw, 96px)",
+                letterSpacing: "-0.03em",
+                marginBottom: 20,
+              }}
+            >
+              {t("cardsTitlePart1")}{" "}
+              <em>{t("cardsTitleAccent")}</em>
+            </h1>
+            <p
+              className="mb-16 max-w-[50ch] text-[17px]"
+              style={{ color: "var(--fg-2)" }}
+            >
+              {t("cardsSub")}
+            </p>
+          </div>
 
-        {/* Level pill + nav */}
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 px-3 py-1 text-xs font-medium text-amber-900 dark:border-amber-500 dark:bg-amber-950/40 dark:text-amber-100">
-            <span aria-hidden="true">🏅</span>
-            {t(`levels.${level.current.id}.label` as const)}
-          </span>
-          <Button asChild variant="ghost" size="sm">
-            <Link href={`${localePrefix}/jeu/programmes`}>
-              {t("nav.programs")}
-            </Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm">
-            <Link href={`${localePrefix}/jeu/profil`}>
-              {t("nav.profile")}
-            </Link>
-          </Button>
+          <Game
+            initialCard={initialCard}
+            initialCompleted={stats.totalCompleted}
+            initialSkipped={stats.totalSkipped}
+            initialLocation={defaultLocation}
+            homeHref={`${localePrefix}/`}
+            profileHref={`${localePrefix}/jeu/profil`}
+          />
         </div>
-      </header>
-
-        <Game
-          initialCard={initialCard}
-          initialCompleted={stats.totalCompleted}
-          initialSkipped={stats.totalSkipped}
-          initialLocation={defaultLocation}
-          homeHref={`${localePrefix}/`}
-          profileHref={`${localePrefix}/jeu/profil`}
-        />
       </main>
       <MobileGameNav locale={locale} active="cards" />
     </>

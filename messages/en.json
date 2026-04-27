@@ -190,6 +190,10 @@
     },
     "title": "Put down the phone",
     "subtitle": "Draw a card. Do the thing. Come back and tell us if you did it. No grade, no judgement.",
+    "cardsHeaderEyebrow": "Card {current} of {total}",
+    "cardsTitlePart1": "Draw a card.",
+    "cardsTitleAccent": "Put down the phone.",
+    "cardsSub": "Fifty micro-experiments to put the phone down — a few minutes each, sometimes less. Draw, do, come back.",
     "nav": {
       "programs": "Programs",
       "profile": "My profile"

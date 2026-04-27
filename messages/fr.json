@@ -190,6 +190,10 @@
     },
     "title": "Pose le téléphone",
     "subtitle": "Tire une carte. Fais la chose. Reviens dire si tu l'as fait. Aucune note, aucun jugement.",
+    "cardsHeaderEyebrow": "Carte {current} sur {total}",
+    "cardsTitlePart1": "Tire une carte.",
+    "cardsTitleAccent": "Pose le téléphone.",
+    "cardsSub": "Cinquante micro-expériences pour reposer le téléphone — quelques minutes, parfois moins. Tire, fais, reviens.",
     "nav": {
       "programs": "Programmes",
       "profile": "Mon profil"

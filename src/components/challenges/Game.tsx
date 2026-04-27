@@ -156,18 +156,9 @@ export function Game({
         onDismiss={(id) => setPendingToasts((q) => q.filter((x) => x !== id))}
       />
 
-      <div className="mb-4">
+      <div className="mb-6 flex justify-end">
         <LocationPicker value={location} onChange={(l) => void handleLocationChange(l)} />
       </div>
-
-      <ProgressHeader
-        completed={completed}
-        skipped={skipped}
-        labels={{
-          completed: t("progress.completed"),
-          skipped: t("progress.skipped"),
-        }}
-      />
 
       {(phase === "done" || !card) ? (
         <motion.div
@@ -195,6 +186,9 @@ export function Game({
             <DeckStack
               key={card.id}
               topCard={card}
+              /* Visual depth — same card data, just for the stacked-look. */
+              nextCard={card}
+              next2Card={card}
               stampDoLabel={t("stampDo")}
               stampSkipLabel={t("stampSkip")}
               onCompleted={() => void logOutcome("completed")}
