@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LocationPicker } from "./LocationPicker";
 import { AchievementToast } from "./AchievementToast";
+import { DeckStack } from "./DeckStack";
 
 type Phase = "intro" | "active" | "done";
 type Outcome = "completed" | "skipped" | "declined";
@@ -168,101 +169,144 @@ export function Game({
         }}
       />
 
-      <AnimatePresence mode="wait">
-        {(phase === "done" || !card) && (
-          <motion.div
-            key="done"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -24 }}
-          >
-            <DoneCard
-              completed={completed}
-              skipped={skipped}
-              homeHref={homeHref}
-              onRouter={router.push}
-              labels={{
-                title: t("done.title"),
-                body: t("done.body", { completed, skipped }),
-                home: t("done.home"),
-              }}
+      {(phase === "done" || !card) ? (
+        <motion.div
+          key="done"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -24 }}
+        >
+          <DoneCard
+            completed={completed}
+            skipped={skipped}
+            homeHref={homeHref}
+            onRouter={router.push}
+            labels={{
+              title: t("done.title"),
+              body: t("done.body", { completed, skipped }),
+              home: t("done.home"),
+            }}
+          />
+        </motion.div>
+      ) : (
+        <div className="deck-area">
+          {/* LEFT: card stack */}
+          <div className="deck-wrap">
+            <DeckStack
+              key={card.id}
+              topCard={card}
+              stampDoLabel={t("stampDo")}
+              stampSkipLabel={t("stampSkip")}
+              onCompleted={() => void logOutcome("completed")}
+              onSkipped={() => void logOutcome("skipped")}
             />
-          </motion.div>
-        )}
-        {phase === "intro" && card && (
-          <motion.div
-            key={`intro-${card.id}`}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -24 }}
-            transition={{ duration: 0.4 }}
-          >
-            <CardFace card={card} t={t} />
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <Button size="lg" onClick={() => setPhase("active")} disabled={pending}>
-                {t("actions.accept")}
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => void logOutcome("declined")}
+            <div className="cd-mono cd-dim flex items-center gap-3">
+              <span>← {t("actions.skipped")}</span>
+              <span className="h-px w-20" style={{ background: "var(--line-2)" }} />
+              <span>{t("actions.completed")} →</span>
+            </div>
+          </div>
+
+          {/* RIGHT: side panel — meta + actions + progress */}
+          <aside className="cards-side">
+            <div className="cd-mono cd-dim mb-4">
+              {t("sidePanelHeading")}
+            </div>
+
+            <div
+              className="border-b pb-7 mb-7 flex flex-col"
+              style={{ borderBottomColor: "var(--line)" }}
+            >
+              <SideRow
+                k={t("sideRow.category")}
+                v={t(`categories.${card.category}` as const)}
+              />
+              <SideRow
+                k={t("sideRow.duration")}
+                v={t("cardMeta.duration", { min: card.durationMin })}
+              />
+              <SideRow
+                k={t("sideRow.level")}
+                v={`${card.difficulty} / 3`}
+              />
+            </div>
+
+            <div className="flex gap-3 mb-8 flex-wrap">
+              <button
+                type="button"
+                className="cd-btn cd-btn-ghost flex-1 justify-center"
+                onClick={() => void logOutcome("skipped")}
                 disabled={pending}
               >
-                {t("actions.decline")}
-              </Button>
-            </div>
-            <p className="mt-3 text-center text-xs text-muted-foreground">
-              {t("hints.honor")}
-            </p>
-            <div className="mt-4 flex justify-center">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => router.push(profileHref)}
-              >
-                {t("actions.finish")}
-              </Button>
-            </div>
-          </motion.div>
-        )}
-        {phase === "active" && card && (
-          <motion.div
-            key={`active-${card.id}`}
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.96 }}
-            transition={{ duration: 0.4 }}
-          >
-            <ActiveCard card={card} t={t} />
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <Button
-                size="lg"
+                ✕ {t("actions.skipped")}
+              </button>
+              <button
+                type="button"
+                className="cd-btn cd-btn-primary flex-1 justify-center"
                 onClick={() => void logOutcome("completed")}
                 disabled={pending}
               >
                 ✓ {t("actions.completed")}
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => void logOutcome("skipped")}
-                disabled={pending}
-              >
-                {t("actions.skipped")}
-              </Button>
+              </button>
             </div>
-            <div className="mt-4 flex justify-center">
-              <Button
-                variant="ghost"
-                size="sm"
+
+            <div>
+              <div className="flex justify-between mb-3 cd-mono">
+                <span className="cd-dim">{t("progressLabel")}</span>
+                <span>{completed} / 50</span>
+              </div>
+              <div
+                className="h-1 rounded mb-3 overflow-hidden"
+                style={{ background: "var(--bg-2)" }}
+              >
+                <div
+                  className="h-full transition-[width] duration-500"
+                  style={{
+                    width: `${Math.min((completed / 50) * 100, 100)}%`,
+                    background: "var(--cd-accent)",
+                    boxShadow: "0 0 8px var(--accent-glow)",
+                  }}
+                />
+              </div>
+              <div className="flex justify-between cd-mono cd-dim">
+                {[1, 2, 3, 4, 5].map((l) => (
+                  <span
+                    key={l}
+                    style={{
+                      color:
+                        completed >= l * 10 ? "var(--cd-accent)" : undefined,
+                    }}
+                  >
+                    L{l}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 flex justify-center">
+              <button
+                type="button"
+                className="cd-mono cd-dim hover:text-foreground transition-colors"
                 onClick={() => router.push(profileHref)}
               >
                 {t("actions.finish")}
-              </Button>
+              </button>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </aside>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SideRow({ k, v }: { k: string; v: string }) {
+  return (
+    <div
+      className="grid grid-cols-[100px_1fr] gap-6 py-3 border-t text-[14px] first:border-t-0"
+      style={{ borderTopColor: "var(--line)" }}
+    >
+      <span className="cd-mono cd-dim">{k}</span>
+      <span>{v}</span>
     </div>
   );
 }

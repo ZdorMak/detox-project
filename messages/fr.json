@@ -359,6 +359,15 @@
     },
     "cardLevel": "Niveau {level}",
     "cardTry": "Essayer",
+    "stampDo": "JE LE FAIS",
+    "stampSkip": "PASSER",
+    "sidePanelHeading": "À propos de cette carte",
+    "sideRow": {
+      "category": "Catégorie",
+      "duration": "Durée",
+      "level": "Niveau"
+    },
+    "progressLabel": "Progression",
     "categories": {
       "observation": "Observation",
       "social": "Social",

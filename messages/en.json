@@ -323,6 +323,15 @@
     },
     "cardLevel": "Level {level}",
     "cardTry": "Try",
+    "stampDo": "I'LL DO IT",
+    "stampSkip": "SKIP",
+    "sidePanelHeading": "About this card",
+    "sideRow": {
+      "category": "Category",
+      "duration": "Time",
+      "level": "Level"
+    },
+    "progressLabel": "Progress",
     "categories": {
       "observation": "Observation",
       "social": "Social",
