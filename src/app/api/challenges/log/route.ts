@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getOrCreateSession } from "@/lib/session";
+import { getReadableSessionIds } from "@/lib/user-sessions";
 import { getCard } from "@/lib/challenges/cards";
 import {
   evaluateAllAchievements,
@@ -71,19 +72,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "insert_failed" }, { status: 500 });
     }
 
-    // Re-evaluate all achievements against the full session history.
+    // Re-evaluate all achievements against the full history this viewer
+    // can see (cross-device merged when signed in).
+    const sessionIds = await getReadableSessionIds(session.id);
     const { data: attempts } = await supabase
       .from("challenge_attempts")
       .select("card_id, outcome, resolved_at")
-      .eq("session_id", session.id);
+      .in("session_id", sessionIds);
 
     const earnedIds = evaluateAllAchievements((attempts ?? []) as Attempt[]);
 
-    // Read what was already unlocked, compute the diff, persist.
+    // Read what was already unlocked across all the viewer's sessions.
     const { data: alreadyUnlocked } = await supabase
       .from("achievements_unlocked")
       .select("achievement_id")
-      .eq("session_id", session.id);
+      .in("session_id", sessionIds);
 
     const alreadySet = new Set((alreadyUnlocked ?? []).map((r) => r.achievement_id));
     const toInsert = earnedIds.filter((id) => !alreadySet.has(id));

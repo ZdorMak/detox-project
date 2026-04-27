@@ -7,6 +7,7 @@
  */
 
 import { createAdminClient } from "@/lib/supabase/admin";
+import { getReadableSessionIds } from "@/lib/user-sessions";
 import { SAS_SV_ITEMS, computeScore, riskBand, symptomBreakdown, type RiskBand, type SasSymptom } from "./sas-sv";
 
 export type SurveyAnswers = Record<number, number>;
@@ -35,10 +36,12 @@ export interface SurveyResult {
  */
 export async function getSurveyState(sessionId: string): Promise<SurveyState> {
   const supabase = createAdminClient();
+  // Cross-device merge: signed-in viewer sees the union of all their sessions.
+  const sessionIds = await getReadableSessionIds(sessionId);
   const { data, error } = await supabase
     .from("survey_responses")
     .select("question_id, value_numeric")
-    .eq("session_id", sessionId);
+    .in("session_id", sessionIds);
 
   if (error) {
     console.error("[survey/state] read failed:", error);

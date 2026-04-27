@@ -2,6 +2,7 @@ import Link from "next/link";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { getOrCreateSession } from "@/lib/session";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { getReadableSessionIds } from "@/lib/user-sessions";
 import { PROGRAMS } from "@/lib/challenges/programs";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -31,11 +32,12 @@ export default async function ProgramsPage({
 
   const session = await getOrCreateSession();
   const supabase = createAdminClient();
+  const sessionIds = await getReadableSessionIds(session.id);
 
   const { data: progressRows } = await supabase
     .from("program_progress")
     .select("program_id, step_index")
-    .eq("session_id", session.id);
+    .in("session_id", sessionIds);
 
   const programStepMax = new Map<string, number>();
   for (const row of progressRows ?? []) {

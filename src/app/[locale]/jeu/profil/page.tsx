@@ -2,6 +2,7 @@ import Link from "next/link";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { getOrCreateSession } from "@/lib/session";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { getReadableSessionIds } from "@/lib/user-sessions";
 import { getLevel } from "@/lib/challenges/levels";
 import { ACHIEVEMENTS } from "@/lib/challenges/achievements";
 import { PROGRAMS } from "@/lib/challenges/programs";
@@ -33,20 +34,21 @@ export default async function ProfilePage({
 
   const session = await getOrCreateSession();
   const supabase = createAdminClient();
+  const sessionIds = await getReadableSessionIds(session.id);
 
   const [attemptsRes, achievementsRes, programsRes] = await Promise.all([
     supabase
       .from("challenge_attempts")
       .select("outcome")
-      .eq("session_id", session.id),
+      .in("session_id", sessionIds),
     supabase
       .from("achievements_unlocked")
       .select("achievement_id, unlocked_at")
-      .eq("session_id", session.id),
+      .in("session_id", sessionIds),
     supabase
       .from("program_progress")
       .select("program_id, step_index")
-      .eq("session_id", session.id),
+      .in("session_id", sessionIds),
   ]);
 
   const attempts = attemptsRes.data ?? [];

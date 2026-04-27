@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { getOrCreateSession } from "@/lib/session";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { getReadableSessionIds } from "@/lib/user-sessions";
 import { getCard } from "@/lib/challenges/cards";
 import { getProgram } from "@/lib/challenges/programs";
 import { ProgramRunner } from "@/components/challenges/ProgramRunner";
@@ -35,11 +36,12 @@ export default async function ProgramDetailPage({
 
   const session = await getOrCreateSession();
   const supabase = createAdminClient();
+  const sessionIds = await getReadableSessionIds(session.id);
 
   const { data: rows } = await supabase
     .from("program_progress")
     .select("step_index")
-    .eq("session_id", session.id)
+    .in("session_id", sessionIds)
     .eq("program_id", id);
 
   const stepIndex = (rows ?? []).reduce(

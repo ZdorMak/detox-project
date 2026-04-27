@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getOrCreateSession } from "@/lib/session";
+import { getReadableSessionIds } from "@/lib/user-sessions";
 import { getLevel } from "@/lib/challenges/levels";
 import { ACHIEVEMENTS } from "@/lib/challenges/achievements";
 import { PROGRAMS } from "@/lib/challenges/programs";
@@ -21,20 +22,21 @@ export async function GET() {
   try {
     const session = await getOrCreateSession();
     const supabase = createAdminClient();
+    const sessionIds = await getReadableSessionIds(session.id);
 
     const [attemptsRes, achievementsRes, programsRes] = await Promise.all([
       supabase
         .from("challenge_attempts")
         .select("card_id, outcome, resolved_at")
-        .eq("session_id", session.id),
+        .in("session_id", sessionIds),
       supabase
         .from("achievements_unlocked")
         .select("achievement_id, unlocked_at")
-        .eq("session_id", session.id),
+        .in("session_id", sessionIds),
       supabase
         .from("program_progress")
         .select("program_id, step_index, outcome")
-        .eq("session_id", session.id),
+        .in("session_id", sessionIds),
     ]);
 
     const attempts = attemptsRes.data ?? [];

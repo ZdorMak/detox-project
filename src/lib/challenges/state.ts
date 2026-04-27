@@ -1,4 +1,5 @@
 import { createAdminClient } from "@/lib/supabase/admin";
+import { getReadableSessionIds } from "@/lib/user-sessions";
 import {
   CHALLENGE_CARDS,
   cardsForLocation,
@@ -31,10 +32,13 @@ export interface ChallengeStats {
  */
 export async function getChallengeStats(sessionId: string): Promise<ChallengeStats> {
   const supabase = createAdminClient();
+  // Aggregate across every session this viewer can read (anon → just one;
+  // signed-in → all their sessions across devices).
+  const sessionIds = await getReadableSessionIds(sessionId);
   const { data, error } = await supabase
     .from("challenge_attempts")
     .select("card_id, outcome")
-    .eq("session_id", sessionId);
+    .in("session_id", sessionIds);
 
   if (error) {
     console.error("[challenges/state] read failed:", error);
