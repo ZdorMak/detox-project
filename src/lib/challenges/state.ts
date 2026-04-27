@@ -83,18 +83,33 @@ export function pickNextCard(
   location: Location,
   timeOfDay?: TimeOfDay,
 ): ChallengeCard | null {
+  // 1) Start from cards available at this location.
   let atLocation = cardsForLocation(location);
+
+  // 2) Apply time-of-day filter (no late-night squats, etc.).
   if (timeOfDay) {
     const filtered = atLocation.filter(
       (c) => !c.excludedTimes?.includes(timeOfDay),
     );
-    // If filtering by time wipes out the pool entirely (shouldn't happen
-    // given coverage), fall back to ignoring time so the deck never stalls.
     if (filtered.length > 0) atLocation = filtered;
   }
-  if (atLocation.length === 0) return null;
-  const unseen = atLocation.filter((c) => !stats.drawnIds.has(c.id));
-  const pool = unseen.length > 0 ? unseen : atLocation;
+
+  // 3) HARD exclusion: cards already completed never come back.
+  //    The whole point of the deck is breadth, not grinding.
+  const notCompleted = atLocation.filter((c) => !stats.completedIds.has(c.id));
+  if (notCompleted.length === 0) {
+    // Player has done every available card here at this time. Signal
+    // "deck exhausted" — the UI shows the done state.
+    return null;
+  }
+
+  // 4) Of the remaining: prefer cards never drawn yet (any outcome).
+  //    If everything has been drawn but skipped/declined, recycle from
+  //    the not-completed set so the player can try them again.
+  const unseen = notCompleted.filter((c) => !stats.drawnIds.has(c.id));
+  const pool = unseen.length > 0 ? unseen : notCompleted;
+
+  // 5) Within the pool, prefer easier difficulty first; random within band.
   const minDifficulty = Math.min(...pool.map((c) => c.difficulty));
   const band = pool.filter((c) => c.difficulty === minDifficulty);
   const idx = Math.floor(Math.random() * band.length);
