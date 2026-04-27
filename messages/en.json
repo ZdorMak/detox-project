@@ -19,6 +19,56 @@
       "ctaSecondary": "Draw a card",
       "phoneCounterLabel": "min without phone"
     },
+    "marquee": {
+      "facts": {
+        "0": "Average teen unlocks the phone 96 times a day",
+        "1": "First check happens within 5 minutes of waking",
+        "2": "44% feel anxious without their phone",
+        "3": "Average screen time: 4h 37m",
+        "4": "Notifications interrupt focus every 6 minutes",
+        "5": "1 in 3 sleep with phone in hand"
+      }
+    },
+    "doors": {
+      "eyebrow": "Three doors",
+      "titlePart1": "Three ways in.",
+      "titleAccent": "One quiet goal:",
+      "titlePart2": "notice yourself.",
+      "story": {
+        "title": "A short story",
+        "desc": "Three minutes of interactive video. You make choices, see what they move.",
+        "cta": "Live the story",
+        "tag": "Video · 3 min"
+      },
+      "profile": {
+        "title": "Your digital profile",
+        "desc": "Ten questions. A score. No judgement — just an honest read of your week.",
+        "cta": "Take the test",
+        "tag": "SAS-SV · 10Q"
+      },
+      "cards": {
+        "title": "The card game",
+        "desc": "50 micro-experiments to put the phone down. Draw, do, come back.",
+        "cta": "Draw a card",
+        "tag": "50 cards · 5 levels"
+      }
+    },
+    "editorial": {
+      "quotePart1": "Not every screen hour is harmful.",
+      "quoteAccent": "But the ones we don't notice — those are worth noticing.",
+      "attribution": "Project preface",
+      "metaReading": "5 to 8 minutes",
+      "metaIdentity": "Anonymous, no sign-up",
+      "metaStorage": "Local device only",
+      "labels": {
+        "methodology": "Methodology",
+        "reading": "Reading",
+        "identity": "Identity",
+        "storage": "Storage",
+        "accessibility": "Accessibility",
+        "source": "Source"
+      }
+    },
     "how": {
       "eyebrow": "How it works",
       "title": "Three entry points. One goal: understand yourself better.",
@@ -39,6 +89,8 @@
     },
     "stats": {
       "title": "Community statistics",
+      "eyebrow": "Live",
+      "liveLabel": "Refreshed live · last 24 hours",
       "items": {
         "sessions": "sessions opened",
         "challenges": "challenges completed",
@@ -48,8 +100,10 @@
     "ctaBanner": {
       "eyebrow": "Ready?",
       "title": "Put the phone down. Start.",
+      "titlePart1": "Put the phone down.",
+      "titleAccent": "Begin.",
       "subtitle": "Five minutes to understand your relationship with your smartphone. Anonymous, no sign-up, free.",
-      "primary": "Start now",
+      "primary": "Start",
       "secondary": "Draw a card"
     },
     "pillars": {

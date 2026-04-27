@@ -1,55 +1,58 @@
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight } from "lucide-react";
 
 /**
- * Closing CTA banner — last thing visitors see before the footer. Big,
- * confident, dark, with a single primary action and one secondary link.
+ * Closing CTA — direct port of the `.cta` block. Centred, breathing accent
+ * glow behind, oversized italic headline.
  */
 export function CtaBanner() {
   const t = useTranslations("landing.ctaBanner");
-
   return (
-    <section className="relative isolate overflow-hidden bg-slate-950 py-20 text-white sm:py-28">
-      {/* Decorative blobs */}
+    <section
+      className="relative overflow-hidden border-t px-[var(--pad-x)] py-[140px] text-center"
+      style={{ borderColor: "var(--line)" }}
+    >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-indigo-500/30 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-teal-500/30 blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[1000px] w-[1000px] -translate-x-1/2 -translate-y-1/2 motion-safe:animate-[glow-breathe_6s_ease-in-out_infinite]"
+        style={{
+          background: "radial-gradient(circle, var(--accent-soft), transparent 60%)",
+        }}
       />
 
-      <div className="container relative mx-auto max-w-3xl px-4 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-amber-300/80">
-          {t("eyebrow")}
-        </p>
-        <h2 className="font-display mt-4 text-balance text-4xl font-bold leading-tight sm:text-6xl">
-          {t("title")}
+      <div className="relative">
+        <div className="cd-mono mb-7 flex items-center justify-center gap-3.5" style={{ color: "var(--fg-3)" }}>
+          <span>05</span>
+          <span className="h-px w-20" style={{ background: "var(--line-2)" }} />
+          <span>{t("eyebrow")}</span>
+        </div>
+
+        <h2
+          className="font-display mb-7 leading-[0.95]"
+          style={{
+            fontSize: "clamp(56px, 9vw, 144px)",
+            letterSpacing: "-0.035em",
+          }}
+        >
+          {t("titlePart1")}
+          <br />
+          <em>{t("titleAccent")}</em>
         </h2>
-        <p className="mx-auto mt-6 max-w-xl text-balance text-lg text-white/80">
+
+        <p
+          className="mb-11 text-lg"
+          style={{ color: "var(--fg-2)" }}
+        >
           {t("subtitle")}
         </p>
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button
-            asChild
-            size="lg"
-            className="w-full bg-white text-slate-900 shadow-xl hover:bg-white/90 sm:w-auto sm:px-8"
-          >
-            <Link href="/experience">
-              {t("primary")} <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="w-full border-white/30 bg-transparent text-white hover:bg-white/10 sm:w-auto sm:px-8"
-          >
-            <Link href="/jeu">{t("secondary")}</Link>
-          </Button>
+
+        <div className="inline-flex flex-wrap justify-center gap-3.5">
+          <Link href="/experience" className="cd-btn cd-btn-primary cd-btn-lg">
+            {t("primary")} <span aria-hidden="true">→</span>
+          </Link>
+          <Link href="/jeu" className="cd-btn cd-btn-ghost cd-btn-lg">
+            {t("secondary")}
+          </Link>
         </div>
       </div>
     </section>

@@ -1,6 +1,8 @@
 import { setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/landing/hero";
-import { HowItWorks } from "@/components/landing/HowItWorks";
+import { Marquee } from "@/components/landing/Marquee";
+import { Doors } from "@/components/landing/Doors";
+import { Editorial } from "@/components/landing/Editorial";
 import { Stats } from "@/components/landing/Stats";
 import { Pillars } from "@/components/landing/pillars";
 import { CtaBanner } from "@/components/landing/CtaBanner";
@@ -22,7 +24,9 @@ export default async function LandingPage({
       <SiteHeader locale={locale} next={`${localePrefix}/`} hideBrand />
       <main id="main">
         <Hero />
-        <HowItWorks />
+        <Marquee locale={locale} />
+        <Doors />
+        <Editorial />
         <Stats />
         <Pillars />
         <CtaBanner />

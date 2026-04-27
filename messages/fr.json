@@ -19,6 +19,56 @@
       "ctaSecondary": "Tirer une carte",
       "phoneCounterLabel": "min sans téléphone"
     },
+    "marquee": {
+      "facts": {
+        "0": "Un·e ado déverrouille le téléphone 96 fois par jour",
+        "1": "Première vérification : 5 minutes après le réveil",
+        "2": "44 % se sentent anxieux sans téléphone",
+        "3": "Temps d'écran moyen : 4 h 37 min",
+        "4": "Une notification interrompt la concentration toutes les 6 min",
+        "5": "1 sur 3 dort avec le téléphone en main"
+      }
+    },
+    "doors": {
+      "eyebrow": "Trois entrées",
+      "titlePart1": "Trois entrées.",
+      "titleAccent": "Un objectif calme :",
+      "titlePart2": "se remarquer.",
+      "story": {
+        "title": "Une histoire courte",
+        "desc": "Trois minutes de vidéo interactive. Tu fais des choix, tu vois ce qu'ils déplacent.",
+        "cta": "Vivre l'histoire",
+        "tag": "Vidéo · 3 min"
+      },
+      "profile": {
+        "title": "Ton profil numérique",
+        "desc": "Dix questions. Un score. Pas de jugement, juste une lecture honnête de ta semaine.",
+        "cta": "Faire le test",
+        "tag": "SAS-SV · 10Q"
+      },
+      "cards": {
+        "title": "Le jeu de cartes",
+        "desc": "50 micro-expériences pour reposer le téléphone. Tu tires, tu fais, tu reviens.",
+        "cta": "Tirer une carte",
+        "tag": "50 cartes · 5 niveaux"
+      }
+    },
+    "editorial": {
+      "quotePart1": "Toute heure d'écran n'est pas nocive.",
+      "quoteAccent": "Mais celles qu'on ne remarque pas — celles-là valent qu'on les remarque.",
+      "attribution": "Préface du projet",
+      "metaReading": "5 à 8 minutes",
+      "metaIdentity": "Anonyme, sans inscription",
+      "metaStorage": "Appareil local uniquement",
+      "labels": {
+        "methodology": "Méthodologie",
+        "reading": "Lecture",
+        "identity": "Identité",
+        "storage": "Stockage",
+        "accessibility": "Accessibilité",
+        "source": "Source"
+      }
+    },
     "how": {
       "eyebrow": "Comment ça marche",
       "title": "Trois portes d'entrée. Un seul but : mieux te connaître.",
@@ -39,17 +89,21 @@
     },
     "stats": {
       "title": "Statistiques de la communauté",
+      "eyebrow": "En direct",
+      "liveLabel": "Mis à jour en direct · dernières 24 heures",
       "items": {
         "sessions": "sessions ouvertes",
-        "challenges": "défis terminés",
-        "surveys": "questionnaires complétés"
+        "challenges": "défis réalisés",
+        "surveys": "questionnaires finis"
       }
     },
     "ctaBanner": {
       "eyebrow": "Prêt·e ?",
       "title": "Pose le téléphone. Commence.",
+      "titlePart1": "Pose le téléphone.",
+      "titleAccent": "Commence.",
       "subtitle": "Cinq minutes pour découvrir ton rapport au smartphone. Anonyme, sans inscription, gratuit.",
-      "primary": "Commencer maintenant",
+      "primary": "Commencer",
       "secondary": "Tirer une carte"
     },
     "pillars": {
