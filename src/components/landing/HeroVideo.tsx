@@ -4,6 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import { HERO_PLAYLIST } from "@/lib/landing/hero-videos";
 import { HeroSvgFallback } from "./HeroSvgFallback";
+import { cn } from "@/lib/utils";
+
+interface HeroVideoProps {
+  /** Override the default wrapper className. Use to relax max-width or change shape. */
+  className?: string;
+  /** Hide the bottom-center progress dots (useful when an overlay covers them). */
+  hideProgressDots?: boolean;
+}
 
 /**
  * Landing hero "video": plays a curated playlist of stock clips with
@@ -17,7 +25,7 @@ import { HeroSvgFallback } from "./HeroSvgFallback";
  * The playlist lives in src/lib/landing/hero-videos.ts. See that file for
  * setup instructions.
  */
-export function HeroVideo() {
+export function HeroVideo({ className, hideProgressDots = false }: HeroVideoProps = {}) {
   const reduce = useReducedMotion();
   const [idx, setIdx] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -49,7 +57,10 @@ export function HeroVideo() {
   return (
     <div
       aria-hidden="true"
-      className="relative mx-auto aspect-[16/9] w-full max-w-3xl overflow-hidden rounded-2xl border border-border bg-black shadow-2xl"
+      className={cn(
+        "relative mx-auto aspect-[16/9] w-full max-w-3xl overflow-hidden rounded-2xl border border-border bg-black shadow-2xl",
+        className,
+      )}
     >
       <AnimatePresence mode="sync">
         <motion.video
@@ -79,7 +90,7 @@ export function HeroVideo() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
       {/* Progress dots */}
-      {playlist.length > 1 && !reduce && (
+      {playlist.length > 1 && !reduce && !hideProgressDots && (
         <div className="pointer-events-none absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
           {playlist.map((_, i) => (
             <span

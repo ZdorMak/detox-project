@@ -5,42 +5,47 @@ import { HeroVideo } from "@/components/landing/HeroVideo";
 /**
  * Hero — cinematic video card with editorial typography overlay.
  *
- * The HeroVideo component plays a curated stock-clip playlist (autoplay,
- * muted, with crossfade) inside a rounded 16:9 card. We layer the eyebrow
- * + italic display headline on top of a dark gradient so the copy stays
- * readable across all clips. Below the card sits the subtitle and the
- * two CTAs (primary → experience, secondary → cards).
+ * Layout (desktop):
+ *   [eyebrow strip + mono label across the top]
+ *   [big 16:9 video card — fills content width, bottom-left text pocket]
+ *   [two-column: subtitle ┃ CTAs]
+ *   [scroll indicator at the very bottom]
  *
- * The video itself is `aria-hidden` (it's decorative); all meaningful
- * content lives in the text layer for screen readers.
+ * The video itself is `aria-hidden` (decorative); all meaningful copy
+ * lives in the text layer for screen readers and search engines.
  */
 export function Hero() {
   const t = useTranslations("landing.hero");
   return (
     <section className="relative isolate overflow-hidden">
-      {/* Ambient glow + grain — keeps the page coherent with later sections. */}
+      {/* Ambient glow + grain — anchors hero into the rest of the page palette. */}
       <div className="cd-glow absolute inset-0 -z-10" aria-hidden="true" />
       <div className="cd-grain absolute inset-0 -z-10" aria-hidden="true" />
 
-      <div
-        className="mx-auto flex max-w-[1200px] flex-col items-center gap-10 px-[var(--pad-x)] pb-20 pt-10 md:gap-14 md:pt-16"
-      >
-        {/* Video card with overlaid headline. */}
-        <div className="relative w-full">
-          <HeroVideo />
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-12 px-[var(--pad-x)] pb-24 pt-10 md:gap-16 md:pt-14">
+        {/* Video card — fills the container, holds the title in a bottom-left pocket. */}
+        <div className="relative">
+          <HeroVideo
+            className="max-w-none aspect-[21/9] md:aspect-[21/9]"
+            hideProgressDots
+          />
 
-          {/* Text layer — bottom-left over a dark gradient. */}
-          <div className="pointer-events-none absolute inset-0 flex items-end rounded-2xl">
-            <div
-              className="w-full rounded-b-2xl px-6 pb-8 pt-24 md:px-10 md:pb-12 md:pt-32"
-              style={{
-                background:
-                  "linear-gradient(180deg, transparent 0%, rgb(0 0 0 / 0.55) 60%, rgb(0 0 0 / 0.78) 100%)",
-              }}
-            >
-              <div className="mb-3 flex items-center gap-3">
+          {/* Soft vignette so the title pocket reads on any clip. */}
+          <div
+            className="pointer-events-none absolute inset-0 rounded-2xl"
+            aria-hidden="true"
+            style={{
+              background:
+                "linear-gradient(180deg, rgb(0 0 0 / 0.15) 0%, rgb(0 0 0 / 0) 35%, rgb(0 0 0 / 0) 50%, rgb(0 0 0 / 0.55) 88%, rgb(0 0 0 / 0.82) 100%), radial-gradient(ellipse at bottom left, rgb(0 0 0 / 0.6) 0%, transparent 60%)",
+            }}
+          />
+
+          {/* Title pocket — bottom-left, generous editorial whitespace. */}
+          <div className="absolute inset-0 flex items-end p-6 md:p-12">
+            <div className="max-w-[18ch]">
+              <div className="mb-4 flex items-center gap-3">
                 <span
-                  className="h-px w-6"
+                  className="h-px w-8"
                   style={{ background: "var(--cd-accent)" }}
                 />
                 <span
@@ -51,9 +56,9 @@ export function Hero() {
                 </span>
               </div>
               <h1
-                className="font-display max-w-[18ch] text-balance leading-[0.96]"
+                className="font-display m-0 text-balance leading-[0.94]"
                 style={{
-                  fontSize: "clamp(40px, 6.5vw, 96px)",
+                  fontSize: "clamp(40px, 6vw, 88px)",
                   letterSpacing: "-0.03em",
                   color: "oklch(0.98 0.005 80)",
                 }}
@@ -68,31 +73,87 @@ export function Hero() {
               </h1>
             </div>
           </div>
+
+          {/* Custom progress dots — bottom-right, subtle, branded. */}
+          <PlaylistDots />
         </div>
 
-        {/* Below the card: subtitle + CTAs, centered for clarity. */}
-        <div className="flex w-full max-w-[720px] flex-col items-center gap-6 text-center">
+        {/* Two-column footer below the card — subtitle on the left, CTAs on the right. */}
+        <div
+          className="grid items-end gap-10 border-t pt-10 md:grid-cols-[1.4fr_1fr]"
+          style={{ borderColor: "var(--line)" }}
+        >
           <p
-            className="m-0 text-pretty text-lg leading-relaxed"
+            className="m-0 max-w-[44ch] text-pretty text-lg leading-relaxed"
             style={{ color: "var(--fg-2)" }}
           >
             {t("subtitle")}
           </p>
-          <div className="flex flex-col items-center gap-3">
-            <Link href="/experience" className="cd-btn cd-btn-primary cd-btn-lg">
-              {t("cta")} <span aria-hidden="true">→</span>
-            </Link>
+          <div className="flex flex-col items-start gap-4">
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/experience"
+                className="cd-btn cd-btn-primary cd-btn-lg"
+              >
+                {t("cta")} <span aria-hidden="true">→</span>
+              </Link>
+              <Link href="/jeu" className="cd-btn cd-btn-ghost cd-btn-lg">
+                {t("ctaSecondary")}
+              </Link>
+            </div>
             <p className="cd-mono cd-dim">{t("ctaSubtitle")}</p>
           </div>
-          <Link
-            href="/jeu"
-            className="text-base underline-offset-4 hover:underline"
-            style={{ color: "var(--cd-accent)" }}
-          >
-            {t("ctaSecondary")} <span aria-hidden="true">→</span>
-          </Link>
         </div>
       </div>
+
+      {/* Scroll indicator at the bottom — animated hairline. */}
+      <div
+        className="absolute bottom-7 left-[var(--pad-x)] z-[3] flex items-center gap-3.5"
+        style={{ color: "var(--fg-3)" }}
+        aria-hidden="true"
+      >
+        <span
+          className="relative h-px w-14 overflow-hidden"
+          style={{ background: "var(--line-2)" }}
+        >
+          <span
+            className="absolute inset-0 motion-safe:animate-[scroll-line_2.4s_ease-in-out_infinite]"
+            style={{ background: "var(--cd-accent)" }}
+          />
+        </span>
+        <span className="cd-mono">scroll</span>
+      </div>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `@keyframes scroll-line { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }`,
+        }}
+      />
     </section>
+  );
+}
+
+/**
+ * Subtle, branded clip indicator anchored to the bottom-right of the
+ * video card. Five short hairlines, one of which is amber and active.
+ * Purely decorative — the autoplay rotation is the source of truth.
+ */
+function PlaylistDots() {
+  return (
+    <div
+      className="pointer-events-none absolute bottom-5 right-5 hidden items-center gap-2 md:flex"
+      aria-hidden="true"
+    >
+      <span className="cd-mono" style={{ color: "rgb(255 255 255 / 0.55)" }}>
+        loop
+      </span>
+      <span
+        className="h-1 w-8 rounded-full"
+        style={{ background: "var(--cd-accent)" }}
+      />
+      <span className="h-1 w-2 rounded-full" style={{ background: "rgb(255 255 255 / 0.4)" }} />
+      <span className="h-1 w-2 rounded-full" style={{ background: "rgb(255 255 255 / 0.25)" }} />
+      <span className="h-1 w-2 rounded-full" style={{ background: "rgb(255 255 255 / 0.25)" }} />
+      <span className="h-1 w-2 rounded-full" style={{ background: "rgb(255 255 255 / 0.25)" }} />
+    </div>
   );
 }
