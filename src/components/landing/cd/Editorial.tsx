@@ -38,7 +38,7 @@ export function Editorial() {
             }}
             aria-hidden="true"
           >
-            "
+            &ldquo;
           </div>
           <blockquote
             className="font-display max-w-[28ch] m-0 mt-15 text-pretty"
