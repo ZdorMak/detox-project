@@ -1,0 +1,865 @@
+{
+  "metadata": {
+    "title": "Detox — Comprendre la dépendance au smartphone",
+    "description": "Une expérience interactive et un questionnaire validé scientifiquement pour comprendre votre relation au smartphone."
+  },
+  "nav": {
+    "skipToContent": "Aller au contenu principal",
+    "language": "Langue"
+  },
+  "landing": {
+    "hero": {
+      "eyebrow": "Projet HEFP · SOUK 2026 · Suisse romande",
+      "title": "Comprendre votre relation au smartphone",
+      "titlePart1": "Comprendre votre",
+      "titlePart2": "relation au smartphone",
+      "subtitle": "Une expérience vidéo interactive et un questionnaire validé scientifiquement, conçus avec et pour les écoles de Suisse romande.",
+      "cta": "Commencer le test",
+      "ctaSubtitle": "5–8 minutes · Anonyme · Sans inscription",
+      "ctaSecondary": "Tirer une carte",
+      "phoneCounterLabel": "min sans téléphone"
+    },
+    "marquee": {
+      "facts": {
+        "0": "Un·e ado déverrouille le téléphone 96 fois par jour",
+        "1": "Première vérification : 5 minutes après le réveil",
+        "2": "44 % se sentent anxieux sans téléphone",
+        "3": "Temps d'écran moyen : 4 h 37 min",
+        "4": "Une notification interrompt la concentration toutes les 6 min",
+        "5": "1 sur 3 dort avec le téléphone en main"
+      }
+    },
+    "doors": {
+      "eyebrow": "Trois entrées",
+      "titlePart1": "Trois entrées.",
+      "titleAccent": "Un objectif calme :",
+      "titlePart2": "se remarquer.",
+      "story": {
+        "title": "Une histoire courte",
+        "desc": "Trois minutes de vidéo interactive. Tu fais des choix, tu vois ce qu'ils déplacent.",
+        "cta": "Vivre l'histoire",
+        "tag": "Vidéo · 3 min"
+      },
+      "profile": {
+        "title": "Ton profil numérique",
+        "desc": "Dix questions. Un score. Pas de jugement, juste une lecture honnête de ta semaine.",
+        "cta": "Faire le test",
+        "tag": "SAS-SV · 10Q"
+      },
+      "cards": {
+        "title": "Le jeu de cartes",
+        "desc": "50 micro-expériences pour reposer le téléphone. Tu tires, tu fais, tu reviens.",
+        "cta": "Tirer une carte",
+        "tag": "50 cartes · 5 niveaux"
+      }
+    },
+    "editorial": {
+      "quotePart1": "Toute heure d'écran n'est pas nocive.",
+      "quoteAccent": "Mais celles qu'on ne remarque pas — celles-là valent qu'on les remarque.",
+      "attribution": "Préface du projet",
+      "metaReading": "5 à 8 minutes",
+      "metaIdentity": "Anonyme, sans inscription",
+      "metaStorage": "Appareil local uniquement",
+      "labels": {
+        "methodology": "Méthodologie",
+        "reading": "Lecture",
+        "identity": "Identité",
+        "storage": "Stockage",
+        "accessibility": "Accessibilité",
+        "source": "Source"
+      }
+    },
+    "how": {
+      "eyebrow": "Comment ça marche",
+      "title": "Trois portes d'entrée. Un seul but : mieux te connaître.",
+      "items": {
+        "experience": {
+          "title": "Vis l'histoire",
+          "description": "Une mini-expérience interactive de 3 minutes — tu fais des choix, tu vois les conséquences."
+        },
+        "survey": {
+          "title": "Découvre ton profil",
+          "description": "Dix questions du SAS-SV, validé scientifiquement. Score, catégories, ressources de soutien."
+        },
+        "challenge": {
+          "title": "Joue dans la vraie vie",
+          "description": "50 cartes à tirer pour reposer le téléphone et faire quelque chose de concret. Niveaux, succès, certificat."
+        }
+      }
+    },
+    "stats": {
+      "title": "Statistiques de la communauté",
+      "eyebrow": "En direct",
+      "liveLabel": "Mis à jour en direct · dernières 24 heures",
+      "items": {
+        "sessions": "sessions ouvertes",
+        "challenges": "défis réalisés",
+        "surveys": "questionnaires finis"
+      }
+    },
+    "ctaBanner": {
+      "eyebrow": "Prêt·e ?",
+      "title": "Pose le téléphone. Commence.",
+      "titlePart1": "Pose le téléphone.",
+      "titleAccent": "Commence.",
+      "subtitle": "Cinq minutes pour découvrir ton rapport au smartphone. Anonyme, sans inscription, gratuit.",
+      "primary": "Commencer",
+      "secondary": "Tirer une carte"
+    },
+    "pillars": {
+      "title": "Sept piliers, une démarche cohérente",
+      "subtitle": "Chaque décision du projet est ancrée dans au moins un de ces axes.",
+      "items": {
+        "durable": {
+          "title": "Durable",
+          "description": "Conformité RGPD, code maintenable, questionnaire open source."
+        },
+        "addiction": {
+          "title": "Addiction",
+          "description": "Base scientifique solide (échelle SAS-SV), narration responsable."
+        },
+        "collaboration": {
+          "title": "Collaboration",
+          "description": "Tableau de bord pour les enseignant·es, données agrégées par classe."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Vidéo interactive avec embranchements, statistiques en temps réel."
+        },
+        "smartphone": {
+          "title": "Smartphone",
+          "description": "Expérience pensée d'abord pour mobile, prête PWA."
+        },
+        "interdisciplinaire": {
+          "title": "Interdisciplinaire",
+          "description": "Psychologie, UX, santé publique et data science combinées."
+        },
+        "accessible": {
+          "title": "Accessible",
+          "description": "WCAG 2.1 AA, navigation clavier, lecteurs d'écran."
+        }
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Detox — un projet HEFP pour la santé numérique des jeunes.",
+    "gdpr": "Vos réponses sont anonymes. Voir notre {policy}.",
+    "policyLink": "politique de confidentialité",
+    "contact": "Contact",
+    "github": "Code source",
+    "rights": "© 2026 Projet Detox. Sous licence MIT pour la partie open source."
+  },
+  "consent": {
+    "title": "Avant de commencer",
+    "body": "Pour améliorer l'expérience, nous enregistrons des données 100 % anonymes (réponses, interactions vidéo). Aucune information personnelle n'est collectée. Vos données ne sont jamais vendues.",
+    "accept": "J'accepte",
+    "decline": "Refuser",
+    "learnMore": "En savoir plus"
+  },
+  "auth": {
+    "metadata": { "title": "Connexion — Detox" },
+    "menu": {
+      "signIn": "Se connecter",
+      "signOut": "Se déconnecter"
+    },
+    "login": {
+      "title": "Se connecter",
+      "subtitle": "Sauvegarde ta progression sur tous tes appareils. Optionnel.",
+      "google": "Continuer avec Google",
+      "divider": "ou",
+      "magicHeading": "Lien magique par email",
+      "magicLabel": "Adresse email",
+      "magicPlaceholder": "ton@email.ch",
+      "magicSubmit": "Recevoir le lien",
+      "magicHint": "On t'envoie un lien à cliquer. Pas de mot de passe à retenir.",
+      "magicSent": "Lien envoyé. Vérifie ta boîte mail (et le dossier spam).",
+      "consent": "En te connectant, tu acceptes que ton email soit stocké pour identifier ton compte. Tu peux te déconnecter à tout moment.",
+      "skipPrompt": "Pas envie de te connecter ?",
+      "skipLink": "Continuer en anonyme",
+      "errors": {
+        "generic": "Connexion échouée. Réessaie.",
+        "missing_code": "Lien invalide ou expiré.",
+        "missing_email": "Aucun email associé à ce compte.",
+        "exchange_failed": "Impossible de finaliser la connexion. Réessaie."
+      }
+    }
+  },
+  "challenges": {
+    "metadata": {
+      "title": "Pose le téléphone — Detox"
+    },
+    "title": "Pose le téléphone",
+    "subtitle": "Tire une carte. Fais la chose. Reviens dire si tu l'as fait. Aucune note, aucun jugement.",
+    "cardsHeaderEyebrow": "Carte {current} sur {total}",
+    "cardsTitlePart1": "Tire une carte.",
+    "cardsTitleAccent": "Pose le téléphone.",
+    "cardsSub": "Cinquante micro-expériences pour reposer le téléphone — quelques minutes, parfois moins. Tire, fais, reviens.",
+    "nav": {
+      "programs": "Programmes",
+      "profile": "Mon profil"
+    },
+    "levels": {
+      "debutant": { "label": "Débutant·e", "subtitle": "Tu commences. C'est déjà beaucoup." },
+      "curieux":  { "label": "Curieux·se", "subtitle": "Tu explores, ça te plaît." },
+      "engage":   { "label": "Engagé·e",   "subtitle": "Tu en as fait une habitude." },
+      "habitue":  { "label": "Habitué·e",  "subtitle": "Le téléphone, tu le poses sans y penser." },
+      "maitre":   { "label": "Maître",     "subtitle": "Modèle pour les autres." }
+    },
+    "achievements": {
+      "toast": { "unlocked": "Débloqué !" },
+      "items": {
+        "first_step": {
+          "title": "Premier pas",
+          "description": "Ta première carte terminée."
+        },
+        "five_observations": {
+          "title": "Œil aiguisé",
+          "description": "5 cartes Observation terminées."
+        },
+        "five_socials": {
+          "title": "Lien",
+          "description": "5 cartes Social terminées."
+        },
+        "five_movements": {
+          "title": "Bouge !",
+          "description": "5 cartes Mouvement terminées."
+        },
+        "five_creatives": {
+          "title": "Inventif·ve",
+          "description": "5 cartes Création terminées."
+        },
+        "five_reflections": {
+          "title": "Calme",
+          "description": "5 cartes Réflexion terminées."
+        },
+        "full_circle": {
+          "title": "Tour complet",
+          "description": "Au moins 1 carte de chaque catégorie."
+        },
+        "marathon": {
+          "title": "Marathon",
+          "description": "10 cartes terminées en une seule journée."
+        },
+        "meal_phone_free": {
+          "title": "Sans écran à table",
+          "description": "Tu as terminé un repas sans téléphone."
+        },
+        "night_owl": {
+          "title": "Couche-tard",
+          "description": "Une carte terminée entre 22 h et 2 h."
+        },
+        "early_bird": {
+          "title": "Lève-tôt",
+          "description": "Une carte terminée entre 5 h et 7 h."
+        },
+        "program_first": {
+          "title": "Premier programme",
+          "description": "Tu as terminé un programme entier."
+        }
+      }
+    },
+    "programs": {
+      "metadata": { "title": "Programmes — Pose le téléphone" },
+      "title": "Programmes",
+      "subtitle": "Des suites de cartes pensées autour d'un thème.",
+      "progress": "Progression",
+      "stepOf": "Étape {current} sur {total}",
+      "backToList": "← Tous les programmes",
+      "items": {
+        "matin_sans_ecran": {
+          "title": "Matin sans écran",
+          "description": "5 cartes pour commencer la journée doucement."
+        },
+        "connexions": {
+          "title": "Connexions",
+          "description": "10 cartes pour renforcer les liens autour de toi."
+        },
+        "bouge_ton_corps": {
+          "title": "Bouge ton corps",
+          "description": "7 cartes pour bouger un peu chaque jour."
+        },
+        "sept_jours_calme": {
+          "title": "Sept jours de calme",
+          "description": "7 cartes pour ralentir et respirer."
+        }
+      }
+    },
+    "profile": {
+      "metadata": { "title": "Mon profil — Pose le téléphone" },
+      "title": "Mon profil",
+      "levelLabel": "Niveau",
+      "toNext": "Encore {n} cartes pour {next}",
+      "achievementsTitle": "Succès ({unlocked} / {total})",
+      "programsTitle": "Programmes",
+      "backToCards": "Tirer une carte",
+      "viewProfile": "Mon profil",
+      "viewCertificate": "Voir mon certificat",
+      "printDeck": "Imprimer les cartes",
+      "home": "Accueil",
+      "skippedCount": "{n} cartes passées au total."
+    },
+    "print": {
+      "metadata": { "title": "Version imprimable — Pose le téléphone" },
+      "pageTitle": "Pose le téléphone — Cartes imprimables",
+      "backToGame": "Retour au jeu",
+      "tip": "Imprime sur A4 puis découpe les cartes le long des pointillés.",
+      "printAction": "🖨️ Imprimer / PDF",
+      "rulesHeading": "Règles du jeu en classe",
+      "rulesIntro": "Une activité courte pour reposer le téléphone et faire quelque chose ensemble. Aucun écran requis pour jouer une fois les cartes imprimées.",
+      "rules": {
+        "1": "Mélange les cartes. Tire-en une au hasard.",
+        "2": "Lis-la à voix haute. Choisis : « j'essaie » ou « une autre carte ».",
+        "3": "Fais l'action en moins de 15 minutes. Personne ne te chronomètre — tu es honnête avec toi-même.",
+        "4": "Reviens à la table : raconte (ou pas — c'est OK aussi).",
+        "5": "Coche la carte sur ta feuille de suivi. Tire-en une autre quand tu veux.",
+        "6": "En groupe : tirez une carte commune par séance. Comparez vos expériences."
+      },
+      "legendCategories": "Catégories",
+      "legendLocations": "Lieux possibles",
+      "footer": "Detox · Projet HEFP · 2026 · Cartes sous licence libre"
+    },
+    "certificate": {
+      "metadata": { "title": "Mon certificat — Pose le téléphone" },
+      "back": "Retour au profil",
+      "print": "Imprimer / PDF",
+      "nameLabel": "Ton nom (optionnel)",
+      "namePlaceholder": "Ton prénom",
+      "nameUpdate": "Mettre à jour",
+      "headline": "Pose le téléphone",
+      "subhead": "Certificat de présence",
+      "quote": "Tu as posé le téléphone {n} fois. Chaque fois était un choix.",
+      "memberSince": "Premier défi le",
+      "achievementsTitle": "Succès débloqués",
+      "programsTitle": "Programmes terminés",
+      "noProgramsYet": "Aucun programme terminé pour l'instant — c'est OK.",
+      "footer": "Detox · Projet HEFP · 2026",
+      "unnamed": "Joueur·euse anonyme"
+    },
+    "progress": {
+      "completed": "faits",
+      "skipped": "passés"
+    },
+    "actions": {
+      "accept": "J'essaie",
+      "decline": "Une autre carte",
+      "completed": "Je l'ai fait",
+      "skipped": "Pas cette fois",
+      "finish": "Terminer la session →"
+    },
+    "hints": {
+      "honor": "On te fait confiance — personne ne vérifie."
+    },
+    "active": {
+      "label": "Carte en cours",
+      "hint": "Pose le téléphone pour environ {min, plural, one {# minute} other {# minutes}}. Reviens quand tu as fini."
+    },
+    "done": {
+      "title": "Joli travail.",
+      "body": "Tu as fait {completed, plural, =0 {aucune carte} one {# carte} other {# cartes}} et passé {skipped, plural, =0 {aucune} one {# fois} other {# fois}}. Tu peux revenir demain — il y aura encore des cartes.",
+      "home": "Retour à l'accueil"
+    },
+    "cardMeta": {
+      "duration": "≈ {min, plural, one {# min} other {# min}}"
+    },
+    "cardLevel": "Niveau {level}",
+    "cardTry": "Essayer",
+    "stampDo": "JE LE FAIS",
+    "stampSkip": "PASSER",
+    "sidePanelHeading": "À propos de cette carte",
+    "sideRow": {
+      "category": "Catégorie",
+      "duration": "Durée",
+      "level": "Niveau"
+    },
+    "progressLabel": "Progression",
+    "categories": {
+      "observation": "Observation",
+      "social": "Social",
+      "movement": "Mouvement",
+      "creative": "Création",
+      "reflection": "Réflexion"
+    },
+    "locations": {
+      "ariaLabel": "Choisis ton lieu",
+      "prompt": "Tu es :",
+      "changeTo": "Changer pour :",
+      "options": {
+        "home": "À la maison",
+        "school": "À l'école",
+        "transport": "En transport",
+        "outside": "Dehors",
+        "with_friends": "Avec des ami·es"
+      }
+    },
+    "cards": {
+      "window_describe": {
+        "title": "À la fenêtre",
+        "body": "Va à une fenêtre. Décris à voix haute, en deux phrases, ce que tu vois."
+      },
+      "five_sounds": {
+        "title": "Cinq sons",
+        "body": "Ferme les yeux. Compte cinq sons différents autour de toi."
+      },
+      "count_colors": {
+        "title": "Six couleurs",
+        "body": "Trouve six objets de couleurs différentes dans la pièce."
+      },
+      "stranger_outfit": {
+        "title": "Tenue d'inconnu·e",
+        "body": "La prochaine personne que tu croises : note mentalement trois détails de sa tenue."
+      },
+      "sky_minute": {
+        "title": "Une minute de ciel",
+        "body": "Sors ou regarde par la fenêtre. Observe le ciel pendant une minute, sans rien faire d'autre."
+      },
+      "object_history": {
+        "title": "L'objet le plus vieux",
+        "body": "Trouve l'objet le plus ancien autour de toi. Imagine son histoire."
+      },
+      "ask_day": {
+        "title": "Et toi, ta journée ?",
+        "body": "Demande à quelqu'un autour de toi comment s'est passée sa journée. Écoute vraiment."
+      },
+      "compliment_someone": {
+        "title": "Un compliment",
+        "body": "Fais un compliment sincère à quelqu'un — pas sur son apparence, sur quelque chose qu'il/elle a fait."
+      },
+      "phone_call_friend": {
+        "title": "Un appel",
+        "body": "Appelle quelqu'un (oui, par téléphone, pas en message). Juste pour dire bonjour."
+      },
+      "thank_someone": {
+        "title": "Merci",
+        "body": "Dis merci à quelqu'un — un parent, un·e ami·e, un·e prof — pour quelque chose de précis."
+      },
+      "ask_advice": {
+        "title": "Un conseil",
+        "body": "Demande à quelqu'un de plus âgé un conseil sur n'importe quoi. Note ce qu'on te dit."
+      },
+      "share_meal_no_phone": {
+        "title": "Repas sans téléphone",
+        "body": "Ton prochain repas — table, chaise, téléphone dans une autre pièce. Mange en discutant ou en silence."
+      },
+      "ten_squats": {
+        "title": "Dix squats",
+        "body": "Lève-toi et fais dix squats. Compte à voix haute si ça aide."
+      },
+      "stretch_one_minute": {
+        "title": "Étirements",
+        "body": "Une minute pour étirer ce qui te fait mal — nuque, épaules, dos."
+      },
+      "walk_around_block": {
+        "title": "Tour du quartier",
+        "body": "Sors marcher dix minutes. Sans écouteurs, sans téléphone à la main."
+      },
+      "stairs_three_times": {
+        "title": "Trois fois les escaliers",
+        "body": "Monte et descends un étage trois fois. Respire bien."
+      },
+      "dance_one_song": {
+        "title": "Une chanson, debout",
+        "body": "Mets une chanson que tu aimes. Lève-toi. Bouge jusqu'à la fin."
+      },
+      "barefoot_outside": {
+        "title": "Pieds nus dehors",
+        "body": "Si tu peux, marche pieds nus sur de l'herbe ou de la terre pendant cinq minutes."
+      },
+      "draw_what_you_see": {
+        "title": "Dessine ce que tu vois",
+        "body": "Prends une feuille et un stylo. Dessine un objet devant toi. Pas besoin que ce soit beau."
+      },
+      "write_haiku": {
+        "title": "Un haïku",
+        "body": "Écris trois lignes : 5 syllabes, 7 syllabes, 5 syllabes. Sur n'importe quoi."
+      },
+      "fold_paper_thing": {
+        "title": "Pliage",
+        "body": "Prends une feuille. Plie un avion, une grenouille, une fleur — ce que tu sais ou improvise."
+      },
+      "rearrange_desk": {
+        "title": "Range ton bureau",
+        "body": "Dix minutes pour ranger ton espace de travail. Jette ce qui ne sert pas."
+      },
+      "letter_to_future_me": {
+        "title": "Lettre à toi dans un an",
+        "body": "Écris une lettre à toi-même dans un an. Trois choses que tu veux te rappeler."
+      },
+      "humming_a_tune": {
+        "title": "Fredonne",
+        "body": "Fredonne une mélodie pendant deux minutes. Inventée ou non — peu importe."
+      },
+      "eyes_closed_minute": {
+        "title": "Yeux fermés",
+        "body": "Une minute, yeux fermés. Ne pense pas à ne rien penser. Juste assis·e."
+      },
+      "three_good_things": {
+        "title": "Trois bonnes choses",
+        "body": "Note (en pensée ou sur papier) trois choses qui se sont bien passées aujourd'hui, même petites."
+      },
+      "breathing_4_7_8": {
+        "title": "Respiration 4-7-8",
+        "body": "Inspire 4 secondes, retiens 7, expire 8. Quatre cycles."
+      },
+      "imagine_summer": {
+        "title": "Souvenir d'été",
+        "body": "Ferme les yeux. Imagine un moment de cet été dont tu te souviens bien."
+      },
+      "what_will_matter": {
+        "title": "Dans dix ans",
+        "body": "Pense à ce que tu fais aujourd'hui. Qu'est-ce qui aura encore de l'importance dans dix ans ?"
+      },
+      "drink_water_slowly": {
+        "title": "Un verre, lentement",
+        "body": "Verse-toi un verre d'eau. Bois-le sans rien faire d'autre. Sens les gorgées."
+      },
+      "scan_room_details": {
+        "title": "Détails autour de toi",
+        "body": "Trouve trois petits détails que tu n'avais jamais remarqués jusque-là."
+      },
+      "smile_at_stranger": {
+        "title": "Un sourire",
+        "body": "Souris à la prochaine personne avec qui tu croises le regard. Sans rien dire."
+      },
+      "shoulder_rolls": {
+        "title": "Roulements d'épaules",
+        "body": "Dix lents roulements vers l'arrière, puis dix vers l'avant. Discret, partout."
+      },
+      "invent_a_story": {
+        "title": "Invente une histoire",
+        "body": "Choisis quelqu'un autour de toi (sans qu'il/elle s'en aperçoive). Imagine sa journée."
+      },
+      "notice_one_feeling": {
+        "title": "Nomme ce que tu ressens",
+        "body": "Pose-toi la question : qu'est-ce que je ressens là, maintenant ? Trouve un mot précis."
+      },
+      "find_yellow_things": {
+        "title": "Cinq jaunes",
+        "body": "Trouve cinq objets jaunes autour de toi. N'importe quel jaune compte."
+      },
+      "people_walking_pace": {
+        "title": "Trois rythmes",
+        "body": "Observe trois personnes qui marchent. Plus vite que toi, plus lent, ou pareil ?"
+      },
+      "true_sky_color": {
+        "title": "La vraie couleur du ciel",
+        "body": "Regarde le ciel. Quelle est sa couleur exacte ? Pas \"bleu\" — précise."
+      },
+      "ask_favorite_song": {
+        "title": "Sa chanson du moment",
+        "body": "Demande à quelqu'un quelle chanson il/elle écoute en boucle ces jours-ci. Écoute-la après si tu veux."
+      },
+      "handwritten_note": {
+        "title": "Une note manuscrite",
+        "body": "Écris une note à la main pour quelqu'un — même une seule phrase. Donne-la ou laisse-la."
+      },
+      "off_topic_question": {
+        "title": "Une question hors sujet",
+        "body": "Pose à un·e prof, un parent ou un·e ami·e une question qui n'a rien à voir avec l'école. Sur sa vie, ses goûts, ses souvenirs."
+      },
+      "jumping_jacks_20": {
+        "title": "Vingt jumping jacks",
+        "body": "Vingt sauts avec écartement bras-jambes. Compte à voix haute si ça aide."
+      },
+      "balance_one_leg": {
+        "title": "Sur une jambe",
+        "body": "Tiens 30 secondes en équilibre sur une jambe. Puis l'autre jambe. Discret, partout."
+      },
+      "non_dominant_hand": {
+        "title": "La main faible",
+        "body": "Pendant les 3 prochaines minutes, fais tout avec ta main non dominante : écrire, manger, taper."
+      },
+      "paper_airplane": {
+        "title": "Avion en papier",
+        "body": "Plie un avion en papier. Lance-le. Si possible, vise quelque chose."
+      },
+      "song_for_today": {
+        "title": "La chanson de ta journée",
+        "body": "Si ta journée d'aujourd'hui était une chanson, ce serait laquelle ? Écoute-la (sans être sur le téléphone)."
+      },
+      "five_words_now": {
+        "title": "Cinq mots, maintenant",
+        "body": "Écris (ou pense) cinq mots qui décrivent ce que tu es à cet instant précis."
+      },
+      "gratitude_one_person": {
+        "title": "Une personne importante",
+        "body": "Pense à une personne qui compte pour toi en ce moment. Pourquoi est-ce qu'elle compte ?"
+      },
+      "silver_lining": {
+        "title": "Le bon côté",
+        "body": "Pense à quelque chose de pas génial qui s'est passé hier. Trouve un seul aspect positif. Même petit."
+      },
+      "silence_60_sec": {
+        "title": "Soixante secondes de silence",
+        "body": "Une minute. Pas de musique, pas d'écran, pas de mots. Juste le silence et toi."
+      }
+    }
+  },
+  "experience": {
+    "metadata": {
+      "title": "Une soirée — Detox"
+    },
+    "header": {
+      "label": "Expérience"
+    },
+    "nav": {
+      "skip": "Passer",
+      "keyboardHint": "Astuce clavier : 1 ou 2 pour choisir."
+    },
+    "a11y": {
+      "progressLabel": "Progression de l'expérience"
+    },
+    "scenes": {
+      "evening_room": {
+        "lines": {
+          "1": "Tu rentres de l'école.",
+          "2": "Demain, contrôle de math.",
+          "3": "Le téléphone vibre une fois, puis encore.",
+          "4": "Trois nouveaux messages. Une notification Insta. Un live TikTok."
+        }
+      },
+      "choice_1": {
+        "prompt": "Tu fais quoi ?",
+        "options": {
+          "A": "Je regarde — juste 5 minutes.",
+          "B": "Je le retourne et je commence à réviser."
+        }
+      },
+      "rabbit_hole": {
+        "lines": {
+          "1": "20 h 47. Tu déverrouilles.",
+          "2": "Vidéo, vidéo, vidéo. Une amie en story.",
+          "3": "Tu réponds vite. Tu scrolles encore.",
+          "4": "22 h 13. Tu poses le téléphone. Le contrôle de math est dans onze heures."
+        }
+      },
+      "silence": {
+        "lines": {
+          "1": "20 h 47. Le téléphone est posé, écran contre la table.",
+          "2": "Tu lis. Un calcul. Un autre.",
+          "3": "Une notification clignote. Tu hésites une seconde.",
+          "4": "21 h 35. Tu fermes le livre. Tu te sens un peu fatigué·e — mais préparé·e."
+        }
+      },
+      "choice_2": {
+        "prompt": "Le matin, à l'arrêt de bus. Tes amis te montrent un mème. Le téléphone vibre. Comment tu veux passer les vingt prochaines minutes ?",
+        "options": {
+          "A": "Je sors le téléphone aussi — c'est plus simple.",
+          "B": "Je le laisse dans ma poche et j'écoute."
+        }
+      },
+      "shared_screen": {
+        "lines": {
+          "1": "Tu sors le téléphone.",
+          "2": "Vous riez à trois sur la même vidéo.",
+          "3": "Personne ne se regarde vraiment.",
+          "4": "Le bus arrive. Tu n'as pas entendu ce que disait Léa."
+        }
+      },
+      "listening": {
+        "lines": {
+          "1": "Le téléphone vibre. Tu le sens.",
+          "2": "Léa te raconte sa dispute avec sa sœur.",
+          "3": "Tu poses une question. Elle répond longuement.",
+          "4": "Le bus arrive. Tu sais des choses sur sa vie que tu ne savais pas hier."
+        }
+      },
+      "closing": {
+        "lines": {
+          "1": "Aucune de ces histoires n'est « la bonne ».",
+          "2": "Mais chaque petit choix construit ton rapport au téléphone.",
+          "3": "On va te poser dix questions pour mieux comprendre le tien."
+        }
+      }
+    },
+    "closing": {
+      "title": "Et toi ?",
+      "body": "Aucune de ces histoires n'est « la bonne ». Chaque petit choix construit ton rapport au téléphone. On va te poser dix questions pour mieux comprendre le tien.",
+      "cta": "Commencer le questionnaire"
+    }
+  },
+  "survey": {
+    "title": "Questionnaire SAS-SV",
+    "subtitle": "10 affirmations sur ton usage du smartphone. Choisis le chiffre qui te correspond le mieux. Aucune bonne ou mauvaise réponse — sois honnête avec toi-même.",
+    "intro": "Pour chaque affirmation : 1 = pas du tout d'accord, 6 = tout à fait d'accord. Tes réponses sont anonymes et enregistrées au fur et à mesure — tu peux fermer la page et reprendre plus tard.",
+    "introScreen": {
+      "eyebrow": "Avant de commencer",
+      "title": "Découvre ton profil numérique",
+      "subtitle": "10 questions, 5 minutes. Tu obtiendras un profil personnalisé et des conseils adaptés.",
+      "bullets": {
+        "0": "Réponds honnêtement — tes réponses sont anonymes, personne ne les voit.",
+        "1": "Pas de bonne ou mauvaise réponse. Glisse le curseur sur la position qui te correspond.",
+        "2": "À la fin : ton profil, un score, et des ressources pour aller plus loin."
+      },
+      "start": "Commencer le test",
+      "time": "Environ 5 minutes"
+    },
+    "loading": {
+      "stages": {
+        "0": "Analyse de tes réponses…",
+        "1": "Calcul de ton score SAS-SV…",
+        "2": "Identification de ton profil…",
+        "3": "Préparation de tes recommandations…"
+      },
+      "almost": "Encore quelques secondes"
+    },
+    "questionLabel": "Question {n} / 10",
+    "progress": {
+      "label": "{current} sur {total} répondues",
+      "percent": "{pct} %"
+    },
+    "nav": {
+      "prev": "Précédente",
+      "next": "Suivante",
+      "seeResults": "Voir mes résultats",
+      "keyboardHint": "Astuce clavier : 1–6 pour répondre, ← → pour naviguer."
+    },
+    "scaleName": "Échelle d'addiction au smartphone",
+    "questionLabelEyebrow": "Question {n} · cette semaine",
+    "anonNote": "Anonyme · sans inscription",
+    "dialIdle": "Glisse · ou tape 1–6",
+    "dialMin": "Pas du tout d'accord",
+    "dialMax": "Tout à fait d'accord",
+    "dialKeyboardHint": "ou tape 1–6",
+    "status": {
+      "saving": "Enregistrement…",
+      "saveFailed": "Échec — réessaie."
+    },
+    "a11y": {
+      "progressRegion": "Progression du questionnaire"
+    }
+  },
+  "results": {
+    "title": "Tes résultats",
+    "instrumentNote": "Adaptation française pré-validée du SAS-SV (Kwon et al., 2013). Validation indépendante en cours — voir notre méthodologie.",
+    "personaPreface": "Ton profil",
+    "personaAboutHeading": "Qui es-tu, en numérique ?",
+    "eyebrowResults": "Tes résultats · SAS-SV",
+    "scoreLabel": "Score",
+    "outOf": "sur 60",
+    "fingerprintLabel": "Ton empreinte",
+    "whatLabel": "Ce que ça veut dire",
+    "resourcesLabel": "Ressources",
+    "resourceProJuventute": "conseil 24h/24, anonyme",
+    "resourceAddiction": "info et soutien autour des addictions",
+    "resourceCiao": "plateforme suisse pour les 11–20 ans",
+    "ctaNext": "Tirer une carte",
+    "ctaAgain": "Refaire le test",
+    "shareNote": "Aucune donnée personnelle n'est stockée. Tu peux partager ton score si tu veux.",
+    "categoryTag": {
+      "low": "Mesuré",
+      "mid": "À surveiller",
+      "high": "Intensif"
+    },
+    "personas": {
+      "le_serene": {
+        "title": "Le Serein",
+        "tagline": "Calme, présent, le téléphone à sa juste place.",
+        "description": "Tu as une relation apaisée avec ton smartphone. Il fait partie de ta vie sans la dominer. Continue à observer comment tu te sens dans les moments sans écran — c'est cette présence qui te garde équilibré·e."
+      },
+      "le_curieux": {
+        "title": "Le Curieux",
+        "tagline": "Tu utilises ton téléphone, mais tu observes le monde autour.",
+        "description": "Tu sais quand poser le téléphone pour vraiment voir ce qui se passe. Ta curiosité te protège — elle t'invite régulièrement hors de l'écran. Garde cette attention pour les détails du quotidien."
+      },
+      "le_connecteur_calme": {
+        "title": "Le Connecteur Calme",
+        "tagline": "Le téléphone t'aide à rester proche, sans t'éloigner du présent.",
+        "description": "Tu utilises ton smartphone pour entretenir tes liens, mais tu sais aussi être pleinement avec ceux qui sont devant toi. C'est un équilibre que beaucoup cherchent — préserve-le."
+      },
+      "le_chercheur": {
+        "title": "Le Chercheur",
+        "tagline": "Quelque chose te tire vers le téléphone — tu commences à le remarquer.",
+        "description": "Tu te poses des questions sur ton usage, et c'est déjà un grand pas. Certaines habitudes méritent que tu y prêtes attention. Pas d'urgence, mais des moments à observer : quand tu prends le téléphone sans raison claire, qu'est-ce que tu cherches vraiment ?"
+      },
+      "le_jongleur": {
+        "title": "Le Jongleur",
+        "tagline": "Tu fais beaucoup, parfois trop, et le téléphone est partout.",
+        "description": "Le téléphone interrompt souvent ce que tu fais — études, conversations, repas. Ce n'est pas grave en soi, mais cela coûte de l'attention. Une expérience à essayer cette semaine : un repas entier sans téléphone à table."
+      },
+      "le_curieux_actif": {
+        "title": "Le Curieux Actif",
+        "tagline": "Tu es très connecté·e, mais aussi très présent·e.",
+        "description": "Ton usage est intense, mais il sert souvent à observer, créer, comprendre. Veille à ce qu'il ne te coupe pas du monde physique — les choses les plus belles se voient sans écran."
+      },
+      "le_capte": {
+        "title": "Le Capté",
+        "tagline": "Le téléphone prend une grande place — parfois plus que tu ne voudrais.",
+        "description": "Ton score indique un usage intensif. Ce n'est pas une étiquette : c'est un signal. Quand tu poses le téléphone, qu'est-ce qui te manque vraiment ? Et qu'est-ce qui te revient ? Les ressources en bas de page peuvent t'accompagner."
+      },
+      "le_disperse": {
+        "title": "Le Dispersé",
+        "tagline": "L'attention va dans toutes les directions — c'est fatigant.",
+        "description": "Le téléphone fragmente tes journées : interruptions, notifications, scrolls rapides. Tu peux ressentir une fatigue sans cause claire. Essaie une journée en mode \"ne pas déranger\" pendant les devoirs — vois la différence."
+      },
+      "lhyperconnecte": {
+        "title": "L'Hyperconnecté",
+        "tagline": "Toujours en ligne, toujours en alerte. Le corps suit difficilement.",
+        "description": "Tu es presque tout le temps avec ton téléphone, et il occupe aussi beaucoup ta tête quand tu ne l'as pas. Ce n'est pas un défaut — c'est un signal qu'une pause serait précieuse. Parle à quelqu'un de confiance, ou consulte les ressources en bas."
+      }
+    },
+    "score": {
+      "label": "Score total",
+      "range": "Échelle de {min} à {max}"
+    },
+    "bands": {
+      "low": {
+        "heading": "Usage modéré",
+        "body": "Ton score suggère que ton smartphone occupe une place mesurée dans ta journée. Continue à observer comment tu te sens quand tu le poses.",
+        "reflect": "Question pour toi : qu'est-ce qui te plaît le plus dans les moments sans smartphone ?"
+      },
+      "moderate": {
+        "heading": "Usage à surveiller",
+        "body": "Ton score est dans une zone intermédiaire. Plusieurs habitudes méritent que tu y prêtes attention — sans alarme, mais en restant attentif·ve.",
+        "reflect": "Question pour toi : si tu devais réduire ton temps d'écran d'une heure par jour, par quoi commencerais-tu ?"
+      },
+      "high": {
+        "heading": "Usage intensif",
+        "body": "Ton score indique un usage intensif du smartphone, avec des effets possibles sur ta concentration, ton sommeil ou tes relations. Cela ne définit pas qui tu es — c'est un signal pour ouvrir la conversation.",
+        "reflect": "Question pour toi : à qui de confiance pourrais-tu parler de ta relation au smartphone cette semaine ?"
+      }
+    },
+    "symptoms": {
+      "title": "Détail par dimension",
+      "subtitle": "Chaque barre correspond à un aspect différent du rapport au smartphone.",
+      "items": {
+        "loss_of_control": "Perte de contrôle",
+        "disruption": "Interférence avec les activités",
+        "preoccupation": "Préoccupation mentale",
+        "withdrawal": "Manque / impatience",
+        "tolerance": "Tolérance (durée d'usage)",
+        "disregard": "Conséquences ignorées"
+      }
+    },
+    "resources": {
+      "title": "Ressources de soutien",
+      "subtitle": "Si tu veux en parler, ces structures suisses sont gratuites et confidentielles.",
+      "items": {
+        "proJuventute": {
+          "name": "Pro Juventute · 147",
+          "description": "Conseil 24h/24 par téléphone, chat ou SMS, gratuit et anonyme."
+        },
+        "promotionSante": {
+          "name": "Promotion Santé Suisse",
+          "description": "Fondation publique pour la prévention et la santé mentale."
+        },
+        "stopAddiction": {
+          "name": "Addiction Suisse",
+          "description": "Information et soutien autour des addictions, y compris numériques."
+        },
+        "ciaoCh": {
+          "name": "ciao.ch",
+          "description": "Plateforme genevoise de conseil pour les 11–20 ans."
+        }
+      }
+    },
+    "actions": {
+      "retake": "Refaire le test",
+      "home": "Retour à l'accueil"
+    },
+    "disclaimer": "Ce questionnaire est un outil de réflexion personnelle, pas un diagnostic médical. En cas d'inquiétude, consulte un·e professionnel·le de santé."
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Merci de réessayer.",
+    "network": "Problème de connexion. Vérifiez votre réseau."
+  }
+}

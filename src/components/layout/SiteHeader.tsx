@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { UserMenu } from "@/components/auth/UserMenu";
 import { BrandLogo } from "@/components/layout/BrandLogo";
+import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 
 interface SiteHeaderProps {
   locale: string;
@@ -33,6 +34,7 @@ export function SiteHeader({ locale, next, hideBrand = false }: SiteHeaderProps)
           <span className="h-7 w-16" aria-hidden="true" />
         )}
         <div className="flex items-center gap-2">
+          <LocaleSwitcher />
           <ThemeToggle />
           <UserMenu locale={locale} next={next} />
         </div>
