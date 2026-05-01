@@ -4,7 +4,6 @@ import { useTransition } from "react";
 import { useLocale } from "next-intl";
 import { Globe } from "lucide-react";
 import { useRouter, usePathname } from "@/i18n/navigation";
-import { useSearchParams } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
@@ -29,17 +28,13 @@ const LOCALE_LABELS: Record<Locale, { short: string; long: string }> = {
 export function LocaleSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const currentLocale = useLocale() as Locale;
   const [isPending, startTransition] = useTransition();
-
-  const search = searchParams?.toString();
-  const targetPath = search ? `${pathname}?${search}` : pathname;
 
   const choose = (next: Locale) => {
     if (next === currentLocale || isPending) return;
     startTransition(() => {
-      router.replace(targetPath, { locale: next });
+      router.replace(pathname, { locale: next });
     });
   };
 
