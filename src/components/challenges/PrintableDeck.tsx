@@ -36,29 +36,42 @@ interface PrintableDeckProps {
  * double-sided so the back design appears behind each card.
  */
 export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
-  const PER_PAGE = 6;
-  const pages: ChallengeCard[][] = [];
-  for (let i = 0; i < CHALLENGE_CARDS.length; i += PER_PAGE) {
-    pages.push([...CHALLENGE_CARDS.slice(i, i + PER_PAGE)]);
-  }
-
   return (
     <>
       <style
         dangerouslySetInnerHTML={{
           __html: `
+            /* Sensible defaults for the size CSS variables — overridden by
+             * PrintSizeControl when the user picks a different preset. */
+            :root {
+              --card-w: 63mm;
+              --card-h: 88mm;
+              --card-gap: 4mm;
+            }
+            .pd-card-grid {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              gap: var(--card-gap);
+            }
+            .pd-card {
+              width: var(--card-w);
+              height: var(--card-h);
+              flex: 0 0 auto;
+            }
             @media print {
               body { background: white !important; }
               @page { size: A4 portrait; margin: 1cm; }
-              .pd-page { break-after: page; box-shadow: none !important; }
-              .pd-page:last-of-type { break-after: auto; }
+              .pd-page-rules { break-after: page; box-shadow: none !important; }
+              .pd-card { break-inside: avoid; page-break-inside: avoid; }
+              .pd-card-grid { gap: 3mm; }
             }
           `,
         }}
       />
 
       {/* PAGE 1 — RULES */}
-      <article className="pd-page mx-auto mb-6 max-w-3xl rounded-lg bg-white p-10 text-slate-900 shadow-md print:m-0 print:max-w-none print:rounded-none print:p-8 print:shadow-none">
+      <article className="pd-page-rules mx-auto mb-6 max-w-3xl rounded-lg bg-white p-10 text-slate-900 shadow-md print:m-0 print:max-w-none print:rounded-none print:p-8 print:shadow-none">
         <header className="border-b-2 border-amber-700 pb-5">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-amber-700">
             {labels.pageTitle}
@@ -137,35 +150,31 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
         <p className="mt-12 text-xs italic text-slate-500">{labels.footer}</p>
       </article>
 
-      {/* CARD PAGES */}
-      {pages.map((cards, pageIdx) => (
-        <article
-          key={pageIdx}
-          className="pd-page mx-auto mb-6 max-w-3xl rounded-lg bg-slate-50 p-6 shadow-md print:m-0 print:max-w-none print:rounded-none print:bg-white print:p-2 print:shadow-none"
-        >
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {cards.map((card) => (
-              <PrintCard
-                key={card.id}
-                card={card}
-                title={cardTexts[card.id]?.title ?? card.id}
-                body={cardTexts[card.id]?.body ?? ""}
-                categoryLabel={labels.categories[card.category] ?? card.category}
-                locationLabels={card.locations.map(
-                  (loc) => labels.locations[loc] ?? loc,
-                )}
-              />
-            ))}
-            {cards.length < PER_PAGE &&
-              Array.from({ length: PER_PAGE - cards.length }).map((_, i) => (
-                <div key={`pad-${i}`} className="aspect-[63/88]" />
-              ))}
-          </div>
-          <p className="mt-3 text-center text-[10px] uppercase tracking-wider text-slate-400 print:text-slate-600">
-            {labels.pageTitle} · {pageIdx + 2} / {pages.length + 1}
-          </p>
-        </article>
-      ))}
+      {/* CARD GRID — single article. The browser handles natural pagination
+        on print thanks to `break-inside: avoid` on each card. Rendering all
+        50 cards as a flex-wrap grid means the row count auto-adjusts to the
+        chosen card size: ~12 cards/page at Mini, ~6 at Poker, ~4 at Large. */}
+      <article className="mx-auto mb-6 max-w-3xl rounded-lg bg-slate-50 p-6 shadow-md print:m-0 print:max-w-none print:rounded-none print:bg-white print:p-2 print:shadow-none">
+        <div className="pd-card-grid">
+          {CHALLENGE_CARDS.map((card) => (
+            <PrintCard
+              key={card.id}
+              card={card}
+              title={cardTexts[card.id]?.title ?? card.id}
+              body={cardTexts[card.id]?.body ?? ""}
+              categoryLabel={
+                labels.categories[card.category] ?? card.category
+              }
+              locationLabels={card.locations.map(
+                (loc) => labels.locations[loc] ?? loc,
+              )}
+            />
+          ))}
+        </div>
+        <p className="mt-4 text-center text-[10px] uppercase tracking-wider text-slate-400 print:text-slate-600">
+          {labels.pageTitle} · {CHALLENGE_CARDS.length}
+        </p>
+      </article>
     </>
   );
 }
@@ -243,7 +252,7 @@ function PrintCard({
   const haloId = `halo-${card.id}`;
   return (
     <div
-      className="relative flex aspect-[63/88] flex-col overflow-hidden rounded-xl border bg-white"
+      className="pd-card relative flex flex-col overflow-hidden rounded-xl border bg-white"
       style={{
         borderColor: p.border,
         pageBreakInside: "avoid",

@@ -3,6 +3,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { CHALLENGE_CARDS, ALL_LOCATIONS } from "@/lib/challenges/cards";
 import { PrintableDeck } from "@/components/challenges/PrintableDeck";
 import { PrintButton } from "@/components/challenges/PrintButton";
+import { PrintSizeControl } from "@/components/challenges/PrintSizeControl";
 import { Button } from "@/components/ui/button";
 
 export const dynamic = "force-static";
@@ -64,13 +65,16 @@ export default async function PrintPage({
     <main id="main" className="min-h-screen bg-slate-100 dark:bg-slate-900">
       {/* Toolbar — hidden when printing */}
       <div className="border-b border-border bg-background px-4 py-3 print:hidden">
-        <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-3">
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3">
           <Button asChild variant="ghost" size="sm">
             <Link href={`${localePrefix}/jeu`}>← {t("print.backToGame")}</Link>
           </Button>
-          <p className="text-xs text-muted-foreground">{t("print.tip")}</p>
+          <PrintSizeControl label={t("print.sizeLabel")} />
           <PrintButton label={t("print.printAction")} />
         </div>
+        <p className="mx-auto mt-2 max-w-5xl text-xs text-muted-foreground">
+          {t("print.tip")}
+        </p>
       </div>
 
       <div className="py-6 print:py-0">
