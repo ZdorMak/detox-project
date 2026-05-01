@@ -225,22 +225,24 @@ export function Game({
               />
             </div>
 
-            <div className="flex gap-3 mb-8 flex-wrap">
+            <div className="flex flex-col gap-3 mb-8">
               <button
                 type="button"
-                className="cd-btn cd-btn-ghost flex-1 justify-center"
-                onClick={() => void logOutcome("skipped")}
-                disabled={pending}
-              >
-                ✕ {t("actions.skipped")}
-              </button>
-              <button
-                type="button"
-                className="cd-btn cd-btn-primary flex-1 justify-center"
+                className="cd-btn cd-btn-primary cd-btn-lg w-full justify-center whitespace-nowrap"
                 onClick={() => void logOutcome("completed")}
                 disabled={pending}
               >
-                ✓ {t("actions.completed")}
+                <span aria-hidden="true">✓</span>
+                <span>{t("actions.completed")}</span>
+              </button>
+              <button
+                type="button"
+                className="cd-btn cd-btn-ghost w-full justify-center whitespace-nowrap"
+                onClick={() => void logOutcome("skipped")}
+                disabled={pending}
+              >
+                <span aria-hidden="true">✕</span>
+                <span>{t("actions.skipped")}</span>
               </button>
             </div>
 
