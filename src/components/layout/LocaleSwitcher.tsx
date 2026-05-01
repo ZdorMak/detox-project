@@ -1,8 +1,10 @@
 "use client";
 
 import { useTransition } from "react";
+import { useLocale } from "next-intl";
+import { Globe } from "lucide-react";
 import { useRouter, usePathname } from "@/i18n/navigation";
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
@@ -22,15 +24,15 @@ const LOCALE_LABELS: Record<Locale, { short: string; long: string }> = {
  *
  * Pure pill/segmented control — no dropdown — so the active locale is
  * always visible at a glance, important for multilingual Swiss schools.
+ * The leading globe icon makes the purpose unambiguous in any language.
  */
 export function LocaleSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
-  const params = useParams();
   const searchParams = useSearchParams();
+  const currentLocale = useLocale() as Locale;
   const [isPending, startTransition] = useTransition();
 
-  const currentLocale = (params?.locale as Locale) || routing.defaultLocale;
   const search = searchParams?.toString();
   const targetPath = search ? `${pathname}?${search}` : pathname;
 
@@ -46,10 +48,14 @@ export function LocaleSwitcher() {
       role="radiogroup"
       aria-label="Langue / Sprache / Lingua / Language"
       className={cn(
-        "inline-flex rounded-full border border-border bg-card p-0.5 shadow-sm",
+        "inline-flex items-center gap-0.5 rounded-full border border-border bg-card p-0.5 sm:pl-2 shadow-sm",
         isPending && "opacity-70",
       )}
     >
+      <Globe
+        className="hidden h-3.5 w-3.5 text-muted-foreground sm:block"
+        aria-hidden="true"
+      />
       {routing.locales.map((loc) => {
         const { short, long } = LOCALE_LABELS[loc];
         const active = loc === currentLocale;
@@ -59,15 +65,16 @@ export function LocaleSwitcher() {
             type="button"
             role="radio"
             aria-checked={active}
+            aria-label={long}
             title={long}
             onClick={() => choose(loc)}
             disabled={isPending}
             className={cn(
-              "flex h-7 min-w-[2.25rem] items-center justify-center rounded-full px-2 text-[10px] font-medium uppercase tracking-[0.06em] transition-colors",
+              "flex h-7 min-w-[2rem] items-center justify-center rounded-full px-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] transition-colors",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
               active
-                ? "bg-primary text-primary-foreground"
-                : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                ? "bg-primary text-primary-foreground shadow-sm"
+                : "text-muted-foreground hover:bg-accent hover:text-foreground",
             )}
           >
             {short}

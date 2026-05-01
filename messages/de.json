@@ -1,865 +1,865 @@
 {
   "metadata": {
-    "title": "Detox — Comprendre la dépendance au smartphone",
-    "description": "Une expérience interactive et un questionnaire validé scientifiquement pour comprendre votre relation au smartphone."
+    "title": "Detox — Smartphone-Abhängigkeit verstehen",
+    "description": "Eine interaktive Erfahrung und ein wissenschaftlich validierter Fragebogen, um deine Beziehung zum Smartphone zu verstehen."
   },
   "nav": {
-    "skipToContent": "Aller au contenu principal",
-    "language": "Langue"
+    "skipToContent": "Zum Hauptinhalt springen",
+    "language": "Sprache"
   },
   "landing": {
     "hero": {
-      "eyebrow": "Projet HEFP · SOUK 2026 · Suisse romande",
-      "title": "Comprendre votre relation au smartphone",
-      "titlePart1": "Comprendre votre",
-      "titlePart2": "relation au smartphone",
-      "subtitle": "Une expérience vidéo interactive et un questionnaire validé scientifiquement, conçus avec et pour les écoles de Suisse romande.",
-      "cta": "Commencer le test",
-      "ctaSubtitle": "5–8 minutes · Anonyme · Sans inscription",
-      "ctaSecondary": "Tirer une carte",
-      "phoneCounterLabel": "min sans téléphone"
+      "eyebrow": "EHB-Projekt · SOUK 2026 · Westschweiz",
+      "title": "Verstehe deine Beziehung zum Smartphone",
+      "titlePart1": "Verstehe deine",
+      "titlePart2": "Beziehung zum Smartphone",
+      "subtitle": "Eine interaktive Videoerfahrung und ein wissenschaftlich validierter Fragebogen, gemeinsam mit und für die Schulen der Westschweiz entwickelt.",
+      "cta": "Test starten",
+      "ctaSubtitle": "5–8 Minuten · Anonym · Ohne Anmeldung",
+      "ctaSecondary": "Eine Karte ziehen",
+      "phoneCounterLabel": "Min ohne Handy"
     },
     "marquee": {
       "facts": {
-        "0": "Un·e ado déverrouille le téléphone 96 fois par jour",
-        "1": "Première vérification : 5 minutes après le réveil",
-        "2": "44 % se sentent anxieux sans téléphone",
-        "3": "Temps d'écran moyen : 4 h 37 min",
-        "4": "Une notification interrompt la concentration toutes les 6 min",
-        "5": "1 sur 3 dort avec le téléphone en main"
+        "0": "Ein Teenager entsperrt das Handy 96 Mal pro Tag",
+        "1": "Erster Blick: 5 Minuten nach dem Aufwachen",
+        "2": "44 % fühlen sich ohne Handy unruhig",
+        "3": "Durchschnittliche Bildschirmzeit: 4 h 37 min",
+        "4": "Eine Benachrichtigung unterbricht die Konzentration alle 6 min",
+        "5": "1 von 3 schläft mit dem Handy in der Hand"
       }
     },
     "doors": {
-      "eyebrow": "Trois entrées",
-      "titlePart1": "Trois entrées.",
-      "titleAccent": "Un objectif calme :",
-      "titlePart2": "se remarquer.",
+      "eyebrow": "Drei Eingänge",
+      "titlePart1": "Drei Eingänge.",
+      "titleAccent": "Ein ruhiges Ziel:",
+      "titlePart2": "sich selbst bemerken.",
       "story": {
-        "title": "Une histoire courte",
-        "desc": "Trois minutes de vidéo interactive. Tu fais des choix, tu vois ce qu'ils déplacent.",
-        "cta": "Vivre l'histoire",
-        "tag": "Vidéo · 3 min"
+        "title": "Eine kurze Geschichte",
+        "desc": "Drei Minuten interaktives Video. Du triffst Entscheidungen und siehst, was sie verändern.",
+        "cta": "Geschichte erleben",
+        "tag": "Video · 3 min"
       },
       "profile": {
-        "title": "Ton profil numérique",
-        "desc": "Dix questions. Un score. Pas de jugement, juste une lecture honnête de ta semaine.",
-        "cta": "Faire le test",
-        "tag": "SAS-SV · 10Q"
+        "title": "Dein digitales Profil",
+        "desc": "Zehn Fragen. Ein Score. Kein Urteil — nur eine ehrliche Lesart deiner Woche.",
+        "cta": "Test machen",
+        "tag": "SAS-SV · 10 Fragen"
       },
       "cards": {
-        "title": "Le jeu de cartes",
-        "desc": "50 micro-expériences pour reposer le téléphone. Tu tires, tu fais, tu reviens.",
-        "cta": "Tirer une carte",
-        "tag": "50 cartes · 5 niveaux"
+        "title": "Das Kartenspiel",
+        "desc": "50 Mikro-Erfahrungen, um das Handy abzulegen. Du ziehst, du machst, du kommst zurück.",
+        "cta": "Eine Karte ziehen",
+        "tag": "50 Karten · 5 Stufen"
       }
     },
     "editorial": {
-      "quotePart1": "Toute heure d'écran n'est pas nocive.",
-      "quoteAccent": "Mais celles qu'on ne remarque pas — celles-là valent qu'on les remarque.",
-      "attribution": "Préface du projet",
-      "metaReading": "5 à 8 minutes",
-      "metaIdentity": "Anonyme, sans inscription",
-      "metaStorage": "Appareil local uniquement",
+      "quotePart1": "Nicht jede Stunde am Bildschirm ist schädlich.",
+      "quoteAccent": "Aber die, die wir nicht bemerken — die verdienen unsere Aufmerksamkeit.",
+      "attribution": "Vorwort des Projekts",
+      "metaReading": "5 bis 8 Minuten",
+      "metaIdentity": "Anonym, ohne Anmeldung",
+      "metaStorage": "Nur lokales Gerät",
       "labels": {
-        "methodology": "Méthodologie",
-        "reading": "Lecture",
-        "identity": "Identité",
-        "storage": "Stockage",
-        "accessibility": "Accessibilité",
-        "source": "Source"
+        "methodology": "Methodik",
+        "reading": "Lesedauer",
+        "identity": "Identität",
+        "storage": "Speicherung",
+        "accessibility": "Barrierefreiheit",
+        "source": "Quelle"
       }
     },
     "how": {
-      "eyebrow": "Comment ça marche",
-      "title": "Trois portes d'entrée. Un seul but : mieux te connaître.",
+      "eyebrow": "So funktioniert es",
+      "title": "Drei Eingangstüren. Ein einziges Ziel: dich besser kennenlernen.",
       "items": {
         "experience": {
-          "title": "Vis l'histoire",
-          "description": "Une mini-expérience interactive de 3 minutes — tu fais des choix, tu vois les conséquences."
+          "title": "Erlebe die Geschichte",
+          "description": "Eine 3-minütige interaktive Mini-Erfahrung — du triffst Entscheidungen und siehst die Konsequenzen."
         },
         "survey": {
-          "title": "Découvre ton profil",
-          "description": "Dix questions du SAS-SV, validé scientifiquement. Score, catégories, ressources de soutien."
+          "title": "Entdecke dein Profil",
+          "description": "Zehn Fragen aus dem SAS-SV, wissenschaftlich validiert. Score, Kategorien, Unterstützungsangebote."
         },
         "challenge": {
-          "title": "Joue dans la vraie vie",
-          "description": "50 cartes à tirer pour reposer le téléphone et faire quelque chose de concret. Niveaux, succès, certificat."
+          "title": "Spiel im echten Leben",
+          "description": "50 Karten zum Ziehen, um das Handy abzulegen und etwas Konkretes zu tun. Stufen, Erfolge, Zertifikat."
         }
       }
     },
     "stats": {
-      "title": "Statistiques de la communauté",
-      "eyebrow": "En direct",
-      "liveLabel": "Mis à jour en direct · dernières 24 heures",
+      "title": "Statistiken der Community",
+      "eyebrow": "Live",
+      "liveLabel": "Live aktualisiert · letzte 24 Stunden",
       "items": {
-        "sessions": "sessions ouvertes",
-        "challenges": "défis réalisés",
-        "surveys": "questionnaires finis"
+        "sessions": "geöffnete Sessions",
+        "challenges": "abgeschlossene Challenges",
+        "surveys": "abgeschlossene Fragebögen"
       }
     },
     "ctaBanner": {
-      "eyebrow": "Prêt·e ?",
-      "title": "Pose le téléphone. Commence.",
-      "titlePart1": "Pose le téléphone.",
-      "titleAccent": "Commence.",
-      "subtitle": "Cinq minutes pour découvrir ton rapport au smartphone. Anonyme, sans inscription, gratuit.",
-      "primary": "Commencer",
-      "secondary": "Tirer une carte"
+      "eyebrow": "Bereit?",
+      "title": "Leg das Handy weg. Fang an.",
+      "titlePart1": "Leg das Handy weg.",
+      "titleAccent": "Fang an.",
+      "subtitle": "Fünf Minuten, um deine Beziehung zum Smartphone zu entdecken. Anonym, ohne Anmeldung, kostenlos.",
+      "primary": "Loslegen",
+      "secondary": "Eine Karte ziehen"
     },
     "pillars": {
-      "title": "Sept piliers, une démarche cohérente",
-      "subtitle": "Chaque décision du projet est ancrée dans au moins un de ces axes.",
+      "title": "Sieben Säulen, ein stimmiger Ansatz",
+      "subtitle": "Jede Entscheidung im Projekt verankert sich in mindestens einer dieser Achsen.",
       "items": {
         "durable": {
-          "title": "Durable",
-          "description": "Conformité RGPD, code maintenable, questionnaire open source."
+          "title": "Nachhaltig",
+          "description": "DSGVO-konform, wartbarer Code, Open-Source-Fragebogen."
         },
         "addiction": {
-          "title": "Addiction",
-          "description": "Base scientifique solide (échelle SAS-SV), narration responsable."
+          "title": "Sucht",
+          "description": "Solide wissenschaftliche Basis (SAS-SV-Skala), verantwortungsvolle Erzählung."
         },
         "collaboration": {
-          "title": "Collaboration",
-          "description": "Tableau de bord pour les enseignant·es, données agrégées par classe."
+          "title": "Kooperation",
+          "description": "Dashboard für Lehrpersonen, klassenweise aggregierte Daten."
         },
         "innovation": {
           "title": "Innovation",
-          "description": "Vidéo interactive avec embranchements, statistiques en temps réel."
+          "description": "Interaktives Video mit Verzweigungen, Echtzeit-Statistiken."
         },
         "smartphone": {
           "title": "Smartphone",
-          "description": "Expérience pensée d'abord pour mobile, prête PWA."
+          "description": "Mobile-First konzipiert, PWA-bereit."
         },
         "interdisciplinaire": {
-          "title": "Interdisciplinaire",
-          "description": "Psychologie, UX, santé publique et data science combinées."
+          "title": "Interdisziplinär",
+          "description": "Psychologie, UX, Public Health und Data Science vereint."
         },
         "accessible": {
-          "title": "Accessible",
-          "description": "WCAG 2.1 AA, navigation clavier, lecteurs d'écran."
+          "title": "Zugänglich",
+          "description": "WCAG 2.1 AA, Tastaturnavigation, Screenreader-tauglich."
         }
       }
     }
   },
   "footer": {
-    "tagline": "Detox — un projet HEFP pour la santé numérique des jeunes.",
-    "gdpr": "Vos réponses sont anonymes. Voir notre {policy}.",
-    "policyLink": "politique de confidentialité",
-    "contact": "Contact",
-    "github": "Code source",
-    "rights": "© 2026 Projet Detox. Sous licence MIT pour la partie open source."
+    "tagline": "Detox — ein EHB-Projekt für die digitale Gesundheit junger Menschen.",
+    "gdpr": "Deine Antworten sind anonym. Siehe unsere {policy}.",
+    "policyLink": "Datenschutzerklärung",
+    "contact": "Kontakt",
+    "github": "Quellcode",
+    "rights": "© 2026 Projekt Detox. Open-Source-Anteile unter MIT-Lizenz."
   },
   "consent": {
-    "title": "Avant de commencer",
-    "body": "Pour améliorer l'expérience, nous enregistrons des données 100 % anonymes (réponses, interactions vidéo). Aucune information personnelle n'est collectée. Vos données ne sont jamais vendues.",
-    "accept": "J'accepte",
-    "decline": "Refuser",
-    "learnMore": "En savoir plus"
+    "title": "Bevor du startest",
+    "body": "Um die Erfahrung zu verbessern, erfassen wir 100 % anonyme Daten (Antworten, Video-Interaktionen). Es werden keine persönlichen Informationen gesammelt. Deine Daten werden niemals verkauft.",
+    "accept": "Akzeptieren",
+    "decline": "Ablehnen",
+    "learnMore": "Mehr erfahren"
   },
   "auth": {
-    "metadata": { "title": "Connexion — Detox" },
+    "metadata": { "title": "Anmelden — Detox" },
     "menu": {
-      "signIn": "Se connecter",
-      "signOut": "Se déconnecter"
+      "signIn": "Anmelden",
+      "signOut": "Abmelden"
     },
     "login": {
-      "title": "Se connecter",
-      "subtitle": "Sauvegarde ta progression sur tous tes appareils. Optionnel.",
-      "google": "Continuer avec Google",
-      "divider": "ou",
-      "magicHeading": "Lien magique par email",
-      "magicLabel": "Adresse email",
-      "magicPlaceholder": "ton@email.ch",
-      "magicSubmit": "Recevoir le lien",
-      "magicHint": "On t'envoie un lien à cliquer. Pas de mot de passe à retenir.",
-      "magicSent": "Lien envoyé. Vérifie ta boîte mail (et le dossier spam).",
-      "consent": "En te connectant, tu acceptes que ton email soit stocké pour identifier ton compte. Tu peux te déconnecter à tout moment.",
-      "skipPrompt": "Pas envie de te connecter ?",
-      "skipLink": "Continuer en anonyme",
+      "title": "Anmelden",
+      "subtitle": "Speichere deinen Fortschritt auf allen deinen Geräten. Optional.",
+      "google": "Mit Google fortfahren",
+      "divider": "oder",
+      "magicHeading": "Magic Link per E-Mail",
+      "magicLabel": "E-Mail-Adresse",
+      "magicPlaceholder": "deine@mail.ch",
+      "magicSubmit": "Link erhalten",
+      "magicHint": "Wir schicken dir einen Link zum Anklicken. Kein Passwort zum Merken.",
+      "magicSent": "Link gesendet. Prüfe deinen Posteingang (auch den Spam-Ordner).",
+      "consent": "Mit der Anmeldung stimmst du zu, dass deine E-Mail zur Identifikation deines Kontos gespeichert wird. Du kannst dich jederzeit abmelden.",
+      "skipPrompt": "Keine Lust auf Anmeldung?",
+      "skipLink": "Anonym fortfahren",
       "errors": {
-        "generic": "Connexion échouée. Réessaie.",
-        "missing_code": "Lien invalide ou expiré.",
-        "missing_email": "Aucun email associé à ce compte.",
-        "exchange_failed": "Impossible de finaliser la connexion. Réessaie."
+        "generic": "Anmeldung fehlgeschlagen. Versuch es erneut.",
+        "missing_code": "Ungültiger oder abgelaufener Link.",
+        "missing_email": "Keine E-Mail mit diesem Konto verknüpft.",
+        "exchange_failed": "Anmeldung konnte nicht abgeschlossen werden. Versuch es erneut."
       }
     }
   },
   "challenges": {
     "metadata": {
-      "title": "Pose le téléphone — Detox"
+      "title": "Leg das Handy weg — Detox"
     },
-    "title": "Pose le téléphone",
-    "subtitle": "Tire une carte. Fais la chose. Reviens dire si tu l'as fait. Aucune note, aucun jugement.",
-    "cardsHeaderEyebrow": "Carte {current} sur {total}",
-    "cardsTitlePart1": "Tire une carte.",
-    "cardsTitleAccent": "Pose le téléphone.",
-    "cardsSub": "Cinquante micro-expériences pour reposer le téléphone — quelques minutes, parfois moins. Tire, fais, reviens.",
+    "title": "Leg das Handy weg",
+    "subtitle": "Zieh eine Karte. Mach die Sache. Komm zurück und sag, ob du es gemacht hast. Keine Note, kein Urteil.",
+    "cardsHeaderEyebrow": "Karte {current} von {total}",
+    "cardsTitlePart1": "Zieh eine Karte.",
+    "cardsTitleAccent": "Leg das Handy weg.",
+    "cardsSub": "Fünfzig Mikro-Erfahrungen, um das Handy abzulegen — ein paar Minuten, manchmal weniger. Ziehen, machen, zurückkommen.",
     "nav": {
-      "programs": "Programmes",
-      "profile": "Mon profil"
+      "programs": "Programme",
+      "profile": "Mein Profil"
     },
     "levels": {
-      "debutant": { "label": "Débutant·e", "subtitle": "Tu commences. C'est déjà beaucoup." },
-      "curieux":  { "label": "Curieux·se", "subtitle": "Tu explores, ça te plaît." },
-      "engage":   { "label": "Engagé·e",   "subtitle": "Tu en as fait une habitude." },
-      "habitue":  { "label": "Habitué·e",  "subtitle": "Le téléphone, tu le poses sans y penser." },
-      "maitre":   { "label": "Maître",     "subtitle": "Modèle pour les autres." }
+      "debutant": { "label": "Anfänger·in", "subtitle": "Du fängst an. Das ist schon viel." },
+      "curieux":  { "label": "Neugierig",   "subtitle": "Du erkundest, es gefällt dir." },
+      "engage":   { "label": "Engagiert",   "subtitle": "Du hast es zur Gewohnheit gemacht." },
+      "habitue":  { "label": "Vertraut",    "subtitle": "Du legst das Handy weg, ohne nachzudenken." },
+      "maitre":   { "label": "Meister·in",  "subtitle": "Vorbild für andere." }
     },
     "achievements": {
-      "toast": { "unlocked": "Débloqué !" },
+      "toast": { "unlocked": "Freigeschaltet!" },
       "items": {
         "first_step": {
-          "title": "Premier pas",
-          "description": "Ta première carte terminée."
+          "title": "Erster Schritt",
+          "description": "Deine erste Karte abgeschlossen."
         },
         "five_observations": {
-          "title": "Œil aiguisé",
-          "description": "5 cartes Observation terminées."
+          "title": "Geschärfter Blick",
+          "description": "5 Beobachtungs-Karten abgeschlossen."
         },
         "five_socials": {
-          "title": "Lien",
-          "description": "5 cartes Social terminées."
+          "title": "Verbindung",
+          "description": "5 Sozial-Karten abgeschlossen."
         },
         "five_movements": {
-          "title": "Bouge !",
-          "description": "5 cartes Mouvement terminées."
+          "title": "Beweg dich!",
+          "description": "5 Bewegungs-Karten abgeschlossen."
         },
         "five_creatives": {
-          "title": "Inventif·ve",
-          "description": "5 cartes Création terminées."
+          "title": "Kreativ",
+          "description": "5 Kreativ-Karten abgeschlossen."
         },
         "five_reflections": {
-          "title": "Calme",
-          "description": "5 cartes Réflexion terminées."
+          "title": "Ruhe",
+          "description": "5 Reflexions-Karten abgeschlossen."
         },
         "full_circle": {
-          "title": "Tour complet",
-          "description": "Au moins 1 carte de chaque catégorie."
+          "title": "Volle Runde",
+          "description": "Mindestens 1 Karte aus jeder Kategorie."
         },
         "marathon": {
           "title": "Marathon",
-          "description": "10 cartes terminées en une seule journée."
+          "description": "10 Karten an einem einzigen Tag abgeschlossen."
         },
         "meal_phone_free": {
-          "title": "Sans écran à table",
-          "description": "Tu as terminé un repas sans téléphone."
+          "title": "Ohne Bildschirm am Tisch",
+          "description": "Du hast eine Mahlzeit ohne Handy beendet."
         },
         "night_owl": {
-          "title": "Couche-tard",
-          "description": "Une carte terminée entre 22 h et 2 h."
+          "title": "Nachteule",
+          "description": "Eine Karte zwischen 22 h und 2 h abgeschlossen."
         },
         "early_bird": {
-          "title": "Lève-tôt",
-          "description": "Une carte terminée entre 5 h et 7 h."
+          "title": "Frühaufsteher·in",
+          "description": "Eine Karte zwischen 5 h und 7 h abgeschlossen."
         },
         "program_first": {
-          "title": "Premier programme",
-          "description": "Tu as terminé un programme entier."
+          "title": "Erstes Programm",
+          "description": "Du hast ein ganzes Programm abgeschlossen."
         }
       }
     },
     "programs": {
-      "metadata": { "title": "Programmes — Pose le téléphone" },
-      "title": "Programmes",
-      "subtitle": "Des suites de cartes pensées autour d'un thème.",
-      "progress": "Progression",
-      "stepOf": "Étape {current} sur {total}",
-      "backToList": "← Tous les programmes",
+      "metadata": { "title": "Programme — Leg das Handy weg" },
+      "title": "Programme",
+      "subtitle": "Kartenfolgen rund um ein Thema.",
+      "progress": "Fortschritt",
+      "stepOf": "Schritt {current} von {total}",
+      "backToList": "← Alle Programme",
       "items": {
         "matin_sans_ecran": {
-          "title": "Matin sans écran",
-          "description": "5 cartes pour commencer la journée doucement."
+          "title": "Morgen ohne Bildschirm",
+          "description": "5 Karten, um den Tag sanft zu beginnen."
         },
         "connexions": {
-          "title": "Connexions",
-          "description": "10 cartes pour renforcer les liens autour de toi."
+          "title": "Verbindungen",
+          "description": "10 Karten, um die Beziehungen um dich herum zu stärken."
         },
         "bouge_ton_corps": {
-          "title": "Bouge ton corps",
-          "description": "7 cartes pour bouger un peu chaque jour."
+          "title": "Beweg deinen Körper",
+          "description": "7 Karten, um dich jeden Tag ein wenig zu bewegen."
         },
         "sept_jours_calme": {
-          "title": "Sept jours de calme",
-          "description": "7 cartes pour ralentir et respirer."
+          "title": "Sieben Tage Ruhe",
+          "description": "7 Karten, um langsamer zu werden und durchzuatmen."
         }
       }
     },
     "profile": {
-      "metadata": { "title": "Mon profil — Pose le téléphone" },
-      "title": "Mon profil",
-      "levelLabel": "Niveau",
-      "toNext": "Encore {n} cartes pour {next}",
-      "achievementsTitle": "Succès ({unlocked} / {total})",
-      "programsTitle": "Programmes",
-      "backToCards": "Tirer une carte",
-      "viewProfile": "Mon profil",
-      "viewCertificate": "Voir mon certificat",
-      "printDeck": "Imprimer les cartes",
-      "home": "Accueil",
-      "skippedCount": "{n} cartes passées au total."
+      "metadata": { "title": "Mein Profil — Leg das Handy weg" },
+      "title": "Mein Profil",
+      "levelLabel": "Stufe",
+      "toNext": "Noch {n} Karten bis {next}",
+      "achievementsTitle": "Erfolge ({unlocked} / {total})",
+      "programsTitle": "Programme",
+      "backToCards": "Eine Karte ziehen",
+      "viewProfile": "Mein Profil",
+      "viewCertificate": "Zertifikat ansehen",
+      "printDeck": "Karten drucken",
+      "home": "Startseite",
+      "skippedCount": "{n} Karten insgesamt übersprungen."
     },
     "print": {
-      "metadata": { "title": "Version imprimable — Pose le téléphone" },
-      "pageTitle": "Pose le téléphone — Cartes imprimables",
-      "backToGame": "Retour au jeu",
-      "tip": "Imprime sur A4 puis découpe les cartes le long des pointillés.",
-      "printAction": "🖨️ Imprimer / PDF",
-      "rulesHeading": "Règles du jeu en classe",
-      "rulesIntro": "Une activité courte pour reposer le téléphone et faire quelque chose ensemble. Aucun écran requis pour jouer une fois les cartes imprimées.",
+      "metadata": { "title": "Druckversion — Leg das Handy weg" },
+      "pageTitle": "Leg das Handy weg — Druckkarten",
+      "backToGame": "Zurück zum Spiel",
+      "tip": "Auf A4 drucken, dann entlang der gestrichelten Linien ausschneiden.",
+      "printAction": "🖨️ Drucken / PDF",
+      "rulesHeading": "Spielregeln im Klassenzimmer",
+      "rulesIntro": "Eine kurze Aktivität, um das Handy abzulegen und gemeinsam etwas zu machen. Sobald die Karten gedruckt sind, brauchst du keinen Bildschirm zum Spielen.",
       "rules": {
-        "1": "Mélange les cartes. Tire-en une au hasard.",
-        "2": "Lis-la à voix haute. Choisis : « j'essaie » ou « une autre carte ».",
-        "3": "Fais l'action en moins de 15 minutes. Personne ne te chronomètre — tu es honnête avec toi-même.",
-        "4": "Reviens à la table : raconte (ou pas — c'est OK aussi).",
-        "5": "Coche la carte sur ta feuille de suivi. Tire-en une autre quand tu veux.",
-        "6": "En groupe : tirez une carte commune par séance. Comparez vos expériences."
+        "1": "Mische die Karten. Zieh eine zufällig.",
+        "2": "Lies sie laut vor. Wähle: «ich versuche es» oder «eine andere Karte».",
+        "3": "Mach die Aktion in weniger als 15 Minuten. Niemand stoppt deine Zeit — sei ehrlich zu dir selbst.",
+        "4": "Komm zurück an den Tisch: erzähl davon (oder nicht — auch das ist OK).",
+        "5": "Hak die Karte auf deinem Tracking-Bogen ab. Zieh die nächste, wann du willst.",
+        "6": "In der Gruppe: Zieht pro Sitzung eine gemeinsame Karte. Vergleicht eure Erfahrungen."
       },
-      "legendCategories": "Catégories",
-      "legendLocations": "Lieux possibles",
-      "footer": "Detox · Projet HEFP · 2026 · Cartes sous licence libre"
+      "legendCategories": "Kategorien",
+      "legendLocations": "Mögliche Orte",
+      "footer": "Detox · EHB-Projekt · 2026 · Karten unter freier Lizenz"
     },
     "certificate": {
-      "metadata": { "title": "Mon certificat — Pose le téléphone" },
-      "back": "Retour au profil",
-      "print": "Imprimer / PDF",
-      "nameLabel": "Ton nom (optionnel)",
-      "namePlaceholder": "Ton prénom",
-      "nameUpdate": "Mettre à jour",
-      "headline": "Pose le téléphone",
-      "subhead": "Certificat de présence",
-      "quote": "Tu as posé le téléphone {n} fois. Chaque fois était un choix.",
-      "memberSince": "Premier défi le",
-      "achievementsTitle": "Succès débloqués",
-      "programsTitle": "Programmes terminés",
-      "noProgramsYet": "Aucun programme terminé pour l'instant — c'est OK.",
-      "footer": "Detox · Projet HEFP · 2026",
-      "unnamed": "Joueur·euse anonyme"
+      "metadata": { "title": "Mein Zertifikat — Leg das Handy weg" },
+      "back": "Zurück zum Profil",
+      "print": "Drucken / PDF",
+      "nameLabel": "Dein Name (optional)",
+      "namePlaceholder": "Dein Vorname",
+      "nameUpdate": "Aktualisieren",
+      "headline": "Leg das Handy weg",
+      "subhead": "Teilnahmezertifikat",
+      "quote": "Du hast das Handy {n} Mal weggelegt. Jedes Mal war eine Entscheidung.",
+      "memberSince": "Erste Challenge am",
+      "achievementsTitle": "Freigeschaltete Erfolge",
+      "programsTitle": "Abgeschlossene Programme",
+      "noProgramsYet": "Noch kein Programm abgeschlossen — das ist OK.",
+      "footer": "Detox · EHB-Projekt · 2026",
+      "unnamed": "Anonyme·r Spieler·in"
     },
     "progress": {
-      "completed": "faits",
-      "skipped": "passés"
+      "completed": "geschafft",
+      "skipped": "übersprungen"
     },
     "actions": {
-      "accept": "J'essaie",
-      "decline": "Une autre carte",
-      "completed": "Je l'ai fait",
-      "skipped": "Pas cette fois",
-      "finish": "Terminer la session →"
+      "accept": "Ich versuche",
+      "decline": "Eine andere Karte",
+      "completed": "Hab ich gemacht",
+      "skipped": "Diesmal nicht",
+      "finish": "Session beenden →"
     },
     "hints": {
-      "honor": "On te fait confiance — personne ne vérifie."
+      "honor": "Wir vertrauen dir — niemand kontrolliert."
     },
     "active": {
-      "label": "Carte en cours",
-      "hint": "Pose le téléphone pour environ {min, plural, one {# minute} other {# minutes}}. Reviens quand tu as fini."
+      "label": "Aktive Karte",
+      "hint": "Leg das Handy für etwa {min, plural, one {# Minute} other {# Minuten}} weg. Komm zurück, wenn du fertig bist."
     },
     "done": {
-      "title": "Joli travail.",
-      "body": "Tu as fait {completed, plural, =0 {aucune carte} one {# carte} other {# cartes}} et passé {skipped, plural, =0 {aucune} one {# fois} other {# fois}}. Tu peux revenir demain — il y aura encore des cartes.",
-      "home": "Retour à l'accueil"
+      "title": "Schöne Arbeit.",
+      "body": "Du hast {completed, plural, =0 {keine Karte} one {# Karte} other {# Karten}} gemacht und {skipped, plural, =0 {keinmal} one {# Mal} other {# Mal}} übersprungen. Du kannst morgen wiederkommen — es wird noch Karten geben.",
+      "home": "Zurück zur Startseite"
     },
     "cardMeta": {
       "duration": "≈ {min, plural, one {# min} other {# min}}"
     },
-    "cardLevel": "Niveau {level}",
-    "cardTry": "Essayer",
-    "stampDo": "JE LE FAIS",
-    "stampSkip": "PASSER",
-    "sidePanelHeading": "À propos de cette carte",
+    "cardLevel": "Stufe {level}",
+    "cardTry": "Versuchen",
+    "stampDo": "ICH MACH'S",
+    "stampSkip": "ÜBERSPRINGEN",
+    "sidePanelHeading": "Über diese Karte",
     "sideRow": {
-      "category": "Catégorie",
-      "duration": "Durée",
-      "level": "Niveau"
+      "category": "Kategorie",
+      "duration": "Dauer",
+      "level": "Stufe"
     },
-    "progressLabel": "Progression",
+    "progressLabel": "Fortschritt",
     "categories": {
-      "observation": "Observation",
-      "social": "Social",
-      "movement": "Mouvement",
-      "creative": "Création",
-      "reflection": "Réflexion"
+      "observation": "Beobachtung",
+      "social": "Sozial",
+      "movement": "Bewegung",
+      "creative": "Kreativ",
+      "reflection": "Reflexion"
     },
     "locations": {
-      "ariaLabel": "Choisis ton lieu",
-      "prompt": "Tu es :",
-      "changeTo": "Changer pour :",
+      "ariaLabel": "Wähle deinen Ort",
+      "prompt": "Du bist:",
+      "changeTo": "Wechseln zu:",
       "options": {
-        "home": "À la maison",
-        "school": "À l'école",
-        "transport": "En transport",
-        "outside": "Dehors",
-        "with_friends": "Avec des ami·es"
+        "home": "Zu Hause",
+        "school": "In der Schule",
+        "transport": "Im Verkehr",
+        "outside": "Draussen",
+        "with_friends": "Mit Freund·innen"
       }
     },
     "cards": {
       "window_describe": {
-        "title": "À la fenêtre",
-        "body": "Va à une fenêtre. Décris à voix haute, en deux phrases, ce que tu vois."
+        "title": "Am Fenster",
+        "body": "Geh zu einem Fenster. Beschreibe in zwei Sätzen laut, was du siehst."
       },
       "five_sounds": {
-        "title": "Cinq sons",
-        "body": "Ferme les yeux. Compte cinq sons différents autour de toi."
+        "title": "Fünf Geräusche",
+        "body": "Schliess die Augen. Zähle fünf verschiedene Geräusche um dich herum."
       },
       "count_colors": {
-        "title": "Six couleurs",
-        "body": "Trouve six objets de couleurs différentes dans la pièce."
+        "title": "Sechs Farben",
+        "body": "Finde sechs Gegenstände in unterschiedlichen Farben im Raum."
       },
       "stranger_outfit": {
-        "title": "Tenue d'inconnu·e",
-        "body": "La prochaine personne que tu croises : note mentalement trois détails de sa tenue."
+        "title": "Outfit einer fremden Person",
+        "body": "Die nächste Person, die du triffst: merke dir innerlich drei Details ihrer Kleidung."
       },
       "sky_minute": {
-        "title": "Une minute de ciel",
-        "body": "Sors ou regarde par la fenêtre. Observe le ciel pendant une minute, sans rien faire d'autre."
+        "title": "Eine Minute Himmel",
+        "body": "Geh raus oder schau aus dem Fenster. Beobachte den Himmel eine Minute lang, ohne sonst etwas zu tun."
       },
       "object_history": {
-        "title": "L'objet le plus vieux",
-        "body": "Trouve l'objet le plus ancien autour de toi. Imagine son histoire."
+        "title": "Der älteste Gegenstand",
+        "body": "Finde den ältesten Gegenstand um dich herum. Stell dir seine Geschichte vor."
       },
       "ask_day": {
-        "title": "Et toi, ta journée ?",
-        "body": "Demande à quelqu'un autour de toi comment s'est passée sa journée. Écoute vraiment."
+        "title": "Und du, dein Tag?",
+        "body": "Frage jemanden um dich herum, wie sein Tag war. Hör wirklich zu."
       },
       "compliment_someone": {
-        "title": "Un compliment",
-        "body": "Fais un compliment sincère à quelqu'un — pas sur son apparence, sur quelque chose qu'il/elle a fait."
+        "title": "Ein Kompliment",
+        "body": "Mach jemandem ein ehrliches Kompliment — nicht über das Aussehen, sondern über etwas, das er oder sie getan hat."
       },
       "phone_call_friend": {
-        "title": "Un appel",
-        "body": "Appelle quelqu'un (oui, par téléphone, pas en message). Juste pour dire bonjour."
+        "title": "Ein Anruf",
+        "body": "Ruf jemanden an (ja, telefonisch, nicht per Nachricht). Einfach um Hallo zu sagen."
       },
       "thank_someone": {
-        "title": "Merci",
-        "body": "Dis merci à quelqu'un — un parent, un·e ami·e, un·e prof — pour quelque chose de précis."
+        "title": "Danke",
+        "body": "Sag jemandem danke — einem Elternteil, einem·er Freund·in, einer Lehrperson — für etwas Konkretes."
       },
       "ask_advice": {
-        "title": "Un conseil",
-        "body": "Demande à quelqu'un de plus âgé un conseil sur n'importe quoi. Note ce qu'on te dit."
+        "title": "Ein Rat",
+        "body": "Bitte jemand Älteren um einen Rat — egal worüber. Notiere, was gesagt wird."
       },
       "share_meal_no_phone": {
-        "title": "Repas sans téléphone",
-        "body": "Ton prochain repas — table, chaise, téléphone dans une autre pièce. Mange en discutant ou en silence."
+        "title": "Mahlzeit ohne Handy",
+        "body": "Deine nächste Mahlzeit — Tisch, Stuhl, Handy in einem anderen Raum. Iss im Gespräch oder in Stille."
       },
       "ten_squats": {
-        "title": "Dix squats",
-        "body": "Lève-toi et fais dix squats. Compte à voix haute si ça aide."
+        "title": "Zehn Kniebeugen",
+        "body": "Steh auf und mach zehn Kniebeugen. Zähl laut, wenn es hilft."
       },
       "stretch_one_minute": {
-        "title": "Étirements",
-        "body": "Une minute pour étirer ce qui te fait mal — nuque, épaules, dos."
+        "title": "Dehnübungen",
+        "body": "Eine Minute, um zu dehnen, was schmerzt — Nacken, Schultern, Rücken."
       },
       "walk_around_block": {
-        "title": "Tour du quartier",
-        "body": "Sors marcher dix minutes. Sans écouteurs, sans téléphone à la main."
+        "title": "Um den Block",
+        "body": "Geh zehn Minuten spazieren. Ohne Kopfhörer, ohne Handy in der Hand."
       },
       "stairs_three_times": {
-        "title": "Trois fois les escaliers",
-        "body": "Monte et descends un étage trois fois. Respire bien."
+        "title": "Dreimal die Treppe",
+        "body": "Geh ein Stockwerk hoch und runter, dreimal. Atme gut."
       },
       "dance_one_song": {
-        "title": "Une chanson, debout",
-        "body": "Mets une chanson que tu aimes. Lève-toi. Bouge jusqu'à la fin."
+        "title": "Ein Lied, im Stehen",
+        "body": "Spiel ein Lied, das du magst. Steh auf. Beweg dich bis zum Ende."
       },
       "barefoot_outside": {
-        "title": "Pieds nus dehors",
-        "body": "Si tu peux, marche pieds nus sur de l'herbe ou de la terre pendant cinq minutes."
+        "title": "Barfuss draussen",
+        "body": "Wenn möglich, geh fünf Minuten barfuss auf Gras oder Erde."
       },
       "draw_what_you_see": {
-        "title": "Dessine ce que tu vois",
-        "body": "Prends une feuille et un stylo. Dessine un objet devant toi. Pas besoin que ce soit beau."
+        "title": "Zeichne, was du siehst",
+        "body": "Nimm Papier und Stift. Zeichne einen Gegenstand vor dir. Es muss nicht schön sein."
       },
       "write_haiku": {
-        "title": "Un haïku",
-        "body": "Écris trois lignes : 5 syllabes, 7 syllabes, 5 syllabes. Sur n'importe quoi."
+        "title": "Ein Haiku",
+        "body": "Schreib drei Zeilen: 5 Silben, 7 Silben, 5 Silben. Über irgendetwas."
       },
       "fold_paper_thing": {
-        "title": "Pliage",
-        "body": "Prends une feuille. Plie un avion, une grenouille, une fleur — ce que tu sais ou improvise."
+        "title": "Falten",
+        "body": "Nimm ein Blatt. Falte ein Flugzeug, einen Frosch, eine Blume — was du kannst oder erfindest."
       },
       "rearrange_desk": {
-        "title": "Range ton bureau",
-        "body": "Dix minutes pour ranger ton espace de travail. Jette ce qui ne sert pas."
+        "title": "Räum deinen Schreibtisch auf",
+        "body": "Zehn Minuten, um deinen Arbeitsplatz aufzuräumen. Wirf weg, was nicht gebraucht wird."
       },
       "letter_to_future_me": {
-        "title": "Lettre à toi dans un an",
-        "body": "Écris une lettre à toi-même dans un an. Trois choses que tu veux te rappeler."
+        "title": "Brief an dich in einem Jahr",
+        "body": "Schreib dir einen Brief an dich selbst in einem Jahr. Drei Dinge, an die du dich erinnern willst."
       },
       "humming_a_tune": {
-        "title": "Fredonne",
-        "body": "Fredonne une mélodie pendant deux minutes. Inventée ou non — peu importe."
+        "title": "Summen",
+        "body": "Summ zwei Minuten lang eine Melodie. Erfunden oder nicht — egal."
       },
       "eyes_closed_minute": {
-        "title": "Yeux fermés",
-        "body": "Une minute, yeux fermés. Ne pense pas à ne rien penser. Juste assis·e."
+        "title": "Augen zu",
+        "body": "Eine Minute, Augen geschlossen. Denk nicht daran, an nichts zu denken. Sitz einfach da."
       },
       "three_good_things": {
-        "title": "Trois bonnes choses",
-        "body": "Note (en pensée ou sur papier) trois choses qui se sont bien passées aujourd'hui, même petites."
+        "title": "Drei gute Dinge",
+        "body": "Notiere (im Kopf oder auf Papier) drei Dinge, die heute gut gelaufen sind, auch kleine."
       },
       "breathing_4_7_8": {
-        "title": "Respiration 4-7-8",
-        "body": "Inspire 4 secondes, retiens 7, expire 8. Quatre cycles."
+        "title": "Atmung 4-7-8",
+        "body": "Atme 4 Sekunden ein, halte 7, atme 8 aus. Vier Zyklen."
       },
       "imagine_summer": {
-        "title": "Souvenir d'été",
-        "body": "Ferme les yeux. Imagine un moment de cet été dont tu te souviens bien."
+        "title": "Sommer-Erinnerung",
+        "body": "Schliess die Augen. Stell dir einen Moment dieses Sommers vor, an den du dich gut erinnerst."
       },
       "what_will_matter": {
-        "title": "Dans dix ans",
-        "body": "Pense à ce que tu fais aujourd'hui. Qu'est-ce qui aura encore de l'importance dans dix ans ?"
+        "title": "In zehn Jahren",
+        "body": "Denk an das, was du heute machst. Was wird in zehn Jahren noch wichtig sein?"
       },
       "drink_water_slowly": {
-        "title": "Un verre, lentement",
-        "body": "Verse-toi un verre d'eau. Bois-le sans rien faire d'autre. Sens les gorgées."
+        "title": "Ein Glas, langsam",
+        "body": "Schenk dir ein Glas Wasser ein. Trink es, ohne sonst etwas zu tun. Spür die Schlucke."
       },
       "scan_room_details": {
-        "title": "Détails autour de toi",
-        "body": "Trouve trois petits détails que tu n'avais jamais remarqués jusque-là."
+        "title": "Details um dich herum",
+        "body": "Finde drei kleine Details, die dir bisher nie aufgefallen sind."
       },
       "smile_at_stranger": {
-        "title": "Un sourire",
-        "body": "Souris à la prochaine personne avec qui tu croises le regard. Sans rien dire."
+        "title": "Ein Lächeln",
+        "body": "Lächle die nächste Person an, deren Blick du triffst. Ohne etwas zu sagen."
       },
       "shoulder_rolls": {
-        "title": "Roulements d'épaules",
-        "body": "Dix lents roulements vers l'arrière, puis dix vers l'avant. Discret, partout."
+        "title": "Schulterkreisen",
+        "body": "Zehn langsame Kreise rückwärts, dann zehn vorwärts. Diskret, überall."
       },
       "invent_a_story": {
-        "title": "Invente une histoire",
-        "body": "Choisis quelqu'un autour de toi (sans qu'il/elle s'en aperçoive). Imagine sa journée."
+        "title": "Erfinde eine Geschichte",
+        "body": "Wähl jemanden um dich herum (ohne dass er·sie es merkt). Stell dir seinen·ihren Tag vor."
       },
       "notice_one_feeling": {
-        "title": "Nomme ce que tu ressens",
-        "body": "Pose-toi la question : qu'est-ce que je ressens là, maintenant ? Trouve un mot précis."
+        "title": "Benenne, was du fühlst",
+        "body": "Stell dir die Frage: Was fühle ich genau jetzt? Finde ein präzises Wort."
       },
       "find_yellow_things": {
-        "title": "Cinq jaunes",
-        "body": "Trouve cinq objets jaunes autour de toi. N'importe quel jaune compte."
+        "title": "Fünf Gelbtöne",
+        "body": "Finde fünf gelbe Gegenstände um dich herum. Jedes Gelb zählt."
       },
       "people_walking_pace": {
-        "title": "Trois rythmes",
-        "body": "Observe trois personnes qui marchent. Plus vite que toi, plus lent, ou pareil ?"
+        "title": "Drei Tempi",
+        "body": "Beobachte drei Menschen, die gehen. Schneller als du, langsamer oder gleich?"
       },
       "true_sky_color": {
-        "title": "La vraie couleur du ciel",
-        "body": "Regarde le ciel. Quelle est sa couleur exacte ? Pas \"bleu\" — précise."
+        "title": "Die wahre Farbe des Himmels",
+        "body": "Schau in den Himmel. Welche Farbe hat er genau? Nicht «blau» — präzise."
       },
       "ask_favorite_song": {
-        "title": "Sa chanson du moment",
-        "body": "Demande à quelqu'un quelle chanson il/elle écoute en boucle ces jours-ci. Écoute-la après si tu veux."
+        "title": "Sein·ihr Lied des Moments",
+        "body": "Frag jemanden, welches Lied er·sie gerade in Schleife hört. Hör es danach an, wenn du willst."
       },
       "handwritten_note": {
-        "title": "Une note manuscrite",
-        "body": "Écris une note à la main pour quelqu'un — même une seule phrase. Donne-la ou laisse-la."
+        "title": "Eine handgeschriebene Notiz",
+        "body": "Schreib jemandem eine Notiz von Hand — auch nur einen Satz. Gib sie weiter oder lass sie liegen."
       },
       "off_topic_question": {
-        "title": "Une question hors sujet",
-        "body": "Pose à un·e prof, un parent ou un·e ami·e une question qui n'a rien à voir avec l'école. Sur sa vie, ses goûts, ses souvenirs."
+        "title": "Eine themenfremde Frage",
+        "body": "Stell einer Lehrperson, einem Elternteil oder einem·r Freund·in eine Frage, die nichts mit der Schule zu tun hat. Über sein·ihr Leben, Vorlieben, Erinnerungen."
       },
       "jumping_jacks_20": {
-        "title": "Vingt jumping jacks",
-        "body": "Vingt sauts avec écartement bras-jambes. Compte à voix haute si ça aide."
+        "title": "Zwanzig Hampelmänner",
+        "body": "Zwanzig Sprünge mit Arm-Bein-Spreizung. Zähl laut, wenn es hilft."
       },
       "balance_one_leg": {
-        "title": "Sur une jambe",
-        "body": "Tiens 30 secondes en équilibre sur une jambe. Puis l'autre jambe. Discret, partout."
+        "title": "Auf einem Bein",
+        "body": "Halte 30 Sekunden Gleichgewicht auf einem Bein. Dann das andere Bein. Diskret, überall."
       },
       "non_dominant_hand": {
-        "title": "La main faible",
-        "body": "Pendant les 3 prochaines minutes, fais tout avec ta main non dominante : écrire, manger, taper."
+        "title": "Die schwache Hand",
+        "body": "In den nächsten 3 Minuten: alles mit der nicht-dominanten Hand machen — schreiben, essen, tippen."
       },
       "paper_airplane": {
-        "title": "Avion en papier",
-        "body": "Plie un avion en papier. Lance-le. Si possible, vise quelque chose."
+        "title": "Papierflieger",
+        "body": "Falte einen Papierflieger. Wirf ihn. Wenn möglich, zielen auf etwas."
       },
       "song_for_today": {
-        "title": "La chanson de ta journée",
-        "body": "Si ta journée d'aujourd'hui était une chanson, ce serait laquelle ? Écoute-la (sans être sur le téléphone)."
+        "title": "Das Lied deines Tages",
+        "body": "Wenn dein heutiger Tag ein Lied wäre, welches wäre es? Hör es (ohne am Handy zu sein)."
       },
       "five_words_now": {
-        "title": "Cinq mots, maintenant",
-        "body": "Écris (ou pense) cinq mots qui décrivent ce que tu es à cet instant précis."
+        "title": "Fünf Wörter, jetzt",
+        "body": "Schreib (oder denke) fünf Wörter, die beschreiben, wie du in diesem Moment bist."
       },
       "gratitude_one_person": {
-        "title": "Une personne importante",
-        "body": "Pense à une personne qui compte pour toi en ce moment. Pourquoi est-ce qu'elle compte ?"
+        "title": "Eine wichtige Person",
+        "body": "Denk an eine Person, die dir gerade wichtig ist. Warum ist sie wichtig?"
       },
       "silver_lining": {
-        "title": "Le bon côté",
-        "body": "Pense à quelque chose de pas génial qui s'est passé hier. Trouve un seul aspect positif. Même petit."
+        "title": "Die gute Seite",
+        "body": "Denk an etwas, das gestern nicht so toll war. Finde einen einzigen positiven Aspekt. Auch klein."
       },
       "silence_60_sec": {
-        "title": "Soixante secondes de silence",
-        "body": "Une minute. Pas de musique, pas d'écran, pas de mots. Juste le silence et toi."
+        "title": "Sechzig Sekunden Stille",
+        "body": "Eine Minute. Keine Musik, kein Bildschirm, keine Worte. Nur die Stille und du."
       }
     }
   },
   "experience": {
     "metadata": {
-      "title": "Une soirée — Detox"
+      "title": "Ein Abend — Detox"
     },
     "header": {
-      "label": "Expérience"
+      "label": "Erfahrung"
     },
     "nav": {
-      "skip": "Passer",
-      "keyboardHint": "Astuce clavier : 1 ou 2 pour choisir."
+      "skip": "Überspringen",
+      "keyboardHint": "Tastatur-Tipp: 1 oder 2 zum Wählen."
     },
     "a11y": {
-      "progressLabel": "Progression de l'expérience"
+      "progressLabel": "Fortschritt der Erfahrung"
     },
     "scenes": {
       "evening_room": {
         "lines": {
-          "1": "Tu rentres de l'école.",
-          "2": "Demain, contrôle de math.",
-          "3": "Le téléphone vibre une fois, puis encore.",
-          "4": "Trois nouveaux messages. Une notification Insta. Un live TikTok."
+          "1": "Du kommst von der Schule nach Hause.",
+          "2": "Morgen, Mathe-Test.",
+          "3": "Das Handy vibriert einmal, dann wieder.",
+          "4": "Drei neue Nachrichten. Eine Insta-Benachrichtigung. Ein TikTok-Live."
         }
       },
       "choice_1": {
-        "prompt": "Tu fais quoi ?",
+        "prompt": "Was machst du?",
         "options": {
-          "A": "Je regarde — juste 5 minutes.",
-          "B": "Je le retourne et je commence à réviser."
+          "A": "Ich schau mal — nur 5 Minuten.",
+          "B": "Ich dreh es um und fang an zu lernen."
         }
       },
       "rabbit_hole": {
         "lines": {
-          "1": "20 h 47. Tu déverrouilles.",
-          "2": "Vidéo, vidéo, vidéo. Une amie en story.",
-          "3": "Tu réponds vite. Tu scrolles encore.",
-          "4": "22 h 13. Tu poses le téléphone. Le contrôle de math est dans onze heures."
+          "1": "20 h 47. Du entsperrst.",
+          "2": "Video, Video, Video. Eine Freundin in einer Story.",
+          "3": "Du antwortest schnell. Du scrollst weiter.",
+          "4": "22 h 13. Du legst das Handy weg. Der Mathe-Test ist in elf Stunden."
         }
       },
       "silence": {
         "lines": {
-          "1": "20 h 47. Le téléphone est posé, écran contre la table.",
-          "2": "Tu lis. Un calcul. Un autre.",
-          "3": "Une notification clignote. Tu hésites une seconde.",
-          "4": "21 h 35. Tu fermes le livre. Tu te sens un peu fatigué·e — mais préparé·e."
+          "1": "20 h 47. Das Handy liegt da, Bildschirm zum Tisch.",
+          "2": "Du liest. Eine Rechnung. Noch eine.",
+          "3": "Eine Benachrichtigung blinkt. Du zögerst eine Sekunde.",
+          "4": "21 h 35. Du schliesst das Buch. Du fühlst dich etwas müde — aber vorbereitet."
         }
       },
       "choice_2": {
-        "prompt": "Le matin, à l'arrêt de bus. Tes amis te montrent un mème. Le téléphone vibre. Comment tu veux passer les vingt prochaines minutes ?",
+        "prompt": "Am Morgen, an der Bushaltestelle. Deine Freunde zeigen dir ein Mem. Das Handy vibriert. Wie willst du die nächsten zwanzig Minuten verbringen?",
         "options": {
-          "A": "Je sors le téléphone aussi — c'est plus simple.",
-          "B": "Je le laisse dans ma poche et j'écoute."
+          "A": "Ich hol das Handy auch raus — es ist einfacher.",
+          "B": "Ich lass es in der Tasche und höre zu."
         }
       },
       "shared_screen": {
         "lines": {
-          "1": "Tu sors le téléphone.",
-          "2": "Vous riez à trois sur la même vidéo.",
-          "3": "Personne ne se regarde vraiment.",
-          "4": "Le bus arrive. Tu n'as pas entendu ce que disait Léa."
+          "1": "Du holst das Handy raus.",
+          "2": "Ihr lacht zu dritt über dasselbe Video.",
+          "3": "Niemand schaut sich wirklich an.",
+          "4": "Der Bus kommt. Du hast nicht gehört, was Léa gesagt hat."
         }
       },
       "listening": {
         "lines": {
-          "1": "Le téléphone vibre. Tu le sens.",
-          "2": "Léa te raconte sa dispute avec sa sœur.",
-          "3": "Tu poses une question. Elle répond longuement.",
-          "4": "Le bus arrive. Tu sais des choses sur sa vie que tu ne savais pas hier."
+          "1": "Das Handy vibriert. Du spürst es.",
+          "2": "Léa erzählt dir vom Streit mit ihrer Schwester.",
+          "3": "Du stellst eine Frage. Sie antwortet ausführlich.",
+          "4": "Der Bus kommt. Du weisst Dinge über ihr Leben, die du gestern nicht wusstest."
         }
       },
       "closing": {
         "lines": {
-          "1": "Aucune de ces histoires n'est « la bonne ».",
-          "2": "Mais chaque petit choix construit ton rapport au téléphone.",
-          "3": "On va te poser dix questions pour mieux comprendre le tien."
+          "1": "Keine dieser Geschichten ist «die richtige».",
+          "2": "Aber jede kleine Entscheidung formt deine Beziehung zum Handy.",
+          "3": "Wir stellen dir zehn Fragen, um deine besser zu verstehen."
         }
       }
     },
     "closing": {
-      "title": "Et toi ?",
-      "body": "Aucune de ces histoires n'est « la bonne ». Chaque petit choix construit ton rapport au téléphone. On va te poser dix questions pour mieux comprendre le tien.",
-      "cta": "Commencer le questionnaire"
+      "title": "Und du?",
+      "body": "Keine dieser Geschichten ist «die richtige». Jede kleine Entscheidung formt deine Beziehung zum Handy. Wir stellen dir zehn Fragen, um deine besser zu verstehen.",
+      "cta": "Fragebogen starten"
     }
   },
   "survey": {
-    "title": "Questionnaire SAS-SV",
-    "subtitle": "10 affirmations sur ton usage du smartphone. Choisis le chiffre qui te correspond le mieux. Aucune bonne ou mauvaise réponse — sois honnête avec toi-même.",
-    "intro": "Pour chaque affirmation : 1 = pas du tout d'accord, 6 = tout à fait d'accord. Tes réponses sont anonymes et enregistrées au fur et à mesure — tu peux fermer la page et reprendre plus tard.",
+    "title": "SAS-SV Fragebogen",
+    "subtitle": "10 Aussagen über deine Smartphone-Nutzung. Wähl die Zahl, die am besten zu dir passt. Keine richtigen oder falschen Antworten — sei ehrlich zu dir selbst.",
+    "intro": "Für jede Aussage: 1 = überhaupt nicht einverstanden, 6 = voll einverstanden. Deine Antworten sind anonym und werden laufend gespeichert — du kannst die Seite schliessen und später weitermachen.",
     "introScreen": {
-      "eyebrow": "Avant de commencer",
-      "title": "Découvre ton profil numérique",
-      "subtitle": "10 questions, 5 minutes. Tu obtiendras un profil personnalisé et des conseils adaptés.",
+      "eyebrow": "Bevor du startest",
+      "title": "Entdecke dein digitales Profil",
+      "subtitle": "10 Fragen, 5 Minuten. Du erhältst ein persönliches Profil und passende Empfehlungen.",
       "bullets": {
-        "0": "Réponds honnêtement — tes réponses sont anonymes, personne ne les voit.",
-        "1": "Pas de bonne ou mauvaise réponse. Glisse le curseur sur la position qui te correspond.",
-        "2": "À la fin : ton profil, un score, et des ressources pour aller plus loin."
+        "0": "Antworte ehrlich — deine Antworten sind anonym, niemand sieht sie.",
+        "1": "Keine richtige oder falsche Antwort. Schieb den Regler an die Position, die zu dir passt.",
+        "2": "Am Ende: dein Profil, ein Score und Ressourcen, um weiterzugehen."
       },
-      "start": "Commencer le test",
-      "time": "Environ 5 minutes"
+      "start": "Test starten",
+      "time": "Etwa 5 Minuten"
     },
     "loading": {
       "stages": {
-        "0": "Analyse de tes réponses…",
-        "1": "Calcul de ton score SAS-SV…",
-        "2": "Identification de ton profil…",
-        "3": "Préparation de tes recommandations…"
+        "0": "Analyse deiner Antworten…",
+        "1": "Berechnung deines SAS-SV-Scores…",
+        "2": "Identifikation deines Profils…",
+        "3": "Vorbereitung deiner Empfehlungen…"
       },
-      "almost": "Encore quelques secondes"
+      "almost": "Noch ein paar Sekunden"
     },
-    "questionLabel": "Question {n} / 10",
+    "questionLabel": "Frage {n} / 10",
     "progress": {
-      "label": "{current} sur {total} répondues",
+      "label": "{current} von {total} beantwortet",
       "percent": "{pct} %"
     },
     "nav": {
-      "prev": "Précédente",
-      "next": "Suivante",
-      "seeResults": "Voir mes résultats",
-      "keyboardHint": "Astuce clavier : 1–6 pour répondre, ← → pour naviguer."
+      "prev": "Zurück",
+      "next": "Weiter",
+      "seeResults": "Ergebnisse ansehen",
+      "keyboardHint": "Tastatur-Tipp: 1–6 zum Antworten, ← → zum Navigieren."
     },
-    "scaleName": "Échelle d'addiction au smartphone",
-    "questionLabelEyebrow": "Question {n} · cette semaine",
-    "anonNote": "Anonyme · sans inscription",
-    "dialIdle": "Glisse · ou tape 1–6",
-    "dialMin": "Pas du tout d'accord",
-    "dialMax": "Tout à fait d'accord",
-    "dialKeyboardHint": "ou tape 1–6",
+    "scaleName": "Smartphone-Suchtskala",
+    "questionLabelEyebrow": "Frage {n} · diese Woche",
+    "anonNote": "Anonym · ohne Anmeldung",
+    "dialIdle": "Ziehen · oder 1–6 tippen",
+    "dialMin": "Überhaupt nicht einverstanden",
+    "dialMax": "Voll einverstanden",
+    "dialKeyboardHint": "oder 1–6 tippen",
     "status": {
-      "saving": "Enregistrement…",
-      "saveFailed": "Échec — réessaie."
+      "saving": "Speichern…",
+      "saveFailed": "Fehlgeschlagen — versuch es erneut."
     },
     "a11y": {
-      "progressRegion": "Progression du questionnaire"
+      "progressRegion": "Fragebogen-Fortschritt"
     }
   },
   "results": {
-    "title": "Tes résultats",
-    "instrumentNote": "Adaptation française pré-validée du SAS-SV (Kwon et al., 2013). Validation indépendante en cours — voir notre méthodologie.",
-    "personaPreface": "Ton profil",
-    "personaAboutHeading": "Qui es-tu, en numérique ?",
-    "eyebrowResults": "Tes résultats · SAS-SV",
+    "title": "Deine Ergebnisse",
+    "instrumentNote": "Vor-validierte deutsche Adaption des SAS-SV (Kwon et al., 2013). Unabhängige Validierung läuft — siehe unsere Methodik.",
+    "personaPreface": "Dein Profil",
+    "personaAboutHeading": "Wer bist du, digital?",
+    "eyebrowResults": "Deine Ergebnisse · SAS-SV",
     "scoreLabel": "Score",
-    "outOf": "sur 60",
-    "fingerprintLabel": "Ton empreinte",
-    "whatLabel": "Ce que ça veut dire",
-    "resourcesLabel": "Ressources",
-    "resourceProJuventute": "conseil 24h/24, anonyme",
-    "resourceAddiction": "info et soutien autour des addictions",
-    "resourceCiao": "plateforme suisse pour les 11–20 ans",
-    "ctaNext": "Tirer une carte",
-    "ctaAgain": "Refaire le test",
-    "shareNote": "Aucune donnée personnelle n'est stockée. Tu peux partager ton score si tu veux.",
+    "outOf": "von 60",
+    "fingerprintLabel": "Dein Fingerabdruck",
+    "whatLabel": "Was das bedeutet",
+    "resourcesLabel": "Ressourcen",
+    "resourceProJuventute": "Beratung 24/7, anonym",
+    "resourceAddiction": "Information und Unterstützung rund um Suchtverhalten",
+    "resourceCiao": "Schweizer Plattform für 11- bis 20-Jährige",
+    "ctaNext": "Eine Karte ziehen",
+    "ctaAgain": "Test wiederholen",
+    "shareNote": "Es werden keine persönlichen Daten gespeichert. Du kannst deinen Score teilen, wenn du willst.",
     "categoryTag": {
-      "low": "Mesuré",
-      "mid": "À surveiller",
-      "high": "Intensif"
+      "low": "Massvoll",
+      "mid": "Im Auge behalten",
+      "high": "Intensiv"
     },
     "personas": {
       "le_serene": {
-        "title": "Le Serein",
-        "tagline": "Calme, présent, le téléphone à sa juste place.",
-        "description": "Tu as une relation apaisée avec ton smartphone. Il fait partie de ta vie sans la dominer. Continue à observer comment tu te sens dans les moments sans écran — c'est cette présence qui te garde équilibré·e."
+        "title": "Der·die Gelassene",
+        "tagline": "Ruhig, präsent, das Handy an seinem richtigen Platz.",
+        "description": "Du hast eine entspannte Beziehung zu deinem Smartphone. Es ist Teil deines Lebens, aber dominiert es nicht. Beobachte weiter, wie du dich in den Momenten ohne Bildschirm fühlst — diese Präsenz hält dich im Gleichgewicht."
       },
       "le_curieux": {
-        "title": "Le Curieux",
-        "tagline": "Tu utilises ton téléphone, mais tu observes le monde autour.",
-        "description": "Tu sais quand poser le téléphone pour vraiment voir ce qui se passe. Ta curiosité te protège — elle t'invite régulièrement hors de l'écran. Garde cette attention pour les détails du quotidien."
+        "title": "Der·die Neugierige",
+        "tagline": "Du nutzt dein Handy, aber du beobachtest die Welt um dich herum.",
+        "description": "Du weisst, wann du das Handy weglegen sollst, um wirklich zu sehen, was passiert. Deine Neugier schützt dich — sie zieht dich regelmässig vom Bildschirm weg. Bewahre diese Aufmerksamkeit für die Details des Alltags."
       },
       "le_connecteur_calme": {
-        "title": "Le Connecteur Calme",
-        "tagline": "Le téléphone t'aide à rester proche, sans t'éloigner du présent.",
-        "description": "Tu utilises ton smartphone pour entretenir tes liens, mais tu sais aussi être pleinement avec ceux qui sont devant toi. C'est un équilibre que beaucoup cherchent — préserve-le."
+        "title": "Der·die ruhige Verbinder·in",
+        "tagline": "Das Handy hilft dir, in Verbindung zu bleiben, ohne dich von der Gegenwart zu entfernen.",
+        "description": "Du nutzt dein Smartphone, um deine Beziehungen zu pflegen, weisst aber auch, voll präsent zu sein mit denen, die vor dir sind. Das ist ein Gleichgewicht, das viele suchen — bewahre es."
       },
       "le_chercheur": {
-        "title": "Le Chercheur",
-        "tagline": "Quelque chose te tire vers le téléphone — tu commences à le remarquer.",
-        "description": "Tu te poses des questions sur ton usage, et c'est déjà un grand pas. Certaines habitudes méritent que tu y prêtes attention. Pas d'urgence, mais des moments à observer : quand tu prends le téléphone sans raison claire, qu'est-ce que tu cherches vraiment ?"
+        "title": "Der·die Suchende",
+        "tagline": "Etwas zieht dich zum Handy — du beginnst, es zu bemerken.",
+        "description": "Du stellst dir Fragen zu deinem Konsum, und das ist schon ein grosser Schritt. Manche Gewohnheiten verdienen es, dass du ihnen Aufmerksamkeit schenkst. Kein Notfall, aber Momente zum Beobachten: Wenn du das Handy ohne klaren Grund nimmst, was suchst du wirklich?"
       },
       "le_jongleur": {
-        "title": "Le Jongleur",
-        "tagline": "Tu fais beaucoup, parfois trop, et le téléphone est partout.",
-        "description": "Le téléphone interrompt souvent ce que tu fais — études, conversations, repas. Ce n'est pas grave en soi, mais cela coûte de l'attention. Une expérience à essayer cette semaine : un repas entier sans téléphone à table."
+        "title": "Der·die Jongleur·in",
+        "tagline": "Du machst viel, manchmal zu viel, und das Handy ist überall.",
+        "description": "Das Handy unterbricht oft, was du machst — Lernen, Gespräche, Mahlzeiten. Das ist nicht schlimm an sich, kostet aber Aufmerksamkeit. Eine Erfahrung diese Woche: eine ganze Mahlzeit ohne Handy am Tisch."
       },
       "le_curieux_actif": {
-        "title": "Le Curieux Actif",
-        "tagline": "Tu es très connecté·e, mais aussi très présent·e.",
-        "description": "Ton usage est intense, mais il sert souvent à observer, créer, comprendre. Veille à ce qu'il ne te coupe pas du monde physique — les choses les plus belles se voient sans écran."
+        "title": "Der·die aktiv Neugierige",
+        "tagline": "Du bist sehr vernetzt, aber auch sehr präsent.",
+        "description": "Dein Konsum ist intensiv, dient aber oft dem Beobachten, Schaffen, Verstehen. Achte darauf, dass er dich nicht von der physischen Welt abschneidet — die schönsten Dinge sieht man ohne Bildschirm."
       },
       "le_capte": {
-        "title": "Le Capté",
-        "tagline": "Le téléphone prend une grande place — parfois plus que tu ne voudrais.",
-        "description": "Ton score indique un usage intensif. Ce n'est pas une étiquette : c'est un signal. Quand tu poses le téléphone, qu'est-ce qui te manque vraiment ? Et qu'est-ce qui te revient ? Les ressources en bas de page peuvent t'accompagner."
+        "title": "Der·die Gefangene",
+        "tagline": "Das Handy nimmt einen grossen Platz ein — manchmal mehr, als du möchtest.",
+        "description": "Dein Score deutet auf einen intensiven Konsum hin. Das ist kein Etikett: es ist ein Signal. Wenn du das Handy weglegst, was fehlt dir wirklich? Und was kommt zurück? Die Ressourcen unten auf der Seite können dich begleiten."
       },
       "le_disperse": {
-        "title": "Le Dispersé",
-        "tagline": "L'attention va dans toutes les directions — c'est fatigant.",
-        "description": "Le téléphone fragmente tes journées : interruptions, notifications, scrolls rapides. Tu peux ressentir une fatigue sans cause claire. Essaie une journée en mode \"ne pas déranger\" pendant les devoirs — vois la différence."
+        "title": "Der·die Zerstreute",
+        "tagline": "Die Aufmerksamkeit geht in alle Richtungen — das ist anstrengend.",
+        "description": "Das Handy zerstückelt deine Tage: Unterbrechungen, Benachrichtigungen, schnelles Scrollen. Du kannst eine Müdigkeit ohne klaren Grund spüren. Versuch einen Tag im «Nicht stören»-Modus während der Hausaufgaben — sieh den Unterschied."
       },
       "lhyperconnecte": {
-        "title": "L'Hyperconnecté",
-        "tagline": "Toujours en ligne, toujours en alerte. Le corps suit difficilement.",
-        "description": "Tu es presque tout le temps avec ton téléphone, et il occupe aussi beaucoup ta tête quand tu ne l'as pas. Ce n'est pas un défaut — c'est un signal qu'une pause serait précieuse. Parle à quelqu'un de confiance, ou consulte les ressources en bas."
+        "title": "Der·die Hypervernetzte",
+        "tagline": "Immer online, immer in Alarmbereitschaft. Der Körper kommt schwer mit.",
+        "description": "Du bist fast ständig mit deinem Handy beschäftigt, und es nimmt auch viel Raum in deinem Kopf ein, wenn du es nicht hast. Das ist kein Fehler — es ist ein Signal, dass eine Pause wertvoll wäre. Sprich mit jemand Vertrautem oder schau die Ressourcen unten an."
       }
     },
     "score": {
-      "label": "Score total",
-      "range": "Échelle de {min} à {max}"
+      "label": "Gesamt-Score",
+      "range": "Skala von {min} bis {max}"
     },
     "bands": {
       "low": {
-        "heading": "Usage modéré",
-        "body": "Ton score suggère que ton smartphone occupe une place mesurée dans ta journée. Continue à observer comment tu te sens quand tu le poses.",
-        "reflect": "Question pour toi : qu'est-ce qui te plaît le plus dans les moments sans smartphone ?"
+        "heading": "Mässige Nutzung",
+        "body": "Dein Score deutet darauf hin, dass dein Smartphone einen massvollen Platz in deinem Tag einnimmt. Beobachte weiter, wie du dich fühlst, wenn du es weglegst.",
+        "reflect": "Frage für dich: Was gefällt dir am meisten an den Momenten ohne Smartphone?"
       },
       "moderate": {
-        "heading": "Usage à surveiller",
-        "body": "Ton score est dans une zone intermédiaire. Plusieurs habitudes méritent que tu y prêtes attention — sans alarme, mais en restant attentif·ve.",
-        "reflect": "Question pour toi : si tu devais réduire ton temps d'écran d'une heure par jour, par quoi commencerais-tu ?"
+        "heading": "Nutzung im Auge behalten",
+        "body": "Dein Score liegt im Mittelfeld. Mehrere Gewohnheiten verdienen deine Aufmerksamkeit — ohne Alarm, aber wachsam.",
+        "reflect": "Frage für dich: Wenn du deine Bildschirmzeit um eine Stunde pro Tag reduzieren müsstest, womit würdest du anfangen?"
       },
       "high": {
-        "heading": "Usage intensif",
-        "body": "Ton score indique un usage intensif du smartphone, avec des effets possibles sur ta concentration, ton sommeil ou tes relations. Cela ne définit pas qui tu es — c'est un signal pour ouvrir la conversation.",
-        "reflect": "Question pour toi : à qui de confiance pourrais-tu parler de ta relation au smartphone cette semaine ?"
+        "heading": "Intensive Nutzung",
+        "body": "Dein Score deutet auf eine intensive Smartphone-Nutzung hin, mit möglichen Auswirkungen auf Konzentration, Schlaf oder Beziehungen. Das definiert nicht, wer du bist — es ist ein Signal, das Gespräch zu öffnen.",
+        "reflect": "Frage für dich: Mit wem Vertrautem könntest du diese Woche über deine Beziehung zum Smartphone sprechen?"
       }
     },
     "symptoms": {
-      "title": "Détail par dimension",
-      "subtitle": "Chaque barre correspond à un aspect différent du rapport au smartphone.",
+      "title": "Detail nach Dimension",
+      "subtitle": "Jeder Balken entspricht einem anderen Aspekt der Beziehung zum Smartphone.",
       "items": {
-        "loss_of_control": "Perte de contrôle",
-        "disruption": "Interférence avec les activités",
-        "preoccupation": "Préoccupation mentale",
-        "withdrawal": "Manque / impatience",
-        "tolerance": "Tolérance (durée d'usage)",
-        "disregard": "Conséquences ignorées"
+        "loss_of_control": "Kontrollverlust",
+        "disruption": "Beeinträchtigung der Aktivitäten",
+        "preoccupation": "Mentale Beschäftigung",
+        "withdrawal": "Entzug / Ungeduld",
+        "tolerance": "Toleranz (Nutzungsdauer)",
+        "disregard": "Ignorierte Folgen"
       }
     },
     "resources": {
-      "title": "Ressources de soutien",
-      "subtitle": "Si tu veux en parler, ces structures suisses sont gratuites et confidentielles.",
+      "title": "Unterstützungsangebote",
+      "subtitle": "Wenn du darüber sprechen willst, sind diese Schweizer Stellen kostenlos und vertraulich.",
       "items": {
         "proJuventute": {
           "name": "Pro Juventute · 147",
-          "description": "Conseil 24h/24 par téléphone, chat ou SMS, gratuit et anonyme."
+          "description": "Beratung 24/7 per Telefon, Chat oder SMS, kostenlos und anonym."
         },
         "promotionSante": {
-          "name": "Promotion Santé Suisse",
-          "description": "Fondation publique pour la prévention et la santé mentale."
+          "name": "Gesundheitsförderung Schweiz",
+          "description": "Öffentliche Stiftung für Prävention und psychische Gesundheit."
         },
         "stopAddiction": {
-          "name": "Addiction Suisse",
-          "description": "Information et soutien autour des addictions, y compris numériques."
+          "name": "Sucht Schweiz",
+          "description": "Information und Unterstützung rund um Süchte, einschliesslich digitaler."
         },
         "ciaoCh": {
           "name": "ciao.ch",
-          "description": "Plateforme genevoise de conseil pour les 11–20 ans."
+          "description": "Genfer Beratungsplattform für 11- bis 20-Jährige."
         }
       }
     },
     "actions": {
-      "retake": "Refaire le test",
-      "home": "Retour à l'accueil"
+      "retake": "Test wiederholen",
+      "home": "Zurück zur Startseite"
     },
-    "disclaimer": "Ce questionnaire est un outil de réflexion personnelle, pas un diagnostic médical. En cas d'inquiétude, consulte un·e professionnel·le de santé."
+    "disclaimer": "Dieser Fragebogen ist ein Werkzeug zur persönlichen Reflexion, keine medizinische Diagnose. Bei Bedenken konsultiere eine Fachperson."
   },
   "errors": {
-    "generic": "Une erreur s'est produite. Merci de réessayer.",
-    "network": "Problème de connexion. Vérifiez votre réseau."
+    "generic": "Ein Fehler ist aufgetreten. Bitte versuch es erneut.",
+    "network": "Verbindungsproblem. Prüfe dein Netzwerk."
   }
 }
