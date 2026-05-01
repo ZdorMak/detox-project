@@ -26,7 +26,7 @@ export function Hero() {
         {/* Video card — fills the container, holds the title in a bottom-left pocket. */}
         <div className="relative">
           <HeroVideo
-            className="max-w-none aspect-[21/9] md:aspect-[21/9]"
+            className="max-w-none aspect-[4/3] sm:aspect-[16/9]"
             hideProgressDots
           />
 
@@ -41,9 +41,9 @@ export function Hero() {
           />
 
           {/* Title pocket — bottom-left, generous editorial whitespace. */}
-          <div className="absolute inset-0 flex items-end p-6 md:p-12">
-            <div className="max-w-[18ch]">
-              <div className="mb-4 flex items-center gap-3">
+          <div className="absolute inset-0 flex items-end p-5 md:p-10">
+            <div className="max-w-[20ch] md:max-w-[28ch]">
+              <div className="mb-3 flex items-center gap-3">
                 <span
                   className="h-px w-8"
                   style={{ background: "var(--cd-accent)" }}
@@ -56,17 +56,17 @@ export function Hero() {
                 </span>
               </div>
               <h1
-                className="font-display m-0 text-balance leading-[0.94]"
+                className="font-display m-0 text-balance leading-[0.98]"
                 style={{
-                  fontSize: "clamp(40px, 6vw, 88px)",
-                  letterSpacing: "-0.03em",
+                  fontSize: "clamp(28px, 4.2vw, 60px)",
+                  letterSpacing: "-0.025em",
                   color: "oklch(0.98 0.005 80)",
                 }}
               >
-                <span className="block">{t("titlePart1")}</span>
+                <span>{t("titlePart1")} </span>
                 <span
-                  className="block italic"
-                  style={{ color: "var(--cd-accent)", paddingLeft: "0.4em" }}
+                  className="italic"
+                  style={{ color: "var(--cd-accent)" }}
                 >
                   {t("titlePart2")}
                 </span>
