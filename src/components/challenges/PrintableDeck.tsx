@@ -1,9 +1,20 @@
+import type { CSSProperties } from "react";
 import {
   CHALLENGE_CARDS,
   type ChallengeCard,
   type ChallengeCategory,
+  type Location,
   ALL_LOCATIONS,
 } from "@/lib/challenges/cards";
+
+/** Compact emoji map for locations — keeps the print card footer tidy. */
+const LOCATION_ICONS: Record<Location, string> = {
+  home: "🏠",
+  school: "🏫",
+  transport: "🚆",
+  outside: "🌳",
+  with_friends: "👥",
+};
 
 interface PrintableDeckProps {
   /** Pre-translated text for each card, keyed by card id. */
@@ -27,13 +38,17 @@ interface PrintableDeckProps {
  * Design language:
  *   - Each category has its own colour palette (top-strip + accent)
  *   - Cinematic emoji halo (gradient circle background)
- *   - Georgia serif for the title
- *   - Decorative corner ornaments + cut guides
- *   - Card-back design for double-sided printing (page after each deck page)
+ *   - Italic Instrument Serif for the title (matches the on-screen brand)
+ *   - Decorative corner brackets + dot-rule divider
+ *   - Location row reduced to emoji icons (or one globe for "anywhere")
  *
- * Layout: A4 portrait. Page 1 = rules. Pages 2..N = card fronts (6 per page,
- * 2×3 grid in standard playing-card aspect 63×88mm). Optionally print
- * double-sided so the back design appears behind each card.
+ * Sizing: physical width / height set via CSS variables `--card-w` and
+ * `--card-h` (mm units). The card itself is a CSS container, and every
+ * inner text element uses `cqi` (container-query inline-size) units so
+ * the typography scales smoothly across all five size presets.
+ *
+ * Layout: A4 portrait. Page 1 = rules. Cards flow in a flex-wrap grid;
+ * the browser handles natural page breaks (each card is `break-inside: avoid`).
  */
 export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
   return (
@@ -58,7 +73,22 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
               width: var(--card-w);
               height: var(--card-h);
               flex: 0 0 auto;
+              /* Container queries: child text sizes scale with card width via cqi units. */
+              container-type: inline-size;
+              font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
             }
+            /* Proportional type system — every text element scales with card width. */
+            .pd-card .pd-eyebrow { font-size: 2.4cqi; letter-spacing: 0.18em; font-weight: 700; }
+            .pd-card .pd-meta    { font-size: 2.4cqi; letter-spacing: 0.12em; font-weight: 600; }
+            .pd-card .pd-title   {
+              font-size: 7cqi; line-height: 1.04;
+              font-family: var(--font-display, "Instrument Serif", Georgia, serif);
+              font-style: italic; font-weight: 400; letter-spacing: -0.01em;
+            }
+            .pd-card .pd-body    { font-size: 3.4cqi; line-height: 1.45; }
+            .pd-card .pd-loc     { font-size: 5cqi; }
+            .pd-card .pd-stamp   { font-size: 1.8cqi; letter-spacing: 0.12em; font-weight: 500; }
+            .pd-card .pd-id      { font-size: 1.6cqi; }
             @media print {
               body { background: white !important; }
               @page { size: A4 portrait; margin: 1cm; }
@@ -165,9 +195,6 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
               categoryLabel={
                 labels.categories[card.category] ?? card.category
               }
-              locationLabels={card.locations.map(
-                (loc) => labels.locations[loc] ?? loc,
-              )}
             />
           ))}
         </div>
@@ -238,18 +265,17 @@ interface PrintCardProps {
   title: string;
   body: string;
   categoryLabel: string;
-  locationLabels: readonly string[];
 }
 
-function PrintCard({
-  card,
-  title,
-  body,
-  categoryLabel,
-  locationLabels,
-}: PrintCardProps) {
+function PrintCard({ card, title, body, categoryLabel }: PrintCardProps) {
   const p = PALETTES[card.category];
   const haloId = `halo-${card.id}`;
+
+  // If a card lives in 4 of 5 locations or more, treat it as universal —
+  // a single globe icon reads cleaner than five tiny emoji cluttering up
+  // the bottom row.
+  const universalLocations = card.locations.length >= 4;
+
   return (
     <div
       className="pd-card relative flex flex-col overflow-hidden rounded-xl border bg-white"
@@ -258,34 +284,58 @@ function PrintCard({
         pageBreakInside: "avoid",
       }}
     >
-      {/* Top accent stripe */}
+      {/* Top accent stripe — slim, gradient. */}
       <div
-        className="h-2 w-full"
-        style={{ background: `linear-gradient(90deg, ${p.accent}, ${p.haloTo})` }}
+        style={{
+          height: "1.6cqi",
+          background: `linear-gradient(90deg, ${p.accent}, ${p.haloTo})`,
+        }}
       />
 
-      {/* Top meta row */}
-      <div className="flex items-baseline justify-between px-3 pt-2 text-[9px] font-bold uppercase tracking-wider">
-        <span style={{ color: p.accent }}>{categoryLabel}</span>
-        <span className="text-slate-400">≈ {card.durationMin} min</span>
+      {/* Top meta row: category eyebrow + duration. */}
+      <div
+        className="flex items-baseline justify-between"
+        style={{ padding: "3cqi 5cqi 0" }}
+      >
+        <span
+          className="pd-eyebrow uppercase"
+          style={{ color: p.accent }}
+        >
+          {categoryLabel}
+        </span>
+        <span className="pd-meta uppercase" style={{ color: "#94a3b8" }}>
+          &asymp; {card.durationMin} min
+        </span>
       </div>
 
-      {/* Difficulty dots */}
-      <div className="mt-1 flex items-center justify-center gap-1">
+      {/* Difficulty pips — three concentric dots; unfilled = locked. */}
+      <div
+        className="flex items-center justify-center"
+        style={{ gap: "1cqi", marginTop: "2cqi" }}
+      >
         {[1, 2, 3].map((d) => (
           <span
             key={d}
-            className="h-1 w-1 rounded-full"
-            style={{
-              background: d <= card.difficulty ? p.accent : "#e5e7eb",
-            }}
             aria-hidden="true"
+            style={{
+              width: "1.4cqi",
+              height: "1.4cqi",
+              borderRadius: "50%",
+              background: d <= card.difficulty ? p.accent : "#e2e8f0",
+            }}
           />
         ))}
       </div>
 
-      {/* Big emoji with halo */}
-      <div className="relative mx-auto my-2 flex h-16 w-16 items-center justify-center">
+      {/* Big emoji with radial halo — symbol of the action. */}
+      <div
+        className="relative mx-auto"
+        style={{
+          width: "26cqi",
+          height: "26cqi",
+          marginTop: "2.5cqi",
+        }}
+      >
         <svg
           viewBox="0 0 64 64"
           className="absolute inset-0 h-full w-full"
@@ -293,78 +343,155 @@ function PrintCard({
         >
           <defs>
             <radialGradient id={haloId} cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor={p.haloFrom} stopOpacity="0.9" />
-              <stop offset="100%" stopColor={p.haloTo} stopOpacity="0.4" />
+              <stop
+                offset="0%"
+                stopColor={p.haloFrom}
+                stopOpacity="0.9"
+              />
+              <stop
+                offset="100%"
+                stopColor={p.haloTo}
+                stopOpacity="0.4"
+              />
             </radialGradient>
           </defs>
           <circle cx="32" cy="32" r="30" fill={`url(#${haloId})`} />
         </svg>
-        <span className="relative text-4xl leading-none" aria-hidden="true">
+        <span
+          className="absolute inset-0 flex items-center justify-center leading-none"
+          aria-hidden="true"
+          style={{ fontSize: "14cqi" }}
+        >
           {card.emoji}
         </span>
       </div>
 
-      {/* Title */}
+      {/* Title — italic Instrument Serif, the editorial centre of the card. */}
       <h3
-        className="px-3 text-balance text-center text-sm font-bold leading-tight"
-        style={{ fontFamily: "Georgia, serif", color: p.text }}
+        className="pd-title text-balance text-center"
+        style={{
+          padding: "3.5cqi 5cqi 0",
+          color: p.text,
+        }}
       >
         {title}
       </h3>
 
-      {/* Decorative divider */}
-      <div className="my-2 flex items-center justify-center gap-1">
-        <span className="h-px w-4" style={{ background: p.border }} />
-        <span className="h-1 w-1 rounded-full" style={{ background: p.accent }} />
-        <span className="h-px w-4" style={{ background: p.border }} />
+      {/* Hairline divider with a centre dot. */}
+      <div
+        className="flex items-center justify-center"
+        style={{ gap: "1.4cqi", margin: "2.6cqi 0 1.6cqi" }}
+        aria-hidden="true"
+      >
+        <span
+          style={{
+            height: "0.25cqi",
+            width: "5cqi",
+            background: p.border,
+          }}
+        />
+        <span
+          style={{
+            width: "1.1cqi",
+            height: "1.1cqi",
+            borderRadius: "50%",
+            background: p.accent,
+          }}
+        />
+        <span
+          style={{
+            height: "0.25cqi",
+            width: "5cqi",
+            background: p.border,
+          }}
+        />
       </div>
 
-      {/* Body */}
-      <p className="flex-1 px-3 text-balance text-center text-[10px] leading-snug text-slate-700">
+      {/* Body — instruction text, centred, balanced. */}
+      <p
+        className="pd-body flex-1 text-balance text-center"
+        style={{
+          padding: "0 5cqi",
+          color: "#475569",
+        }}
+      >
         {body}
       </p>
 
-      {/* Bottom: locations + id */}
+      {/* Bottom row — locations on the left, brand stamp on the right. */}
       <div
-        className="mt-1 flex items-center justify-center gap-1 px-3 pb-2 text-[8px] font-medium uppercase tracking-wide"
-        style={{ color: p.accent }}
+        className="flex items-center justify-between"
+        style={{
+          padding: "2cqi 4cqi 2cqi",
+          marginTop: "1.5cqi",
+          borderTop: `1px dashed ${p.border}`,
+        }}
       >
-        {locationLabels.map((l, i) => (
-          <span key={i}>
-            {l}
-            {i < locationLabels.length - 1 && (
-              <span className="mx-1 text-slate-300">·</span>
-            )}
-          </span>
-        ))}
+        <div
+          className="pd-loc flex items-center"
+          style={{ gap: "1cqi", lineHeight: 1 }}
+          aria-hidden="true"
+        >
+          {universalLocations ? (
+            <span title="anywhere">🌐</span>
+          ) : (
+            card.locations.map((loc) => (
+              <span key={loc}>{LOCATION_ICONS[loc]}</span>
+            ))
+          )}
+        </div>
+        <span
+          className="pd-stamp uppercase"
+          style={{ color: p.accent, opacity: 0.7 }}
+        >
+          Detox
+        </span>
       </div>
 
-      {/* Tiny ID stamp */}
-      <div className="absolute bottom-1 right-2 text-[6px] font-mono text-slate-300">
+      {/* ID stamp — barely visible, for sorting / reprint reference. */}
+      <div
+        className="pd-id absolute"
+        style={{
+          bottom: "0.6cqi",
+          right: "5cqi",
+          color: "#cbd5e1",
+          fontFamily: "var(--font-mono, ui-monospace, monospace)",
+        }}
+      >
         #{card.id}
       </div>
 
-      {/* Corner ornaments */}
-      <CornerMark className="left-1 top-3" color={p.accent} />
-      <CornerMark className="right-1 top-3" color={p.accent} flip />
+      {/* Corner ornaments — top-left + top-right brackets. */}
+      <CornerMark style={{ left: "1.5cqi", top: "3cqi" }} color={p.accent} />
+      <CornerMark
+        style={{ right: "1.5cqi", top: "3cqi" }}
+        color={p.accent}
+        flip
+      />
     </div>
   );
 }
 
 function CornerMark({
-  className = "",
+  style,
   color,
   flip = false,
 }: {
-  className?: string;
+  style?: CSSProperties;
   color: string;
   flip?: boolean;
 }) {
   return (
     <svg
       viewBox="0 0 20 20"
-      className={`pointer-events-none absolute h-3 w-3 ${className}`}
-      style={{ color, transform: flip ? "scaleX(-1)" : undefined }}
+      className="pointer-events-none absolute"
+      style={{
+        ...style,
+        width: "4cqi",
+        height: "4cqi",
+        color,
+        transform: flip ? "scaleX(-1)" : undefined,
+      }}
       aria-hidden="true"
     >
       <path
