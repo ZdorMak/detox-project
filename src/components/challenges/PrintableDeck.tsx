@@ -145,9 +145,9 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
               .pd-card .pd-stamp   { font-size: 5pt !important; }
               .pd-card .pd-id      { font-size: 4pt !important; }
               .pd-card .pd-emoji   { font-size: 28pt !important; }
-              /* Halo: width is set via `width: 26%` inline; `aspect-ratio: 1`
-               * keeps it a circle. The flex centring of the emoji span uses
-               * regular flex utilities so no cqi needed for layout. */
+              /* Halo: width set via 26% inline + aspect-ratio:1 keeps it a
+               * circle. Flex centring of the emoji span uses regular flex
+               * utilities so no cqi needed for layout. */
               .pd-halo { width: 26% !important; }
             }
           `,
@@ -381,8 +381,8 @@ function PrintCard({ card, title, body, categoryLabel }: PrintCardProps) {
       </div>
 
       {/* Big emoji with radial halo — pure CSS gradient (prints reliably).
-        Uses `width: 26%` + `aspect-ratio: 1` so the halo stays a circle in
-        print. cqi units broke geometry in some Chromium PDF renders. */}
+        Uses width:26% + aspect-ratio:1 so the halo stays a circle in print.
+        cqi units broke geometry in some Chromium PDF renders. */}
       <div
         className="pd-halo relative mx-auto flex items-center justify-center rounded-full"
         style={
