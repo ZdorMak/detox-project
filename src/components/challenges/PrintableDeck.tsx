@@ -78,23 +78,53 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
               font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
             }
             /* Proportional type system — every text element scales with card width. */
-            .pd-card .pd-eyebrow { font-size: 2.4cqi; letter-spacing: 0.18em; font-weight: 700; }
-            .pd-card .pd-meta    { font-size: 2.4cqi; letter-spacing: 0.12em; font-weight: 600; }
+            .pd-card .pd-eyebrow { font-size: 2.6cqi; letter-spacing: 0.16em; font-weight: 700; }
+            .pd-card .pd-meta    { font-size: 2.6cqi; letter-spacing: 0.10em; font-weight: 600; }
             .pd-card .pd-title   {
-              font-size: 7cqi; line-height: 1.04;
+              font-size: 6.6cqi; line-height: 1.08;
               font-family: var(--font-display, "Instrument Serif", Georgia, serif);
               font-style: italic; font-weight: 400; letter-spacing: -0.01em;
+              text-wrap: pretty;
+              hyphens: auto;
+              -webkit-hyphens: auto;
             }
-            .pd-card .pd-body    { font-size: 3.4cqi; line-height: 1.45; }
+            .pd-card .pd-body    { font-size: 3.6cqi; line-height: 1.42; text-wrap: pretty; }
             .pd-card .pd-loc     { font-size: 5cqi; }
             .pd-card .pd-stamp   { font-size: 1.8cqi; letter-spacing: 0.12em; font-weight: 500; }
             .pd-card .pd-id      { font-size: 1.6cqi; }
+            /* Halo behind emoji — pure CSS gradient, prints reliably across browsers. */
+            .pd-halo {
+              background: radial-gradient(
+                circle,
+                var(--halo-from, #e5e7eb) 0%,
+                var(--halo-to, #d1d5db) 70%,
+                transparent 100%
+              );
+            }
+
+            /* Print: force every paint (background, border, gradient, shadow)
+             * to render on paper. Without these, browsers strip colours by
+             * default to save ink. */
             @media print {
               body { background: white !important; }
               @page { size: A4 portrait; margin: 1cm; }
               .pd-page-rules { break-after: page; box-shadow: none !important; }
-              .pd-card { break-inside: avoid; page-break-inside: avoid; }
               .pd-card-grid { gap: 3mm; }
+              .pd-card,
+              .pd-card * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+              }
+              .pd-card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                box-shadow: none !important;
+              }
+              /* In print, balance often degrades to per-word breaks. Keep it
+               * simple — natural wrap with hyphenation when needed. */
+              .pd-card .pd-title,
+              .pd-card .pd-body { text-wrap: wrap; }
             }
           `,
         }}
@@ -269,7 +299,6 @@ interface PrintCardProps {
 
 function PrintCard({ card, title, body, categoryLabel }: PrintCardProps) {
   const p = PALETTES[card.category];
-  const haloId = `halo-${card.id}`;
 
   // If a card lives in 4 of 5 locations or more, treat it as universal —
   // a single globe icon reads cleaner than five tiny emoji cluttering up
@@ -327,36 +356,19 @@ function PrintCard({ card, title, body, categoryLabel }: PrintCardProps) {
         ))}
       </div>
 
-      {/* Big emoji with radial halo — symbol of the action. */}
+      {/* Big emoji with radial halo — pure CSS gradient (prints reliably). */}
       <div
-        className="relative mx-auto"
-        style={{
-          width: "26cqi",
-          height: "26cqi",
-          marginTop: "2.5cqi",
-        }}
+        className="pd-halo relative mx-auto rounded-full"
+        style={
+          {
+            width: "26cqi",
+            height: "26cqi",
+            marginTop: "2.5cqi",
+            "--halo-from": p.haloFrom,
+            "--halo-to": p.haloTo,
+          } as CSSProperties
+        }
       >
-        <svg
-          viewBox="0 0 64 64"
-          className="absolute inset-0 h-full w-full"
-          aria-hidden="true"
-        >
-          <defs>
-            <radialGradient id={haloId} cx="50%" cy="50%" r="50%">
-              <stop
-                offset="0%"
-                stopColor={p.haloFrom}
-                stopOpacity="0.9"
-              />
-              <stop
-                offset="100%"
-                stopColor={p.haloTo}
-                stopOpacity="0.4"
-              />
-            </radialGradient>
-          </defs>
-          <circle cx="32" cy="32" r="30" fill={`url(#${haloId})`} />
-        </svg>
         <span
           className="absolute inset-0 flex items-center justify-center leading-none"
           aria-hidden="true"
