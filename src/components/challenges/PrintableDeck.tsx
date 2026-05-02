@@ -81,14 +81,13 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
             .pd-card .pd-eyebrow { font-size: 2.6cqi; letter-spacing: 0.16em; font-weight: 700; }
             .pd-card .pd-meta    { font-size: 2.6cqi; letter-spacing: 0.10em; font-weight: 600; }
             .pd-card .pd-title   {
+              margin: 0;
               font-size: 6.6cqi; line-height: 1.08;
               font-family: var(--font-display, "Instrument Serif", Georgia, serif);
               font-style: italic; font-weight: 400; letter-spacing: -0.01em;
               text-wrap: pretty;
-              hyphens: auto;
-              -webkit-hyphens: auto;
             }
-            .pd-card .pd-body    { font-size: 3.6cqi; line-height: 1.42; text-wrap: pretty; }
+            .pd-card .pd-body    { margin: 0; font-size: 3.6cqi; line-height: 1.42; text-wrap: pretty; }
             .pd-card .pd-loc     { font-size: 5cqi; }
             .pd-card .pd-stamp   { font-size: 1.8cqi; letter-spacing: 0.12em; font-weight: 500; }
             .pd-card .pd-id      { font-size: 1.6cqi; }
@@ -110,8 +109,11 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
               @page { size: A4 portrait; margin: 1cm; }
               .pd-page-rules { break-after: page; box-shadow: none !important; }
               .pd-card-grid { gap: 3mm; }
-              .pd-card,
-              .pd-card * {
+              /* GLOBAL color-adjust — covers cards, rules-page chips, halos,
+               * gradients, borders, shadows. Browsers strip these by default. */
+              *,
+              *::before,
+              *::after {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 color-adjust: exact !important;
@@ -121,10 +123,27 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
                 page-break-inside: avoid;
                 box-shadow: none !important;
               }
-              /* In print, balance often degrades to per-word breaks. Keep it
-               * simple — natural wrap with hyphenation when needed. */
-              .pd-card .pd-title,
-              .pd-card .pd-body { text-wrap: wrap; }
+              /* Container-query units (cqi) are flaky in print across browsers
+               * — explicit absolute pt sizes here as a stable fallback. We
+               * also force `text-wrap: wrap` to undo `text-balance` which
+               * tends to single-word-per-line during page rendering. */
+              .pd-card .pd-eyebrow { font-size: 7pt !important; }
+              .pd-card .pd-meta    { font-size: 7pt !important; }
+              .pd-card .pd-title   {
+                font-size: 13pt !important;
+                line-height: 1.1 !important;
+                margin: 0 !important;
+                text-wrap: wrap !important;
+              }
+              .pd-card .pd-body    {
+                font-size: 8pt !important;
+                line-height: 1.35 !important;
+                margin: 0 !important;
+                text-wrap: wrap !important;
+              }
+              .pd-card .pd-loc     { font-size: 11pt !important; }
+              .pd-card .pd-stamp   { font-size: 5pt !important; }
+              .pd-card .pd-id      { font-size: 4pt !important; }
             }
           `,
         }}
@@ -380,7 +399,7 @@ function PrintCard({ card, title, body, categoryLabel }: PrintCardProps) {
 
       {/* Title — italic Instrument Serif, the editorial centre of the card. */}
       <h3
-        className="pd-title text-balance text-center"
+        className="pd-title text-center"
         style={{
           padding: "3.5cqi 5cqi 0",
           color: p.text,
@@ -419,9 +438,9 @@ function PrintCard({ card, title, body, categoryLabel }: PrintCardProps) {
         />
       </div>
 
-      {/* Body — instruction text, centred, balanced. */}
+      {/* Body — instruction text, centred. */}
       <p
-        className="pd-body flex-1 text-balance text-center"
+        className="pd-body flex-1 text-center"
         style={{
           padding: "0 5cqi",
           color: "#475569",
