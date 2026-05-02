@@ -125,8 +125,8 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
               }
               /* Container-query units (cqi) are flaky in print across browsers
                * — explicit absolute pt sizes here as a stable fallback. We
-               * also force `text-wrap: wrap` to undo `text-balance` which
-               * tends to single-word-per-line during page rendering. */
+               * also force text-wrap:wrap to undo text-balance which tends
+               * to single-word-per-line during page rendering. */
               .pd-card .pd-eyebrow { font-size: 7pt !important; }
               .pd-card .pd-meta    { font-size: 7pt !important; }
               .pd-card .pd-title   {
