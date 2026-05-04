@@ -67,6 +67,7 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
               display: flex;
               flex-wrap: wrap;
               justify-content: center;
+              align-content: flex-start;
               gap: var(--card-gap);
             }
             .pd-card {
@@ -106,9 +107,11 @@ export function PrintableDeck({ cardTexts, labels }: PrintableDeckProps) {
              * default to save ink. */
             @media print {
               body { background: white !important; }
-              @page { size: A4 portrait; margin: 1cm; }
-              .pd-page-rules { break-after: page; box-shadow: none !important; }
-              .pd-card-grid { gap: 3mm; }
+              /* @page rule is injected dynamically by PrintSizeControl so the
+               * user can flip orientation. This default applies if no JS yet. */
+              @page { size: A4 portrait; margin: 5mm; }
+              .pd-page-rules { break-after: page; box-shadow: none !important; padding: 12mm !important; }
+              .pd-card-grid { gap: 2mm; align-content: flex-start; }
               /* GLOBAL color-adjust — covers cards, rules-page chips, halos,
                * gradients, borders, shadows. Browsers strip these by default. */
               *,
